@@ -1,6 +1,7 @@
 package com.microsoft.gbb.rasa.orderservice.service;
 
 import com.microsoft.gbb.rasa.orderservice.entities.CustomerOrder;
+import com.microsoft.gbb.rasa.orderservice.messaging.TopicProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +18,11 @@ import java.util.Arrays;
 @Qualifier("customerorder")
 public class CustomerOrderService implements OrderService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerOrderService.class);
-//    private final ProductRespository productRespository;
-//
-//    public CustomerOrderService(ProductRespository productRespository, DaprPublisher daprPublisher) {
-//        this.productRespository = productRespository;
-//        this.daprPublisher = daprPublisher;
-//    }
+    private final TopicProducer topicProducer;
+
+    public CustomerOrderService(TopicProducer topicProducer) {
+        this.topicProducer = topicProducer;
+    }
     /**
      * Create order for customer.
      *
@@ -31,7 +31,7 @@ public class CustomerOrderService implements OrderService {
      */
     public String createOrder(CustomerOrder order) {
         LOGGER.info("Creating order");
-        //daprPublisher.publishEvent(order.toString());
+        topicProducer.send(order.toString());
         return "Order created successfully";
     }
 }
