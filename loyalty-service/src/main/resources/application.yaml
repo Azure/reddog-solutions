@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: loyalty-service
+  banner:
+    location: static/banner.txt
+  redis:
+    host: ${AZURE_REDIS_HOST}
+    port: ${AZURE_REDIS_PORT}
+    password: ${AZURE_REDIS_ACCESS_KEY}
+    ssl: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8083
+
+---
+spring:
+  profiles: dev
+  application:
+    name: loyalty-service
