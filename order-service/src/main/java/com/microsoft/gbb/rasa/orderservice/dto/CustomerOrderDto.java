@@ -1,7 +1,8 @@
 package com.microsoft.gbb.rasa.orderservice.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 public record CustomerOrderDto(Long customerOrderId, String loyaltyId, String firstName, String lastName,
-                               String storeId) implements Serializable {
+                               String storeId, List<CustomerOrderItemDto> orderItems) implements Serializable {
 }
