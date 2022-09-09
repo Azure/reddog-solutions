@@ -1,0 +1,23 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: order_pub_sub
+  namespace: default
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    - name: brokers # Required. Kafka broker connection setting
+      value: "localhost:9092"
+    - name: consumerGroup # Optional. Used for input bindings.
+      value: "loyalty-service"
+    - name: clientID # Optional. Used as client tracing ID by Kafka brokers.
+      value: "loyalty-service"
+    - name: authType # Required.
+      value: "none"
+    - name: disableTls # Optional. Disable TLS. This is not safe for production!! You should read the `Mutual TLS` section for how to use TLS.
+      value: "true"
+    - name: authRequired
+      value: "false"
+    - name: skipVerify
+      value: "false"
