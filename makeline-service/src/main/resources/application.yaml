@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: makeline-service
+  banner:
+    location: static/banner.txt
+data:
+messaging:
+  pubsub:
+    enabled: true
+    TOPIC_NAME: makeline-service-topic
+    SUB_NAME: pubsub
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8084
+
+---
+spring:
+  profiles: dev
+  application:
+    name: makeline-service
