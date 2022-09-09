@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: receipt-generation-service
+  banner:
+    location: static/banner.txt
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+          account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
+          endpoint: ${AZURE_STORAGE_ENDPOINT}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8082
+
+---
+spring:
+  profiles: dev
+  application:
+    name: receipt-generation-service
