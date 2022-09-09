@@ -1,8 +1,6 @@
 package com.microsoft.gbb.rasa.orderservice.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +10,9 @@ import java.util.Collection;
 @Setter
 @ToString
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "order_item_summary")
 public class OrderItemSummary {
     @Column(name = "product_name")
@@ -21,6 +22,7 @@ public class OrderItemSummary {
     @JoinTable(name = "order_item_summary_products",
             joinColumns = @JoinColumn(name = "order_item_summary_id"),
             inverseJoinColumns = @JoinColumn(name = "products_product_id"))
+    @ToString.Exclude
     private Collection<Product> products = new ArrayList<>();
 
     @Column(name = "quantity", nullable = false)
@@ -28,6 +30,9 @@ public class OrderItemSummary {
 
     @Column(name = "unit_cost", nullable = false)
     private double unitCost;
+
+    @Column(name = "unit_price", nullable = false)
+    private double unitPrice;
 
     @Column(name = "image_url")
     private String imageUrl;
