@@ -1,4 +1,10 @@
-CREATE TABLE customer_order
+DROP TABLE IF EXISTS customer_order;
+DROP TABLE IF EXISTS customer_order_item;
+DROP TABLE IF EXISTS order_item_summary;
+DROP TABLE IF EXISTS order_item_summary_products;
+DROP TABLE IF EXISTS order_summary;
+DROP TABLE IF EXISTS product;
+    CREATE TABLE customer_order
 (
     customer_order_id BIGINT       NOT NULL,
     loyalty_id        VARCHAR(255) NULL,
@@ -22,6 +28,7 @@ CREATE TABLE order_item_summary
     product_name           VARCHAR(255) NULL,
     quantity               INT          NOT NULL,
     unit_cost              DOUBLE       NOT NULL,
+    unit_price              DOUBLE       NOT NULL,
     image_url              VARCHAR(255) NULL,
     order_summary_order_id BIGINT       NULL,
     CONSTRAINT pk_order_item_summary PRIMARY KEY (order_summary_id)
@@ -48,7 +55,7 @@ CREATE TABLE order_summary
 
 CREATE TABLE product
 (
-    product_id    BIGINT       NOT NULL,
+    product_id    BIGINT       NOT NULL AUTO_INCREMENT,
     product_name  VARCHAR(255) NULL,
     `description` VARCHAR(255) NULL,
     category_id   VARCHAR(255) NULL,
@@ -69,3 +76,5 @@ ALTER TABLE order_item_summary_products
 
 ALTER TABLE order_item_summary_products
     ADD CONSTRAINT fk_orditesumpro_on_product FOREIGN KEY (products_product_id) REFERENCES product (product_id);
+
+ALTER TABLE product AUTO_INCREMENT=1;

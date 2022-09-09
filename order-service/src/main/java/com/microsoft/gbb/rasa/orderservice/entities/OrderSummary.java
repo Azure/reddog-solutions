@@ -1,7 +1,6 @@
 package com.microsoft.gbb.rasa.orderservice.entities;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +10,9 @@ import java.util.List;
 @Getter
 @ToString
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "order_summary")
 public class OrderSummary {
     @Id
