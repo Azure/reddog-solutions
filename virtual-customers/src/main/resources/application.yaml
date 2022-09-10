@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: virtual-customers
+  banner:
+    location: static/banner.txt
+data:
+  STORE_ID: ${STORE_ID:Redmond}
+messaging:
+  pubsub:
+    enabled: true
+    TOPIC_NAME: virtual-customers-topic
+    SUB_NAME: pubsub
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8081
+org:
+  jobrunr:
+    background-job-server:
+        enabled: true
+    dashboard:
+      enabled: true
+---
+spring:
+  profiles: dev
+  application:
+    name: virtual-customers
