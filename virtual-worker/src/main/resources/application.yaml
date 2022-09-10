@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: virtual-worker
+  banner:
+    location: static/banner.txt
+data:
+  STORE_ID: ${STORE_ID:Redmond}
+  DAPR_HTTP_PORT: 3500
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8085
+---
+spring:
+  profiles: dev
+  application:
+    name: virtual-worker
