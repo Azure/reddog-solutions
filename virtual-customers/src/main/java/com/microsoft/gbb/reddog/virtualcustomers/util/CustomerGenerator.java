@@ -14,7 +14,7 @@ import java.util.List;
 public class CustomerGenerator {
     private static final Faker faker = new Faker();
     @Value("${data.MAX_UNIQUE_ITEMS_PER_ORDER}")
-    private static int MAX_UNIQUE_ITEMS_PER_ORDER;
+    private int MAX_UNIQUE_ITEMS_PER_ORDER;
 
     public String generateFirstName() {
         return faker.name().firstName();

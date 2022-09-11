@@ -27,7 +27,7 @@ public class OrderCreationJobService {
     public static final String ORDER_SVC_URL = "http://localhost:8090/";
 
     @Value("${data.STORE_ID}")
-    private static String STORE_ID;
+    private String STORE_ID;
 
     private final CustomerGenerator customerGenerator;
 
