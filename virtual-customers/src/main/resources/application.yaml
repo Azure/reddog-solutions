@@ -5,6 +5,8 @@ spring:
     location: static/banner.txt
 data:
   STORE_ID: ${STORE_ID:Redmond}
+  CREATE_ORDER_CRON_SCHEDULE: ${CREATE_ORDER_CRON_SCHEDULE:"*/5 * * * *"}
+  MAX_UNIQUE_ITEMS_PER_ORDER: ${MAX_UNIQUE_ITEMS_PER_ORDER:10}
 messaging:
   pubsub:
     enabled: true
@@ -19,13 +21,14 @@ management:
     health:
       show-details: ALWAYS
 server:
-  port: 8081
+  port: 8091
 org:
   jobrunr:
     background-job-server:
         enabled: true
     dashboard:
       enabled: true
+      port: 8001
 ---
 spring:
   profiles: dev
