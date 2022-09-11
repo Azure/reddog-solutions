@@ -22,7 +22,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * The type Order service.
+ * Create new orders for customers.
  */
 @Slf4j
 @Component
@@ -82,7 +82,7 @@ public class CustomerOrderService implements OrderService {
 
         // return initialized order summary
         return OrderSummary.builder()
-                .orderId(Long.valueOf(UUID.randomUUID().toString()))
+                .orderId(generateUniqueId())
                 .storeId(order.getStoreId())
                 .firstName(order.getFirstName())
                 .lastName(order.getLastName())
@@ -91,5 +91,9 @@ public class CustomerOrderService implements OrderService {
                 .orderItemSummaries(itemSummaries)
                 .orderTotal(BigDecimal.valueOf(orderTotal.get()).setScale(2, RoundingMode.HALF_DOWN).doubleValue())
                 .build();
+    }
+
+    private static long generateUniqueId() {
+        return UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
     }
 }
