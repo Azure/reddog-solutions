@@ -5,7 +5,8 @@ on:
 env:
 # Use matrix to loop through all the packages
   ASC_PACKAGE_PATH: ${{ github.workspace }}
-  SERVICE_INSTANCE_NAME: order-service
+  SERVICE_INSTANCE_NAME: asae-sandbox
+  APP_NAME: order-service
 
 jobs:
   deploy_to_asa-e:
@@ -34,6 +35,6 @@ jobs:
           azure-subscription: ${{ secrets.AZ_SUB_ID }}
           action: deploy
           service-name: ${{ env.SERVICE_INSTANCE_NAME }}
-          app-name: ${{ env.SERVICE_INSTANCE_NAME }}
+          app-name: ${{ env.APP_NAME }}
           use-staging-deployment: false
-          package: ${{ env.ASC_PACKAGE_PATH }}/${{ env.SERVICE_INSTANCE_NAME }}
+          package: ${{ env.ASC_PACKAGE_PATH }}/${{ env.APP_NAME }}
