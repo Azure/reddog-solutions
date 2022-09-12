@@ -31,9 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### Local Dev ###
-.env
-/.jpb/
-/.env
-/.jpb/

@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   application:
     name: receipt-generation-service
   banner:
@@ -10,6 +12,10 @@ spring:
           account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
           account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
           endpoint: ${AZURE_STORAGE_ENDPOINT}
+data:
+  BLOB:
+    CONTAINER: ${BLOB_CONTAINER:reddogasa}
+    FILE_NAME: ${BLOB_FILE_NAME:receipts.txt}
 management:
   endpoints:
     web:
