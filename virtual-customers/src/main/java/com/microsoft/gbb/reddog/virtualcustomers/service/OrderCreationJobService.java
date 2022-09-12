@@ -24,7 +24,10 @@ import java.util.Objects;
 public class OrderCreationJobService {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderCreationJobService.class);
 
-    public static final String ORDER_SVC_URL = "http://localhost:8090/";
+    @Value("${data.ORDER_SVC_URL}")
+    private String orderServiceUrl;
+
+    private static String ORDER_SVC_URL;
 
     @Value("${data.STORE_ID}")
     private String STORE_ID;
@@ -36,9 +39,11 @@ public class OrderCreationJobService {
     public OrderCreationJobService(CustomerGenerator customerGenerator) {
         this.customerGenerator = customerGenerator;
     }
-
-
-    @Recurring(id = "create-orders", cron = "*/5 * * * *")
+    @Value("${data.ORDER_SVC_URL}")
+    public void setOrderServiceUrlStatic(String orderServiceUrl) {
+        OrderCreationJobService.ORDER_SVC_URL = orderServiceUrl + "/";
+    }
+    @Recurring(id = "create-orders", cron = "*/5 * * * * *")
     @Job(name = "Virtual Customers")
     public void execute() {
         LOGGER.info("Creating orders");
