@@ -30,7 +30,7 @@ jobs:
       #     tenant-id: ${{ secrets.AZ_TENANT_ID }}
       #     subscription-id: ${{ secrets.AZ_SUB_ID }}
       - name: deploy with soruce code
-        uses: azure/spring-apps-deploy@v1
+        uses: azure/spring-cloud-deploy@v1
         with:
           azure-subscription: ${{ secrets.AZ_SUB_ID }}
           action: deploy

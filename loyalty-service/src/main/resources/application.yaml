@@ -1,13 +1,30 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
   application:
     name: loyalty-service
   banner:
     location: static/banner.txt
-  redis:
-    host: ${AZURE_REDIS_HOST}
-    port: ${AZURE_REDIS_PORT}
-    password: ${AZURE_REDIS_ACCESS_KEY}
-    ssl: true
+#  redis:
+#    host: ${AZURE_REDIS_HOST}
+#    port: ${AZURE_REDIS_PORT}
+#    password: ${AZURE_REDIS_ACCESS_KEY}
+#    ssl: true
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:loyalty-service}
+      properties:
+        sasl:
+          jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
+          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+data:
+  topic:
+    name: ${KAFKA_TOPIC_NAME:reddog.orders}
+    group: ${KAFKA_TOPIC_GROUP:loyalty-service}
+
 management:
   endpoints:
     web:

@@ -7,6 +7,7 @@ data:
   STORE_ID: ${STORE_ID:Redmond}
   CREATE_ORDER_CRON_SCHEDULE: ${CREATE_ORDER_CRON_SCHEDULE:"*/5 * * * *"}
   MAX_UNIQUE_ITEMS_PER_ORDER: ${MAX_UNIQUE_ITEMS_PER_ORDER:10}
+  ORDER_SVC_URL: ${ORDER_SVC_URL:http://localhost:8090}
 messaging:
   pubsub:
     enabled: true
