@@ -1,12 +1,46 @@
 package com.microsoft.gbb.rasa.orderservice.dto;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-import java.io.Serializable;
-import java.util.Collection;
-
+/**
+ * Order item Summary DTO
+ * TODO: Troubleshoot Java Records Jackson issue
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public record OrderItemSummaryDto(String productName, Collection<ProductDto> products, int quantity, double unitCost,
-                                  String imageUrl, OrderSummaryDto orderSummary,
-                                  Long orderSummaryId) implements Serializable {
+public class OrderItemSummaryDto {
+
+    @JsonProperty("unitPrice")
+    private double unitPrice;
+
+    @JsonProperty("quantity")
+    private int quantity;
+
+    @JsonProperty("productId")
+    private int productId;
+
+    @JsonProperty("unitCost")
+    private double unitCost;
+
+    @JsonProperty("imageUrl")
+    private String imageUrl;
+
+    @JsonProperty("productName")
+    private String productName;
+
+    @Override
+    public String toString() {
+        return "OrderItemSummaryDto{" +
+                "unitPrice=" + unitPrice +
+                ", quantity=" + quantity +
+                ", productId=" + productId +
+                ", unitCost=" + unitCost +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", productName='" + productName + '\'' +
+                '}';
+    }
 }

@@ -17,9 +17,13 @@ spring:
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:loyalty-service}
       properties:
+        spring:
+          json:
+            trusted.packages: "*"
         sasl:
           jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
           mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 data:
   topic:
     name: ${KAFKA_TOPIC_NAME:reddog.orders}
