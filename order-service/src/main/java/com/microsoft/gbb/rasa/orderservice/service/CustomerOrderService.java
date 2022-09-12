@@ -48,9 +48,8 @@ public class CustomerOrderService implements OrderService {
      */
     public OrderSummary createOrder(CustomerOrder order) {
         LOGGER.info("Creating order");
-        topicProducer.send(order.toString());
         var orderSummary = getOrderSummary(order);
-        topicProducer.send(orderSummary.toString());
+        topicProducer.send(orderSummary);
         return orderSummary;
     }
 
