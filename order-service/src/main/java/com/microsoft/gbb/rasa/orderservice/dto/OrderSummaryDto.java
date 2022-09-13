@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderSummaryDto {
+public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderCompletedDate")
     private Date orderCompletedDate;

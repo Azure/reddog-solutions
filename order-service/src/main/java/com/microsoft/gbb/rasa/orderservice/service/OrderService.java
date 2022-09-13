@@ -1,8 +1,8 @@
 package com.microsoft.gbb.rasa.orderservice.service;
 
 
+import com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.orderservice.entities.CustomerOrder;
-import com.microsoft.gbb.rasa.orderservice.entities.OrderSummary;
 
 /**
  * The interface Order service.
@@ -14,5 +14,5 @@ public interface OrderService {
      * @param order the order
      * @return the string
      */
-    public OrderSummary createOrder(CustomerOrder order);
+    public OrderSummaryDto createOrder(CustomerOrder order);
 }
