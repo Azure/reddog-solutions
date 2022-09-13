@@ -37,3 +37,5 @@ build/
 .whitesource
 
 order-service/flyway.conf
+
+*.conf
