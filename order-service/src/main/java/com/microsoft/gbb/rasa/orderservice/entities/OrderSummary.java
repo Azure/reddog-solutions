@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
+@Setter
 @ToString
 @Entity
 @AllArgsConstructor
@@ -44,41 +45,6 @@ public class OrderSummary {
     private double orderTotal;
 
     @OneToMany(mappedBy = "orderSummary", orphanRemoval = true)
+    @ToString.Exclude
     private List<OrderItemSummary> orderItemSummaries = new ArrayList<>();
-
-    public void setOrderItemSummaries(List<OrderItemSummary> orderItemSummaries) {
-        this.orderItemSummaries = orderItemSummaries;
-    }
-
-    public void setOrderTotal(double orderTotal) {
-        this.orderTotal = orderTotal;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLoyaltyId(String loyaltyId) {
-        this.loyaltyId = loyaltyId;
-    }
-
-    public void setOrderCompletedDate(Date orderCompletedDate) {
-        this.orderCompletedDate = orderCompletedDate;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 }

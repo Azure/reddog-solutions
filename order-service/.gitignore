@@ -37,3 +37,6 @@ build/
 /.jpb/
 /.env
 /.jpb/
+/.flyway.conf
+flyway.conf
+/.jpb/

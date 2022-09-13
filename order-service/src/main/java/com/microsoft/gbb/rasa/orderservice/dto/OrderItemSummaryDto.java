@@ -1,19 +1,16 @@
 package com.microsoft.gbb.rasa.orderservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * Order item Summary DTO
- * TODO: Troubleshoot Java Records Jackson issue
- */
+@Builder
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class OrderItemSummaryDto {
-
+public class OrderItemSummaryDto extends AbstractDto<String> {
     @JsonProperty("unitPrice")
     private double unitPrice;
 
@@ -31,16 +28,4 @@ public class OrderItemSummaryDto {
 
     @JsonProperty("productName")
     private String productName;
-
-    @Override
-    public String toString() {
-        return "OrderItemSummaryDto{" +
-                "unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", productId=" + productId +
-                ", unitCost=" + unitCost +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", productName='" + productName + '\'' +
-                '}';
-    }
 }

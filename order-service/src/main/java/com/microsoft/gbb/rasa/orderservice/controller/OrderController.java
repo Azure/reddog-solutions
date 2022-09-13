@@ -1,11 +1,13 @@
 package com.microsoft.gbb.rasa.orderservice.controller;
 
+import com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.orderservice.entities.CustomerOrder;
-import com.microsoft.gbb.rasa.orderservice.entities.OrderSummary;
-import com.microsoft.gbb.rasa.orderservice.exception.OrderNotFoundException;
 import com.microsoft.gbb.rasa.orderservice.service.OrderService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 public class OrderController {
@@ -21,10 +23,7 @@ public class OrderController {
                  produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public OrderSummary order(@RequestBody CustomerOrder order) {
-        if (null == order) {
-            throw new OrderNotFoundException("Order is null");
-        }
-        return orderService.createOrder(order);
+    public ResponseEntity<OrderSummaryDto> order(@Valid @RequestBody CustomerOrder order) {
+        return ResponseEntity.ok(orderService.createOrder(order));
     }
 }
