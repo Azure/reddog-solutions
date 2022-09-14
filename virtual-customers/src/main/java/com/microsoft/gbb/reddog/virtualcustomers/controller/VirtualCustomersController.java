@@ -3,6 +3,7 @@ package com.microsoft.gbb.reddog.virtualcustomers.controller;
 
 import com.microsoft.gbb.reddog.virtualcustomers.service.OrderCreationJobService;
 import org.jobrunr.scheduling.JobScheduler;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,8 +19,8 @@ public class VirtualCustomersController {
 
     @GetMapping(value = "/simulate-orders")
     @CrossOrigin(origins = "*")
-    public String createOrderJob(@RequestParam(value = "numOrders", defaultValue = "10") int numOrders) {
+    public ResponseEntity<String> createOrderJob(@RequestParam(value = "numOrders", defaultValue = "10") int numOrders) {
         jobScheduler.enqueue(orderCreationJobService::execute);
-        return "Job started";
+        return ResponseEntity.ok("Order creation job scheduled");
     }
 }
