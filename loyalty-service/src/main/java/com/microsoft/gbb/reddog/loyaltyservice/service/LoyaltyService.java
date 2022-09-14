@@ -17,7 +17,7 @@ public class LoyaltyService {
     }
 
     public String updateLoyalty(OrderSummaryDto orderSummary) {
-        log.info("Generating receipt");
+        log.info("Updating loyalty for order: " + orderSummary);
         // TODO: invoke loyalty state store to update entry in DB
         return "Work in progress, try again";
     }
