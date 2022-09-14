@@ -5,6 +5,7 @@ import com.microsoft.gbb.reddog.receiptgenerationservice.model.OrderSummary;
 import com.microsoft.gbb.reddog.receiptgenerationservice.service.ReceiptGenerationService;
 import io.opentelemetry.extension.annotations.WithSpan;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,10 +20,10 @@ public class ReceiptGenerationController {
     @PostMapping(value = "/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public String generateReceipt(@RequestBody OrderSummary orderSummary) {
+    public ResponseEntity<String> generateReceipt(@RequestBody OrderSummary orderSummary) {
         if (null == orderSummary) {
             throw new ReceiptSaveException("Order is null");
         }
-        return receiptGenerationService.generateReceipt(orderSummary);
+        return ResponseEntity.ok(receiptGenerationService.generateReceipt(orderSummary));
     }
 }

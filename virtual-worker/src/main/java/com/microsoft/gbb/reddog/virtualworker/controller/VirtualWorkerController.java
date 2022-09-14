@@ -2,6 +2,7 @@ package com.microsoft.gbb.reddog.virtualworker.controller;
 
 
 import com.microsoft.gbb.reddog.virtualworker.service.VirtualWorkerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +18,8 @@ public class VirtualWorkerController {
 
     @PostMapping(value = "/orders")
     @CrossOrigin(origins = "*")
-    public String checkOrders() {
+    public ResponseEntity<String> checkOrders() {
         orderCreationJobService.checkOrders();
-        return "WIP";
+        return ResponseEntity.noContent().build();
     }
 }
