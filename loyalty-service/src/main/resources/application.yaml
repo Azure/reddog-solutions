@@ -10,6 +10,7 @@ spring:
     port: ${AZURE_REDIS_PORT}
     password: ${AZURE_REDIS_ACCESS_KEY}
     ssl: true
+    connect-timeout: 5000
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     security:

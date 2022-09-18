@@ -1,16 +1,18 @@
 package com.microsoft.gbb.reddog.loyaltyservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.redis.core.RedisHash;
 
 /**
  * The type Order item summary.
  */
+@Data
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@RedisHash("loyaltysummary")
 public class LoyaltySummary {
 
     @JsonProperty("loyaltyId")

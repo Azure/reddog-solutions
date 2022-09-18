@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.makelineservice;
+package com.microsoft.gbb.rasa.makelineservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

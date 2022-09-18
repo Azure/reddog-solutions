@@ -2,11 +2,11 @@ package com.microsoft.gbb.reddog.loyaltyservice.controller;
 
 import com.microsoft.gbb.reddog.loyaltyservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.reddog.loyaltyservice.exception.LoyaltySaveException;
+import com.microsoft.gbb.reddog.loyaltyservice.model.LoyaltySummary;
 import com.microsoft.gbb.reddog.loyaltyservice.service.LoyaltyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,7 +23,7 @@ public class LoyaltyController {
     @PostMapping(value = "/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> updateLoyalty(@RequestBody OrderSummaryDto orderSummaryDto) {
+    public ResponseEntity<LoyaltySummary> updateLoyalty(@RequestBody OrderSummaryDto orderSummaryDto) {
         if (null == orderSummaryDto) {
             throw new LoyaltySaveException("OrderSummary is empty");
         }

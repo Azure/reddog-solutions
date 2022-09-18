@@ -1,8 +1,10 @@
-package com.microsoft.gbb.reddog.makelineservice.controller;
+package com.microsoft.gbb.rasa.makelineservice.controller;
 
-import com.microsoft.gbb.reddog.makelineservice.exception.SaveOrderException;
-import com.microsoft.gbb.reddog.makelineservice.model.OrderSummary;
-import com.microsoft.gbb.reddog.makelineservice.service.MakelineService;
+import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
+import com.microsoft.gbb.rasa.makelineservice.exception.SaveOrderException;
+import com.microsoft.gbb.rasa.makelineservice.service.MakelineService;
+import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @RestController
+@Slf4j
 public class MakelineController {
 
     private final MakelineService makelineService;
@@ -22,11 +25,21 @@ public class MakelineController {
     @PostMapping(value = "/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> addOrderToMakeLine(@RequestBody OrderSummary orderSummary) {
-        if (null == orderSummary) {
+    public ResponseEntity<String> addOrderToMakeLine(@RequestBody OrderSummaryDto orderSummaryDto) {
+        if (null == orderSummaryDto) {
             throw new SaveOrderException("OrderSummary is empty");
         }
-        return ResponseEntity.ok(makelineService.addOrderToMakeLine(orderSummary));
+        return ResponseEntity.ok(makelineService.addOrderToMakeLine(orderSummaryDto));
+    }
+
+    // TODO: Refactor with Avro schema in EH Schema Registry
+    // @KafkaListener(topics = "reddog.ordercompleted" , groupId = "${'${data.topic.group}'")
+    public void addOrderToMakeLineAsync(OrderSummaryDto orderSummaryDto) {
+        log.info("Received order to make line: " + orderSummaryDto);
+        if (null == orderSummaryDto) {
+            throw new SaveOrderException("OrderSummary is empty");
+        }
+        makelineService.addOrderToMakeLine(orderSummaryDto);
     }
 
     @GetMapping(value = "/orders/{storeId}")
