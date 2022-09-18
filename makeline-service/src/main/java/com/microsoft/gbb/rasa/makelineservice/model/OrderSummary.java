@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.makelineservice.model;
+package com.microsoft.gbb.rasa.makelineservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

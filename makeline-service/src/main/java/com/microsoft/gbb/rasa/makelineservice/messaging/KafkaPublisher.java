@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.makelineservice.messaging;
+package com.microsoft.gbb.rasa.makelineservice.messaging;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

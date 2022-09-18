@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.makelineservice;
+package com.microsoft.gbb.rasa.makelineservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

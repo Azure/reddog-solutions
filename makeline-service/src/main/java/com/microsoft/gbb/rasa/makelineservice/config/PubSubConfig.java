@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.makelineservice.config;
+package com.microsoft.gbb.rasa.makelineservice.config;
 
 import org.springframework.stereotype.Component;
 

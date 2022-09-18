@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.makelineservice.exception;
+package com.microsoft.gbb.rasa.makelineservice.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

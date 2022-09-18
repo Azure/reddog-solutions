@@ -1,6 +1,6 @@
-package com.microsoft.gbb.reddog.loyaltyservice.config;
+package com.microsoft.gbb.rasa.makelineservice.config;
 
-import com.microsoft.gbb.reddog.loyaltyservice.model.LoyaltySummary;
+import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,15 +46,15 @@ public class RedisConfig {
     }
 
     @Bean(name = "reactiveRedisTemplate")
-    ReactiveRedisTemplate<String, LoyaltySummary> reactiveRedisTemplate(
+    ReactiveRedisTemplate<String, OrderSummary> reactiveRedisTemplate(
             @Qualifier("lettuceConnectionFactory") ReactiveRedisConnectionFactory connectionFactory) {
 
-        Jackson2JsonRedisSerializer<LoyaltySummary> serializer = new Jackson2JsonRedisSerializer<>(LoyaltySummary.class);
+        Jackson2JsonRedisSerializer<OrderSummary> serializer = new Jackson2JsonRedisSerializer<>(OrderSummary.class);
 
-        RedisSerializationContext.RedisSerializationContextBuilder<String, LoyaltySummary> builder =
+        RedisSerializationContext.RedisSerializationContextBuilder<String, OrderSummary> builder =
                 RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
 
-        RedisSerializationContext<String, LoyaltySummary> serializationContext = builder
+        RedisSerializationContext<String, OrderSummary> serializationContext = builder
                 .value(serializer)
                 .hashValue(serializer)
                 .build();
