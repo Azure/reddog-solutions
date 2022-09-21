@@ -25,7 +25,7 @@ management:
     health:
       show-details: ALWAYS
 server:
-  port: 8082
+  port: 8085
 
 ---
 spring:

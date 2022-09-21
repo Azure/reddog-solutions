@@ -5,7 +5,6 @@ spring:
     location: static/banner.txt
 data:
   STORE_ID: ${STORE_ID:Redmond}
-  DAPR_HTTP_PORT: 3500
 management:
   endpoints:
     web:
@@ -15,7 +14,13 @@ management:
     health:
       show-details: ALWAYS
 server:
-  port: 8085
+  port: 8086
+springdoc:
+    api-docs:
+        path: /api-docs
+    swagger-ui:
+        path: /swagger
+        enabled: true
 ---
 spring:
   profiles: dev

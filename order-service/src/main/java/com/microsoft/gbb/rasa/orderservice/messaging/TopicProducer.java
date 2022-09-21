@@ -1,7 +1,6 @@
 package com.microsoft.gbb.rasa.orderservice.messaging;
 
 import com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.orderservice.entities.OrderSummary;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;

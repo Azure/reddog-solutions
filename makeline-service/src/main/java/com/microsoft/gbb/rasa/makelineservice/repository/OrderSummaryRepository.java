@@ -23,6 +23,10 @@ public class OrderSummaryRepository {
         return this.reactiveRedisOperations.opsForList().rightPush(KEY, orderSummaries);
     }
 
+    public Mono<List<OrderSummaryDto>> findById(String id) {
+        return this.findAll().filter(p -> p.get(Integer.parseInt(id)).getOrderId().equals(id)).last();
+    }
+
     public Mono<Boolean> deleteAll() {
         return this.reactiveRedisOperations.opsForList().delete(KEY);
     }

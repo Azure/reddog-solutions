@@ -21,7 +21,6 @@ public class LoyaltySummaryRepository {
         return this.findAll().filter(p -> p.getLoyaltyId().equals(id)).last();
     }
 
-
     public Mono<Long> save(LoyaltySummary loyaltySummary){
         return this.reactiveRedisOperations.opsForList().rightPush(KEY, loyaltySummary);
     }
