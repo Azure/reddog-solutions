@@ -12,7 +12,7 @@ FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu
 # Setting the working directory
 WORKDIR /opt/app
 # Exposing the port
-EXPOSE 8091
+EXPOSE 8081
 # Copying the jar file from builder image
 COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
 # Running the jar file

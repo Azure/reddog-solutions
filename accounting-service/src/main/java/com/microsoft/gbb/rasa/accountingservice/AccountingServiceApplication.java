@@ -8,10 +8,10 @@ import org.springframework.kafka.annotation.EnableKafka;
 @EnableKafka
 @SpringBootApplication
 @EnableEurekaClient
-public class OrderServiceApplication {
+public class AccountingServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderServiceApplication.class, args);
+        SpringApplication.run(AccountingServiceApplication.class, args);
     }
 
 }

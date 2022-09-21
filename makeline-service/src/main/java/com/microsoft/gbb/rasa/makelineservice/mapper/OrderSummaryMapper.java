@@ -1,7 +1,7 @@
 package com.microsoft.gbb.rasa.makelineservice.mapper;
 
-import com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.orderservice.entities.OrderSummary;
+import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
+import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -3,7 +3,12 @@ spring:
     name: makeline-service
   banner:
     location: static/banner.txt
-data:
+  redis:
+    host: ${AZURE_REDIS_HOST}
+    port: ${AZURE_REDIS_PORT}
+    password: ${AZURE_REDIS_ACCESS_KEY}
+    ssl: true
+    connect-timeout: 5000
 messaging:
   pubsub:
     enabled: true
