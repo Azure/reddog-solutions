@@ -22,7 +22,7 @@ management:
     health:
       show-details: ALWAYS
 server:
-  port: 8081
+  port: 8091
 org:
   jobrunr:
     background-job-server:

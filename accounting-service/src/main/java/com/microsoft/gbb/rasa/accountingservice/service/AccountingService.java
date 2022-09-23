@@ -36,7 +36,9 @@ public class AccountingService {
     }
 
     // TODO: implement the following methods with JPA queries
-    public void UpdateMetrics(OrderSummaryDto orderSummary) {}
+    public void UpdateMetrics(OrderSummaryDto orderSummary) {
+
+    }
     public void markOrderComplete(OrderSummaryDto orderSummary) {}
     public void getOrderCountOverTime(OrderSummaryDto orderSummary) {}
     public List<String> getUniqueStores() { return null; }

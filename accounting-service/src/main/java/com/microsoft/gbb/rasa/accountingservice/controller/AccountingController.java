@@ -1,7 +1,7 @@
 package com.microsoft.gbb.rasa.accountingservice.controller;
 
+import com.microsoft.gbb.rasa.accountingservice.dto.CustomerOrderDto;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.accountingservice.entities.CustomerOrder;
 import com.microsoft.gbb.rasa.accountingservice.service.AccountingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class AccountingController {
                  produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<OrderSummaryDto> order(@Valid @RequestBody CustomerOrder order) {
+    public ResponseEntity<OrderSummaryDto> order(@Valid @RequestBody CustomerOrderDto order) {
         return ResponseEntity.noContent().build();
     }
 }
