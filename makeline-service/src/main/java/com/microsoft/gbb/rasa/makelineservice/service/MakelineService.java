@@ -1,7 +1,7 @@
 package com.microsoft.gbb.rasa.makelineservice.service;
 
-import com.microsoft.gbb.rasa.makelineservice.messaging.KafkaPublisher;
 import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
+import com.microsoft.gbb.rasa.makelineservice.messaging.KafkaPublisher;
 import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
 import com.microsoft.gbb.rasa.makelineservice.repository.OrderSummaryRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +30,8 @@ public class MakelineService {
 
     public String addOrderToMakeLine(OrderSummaryDto orderSummary) {
         LOGGER.info("Adding order to makeline");
+        // TODO: Extract dates to seperate attributes for range queries
+        orderSummaryRepository.save(orderSummary);
         List<OrderSummaryDto> orderSummaries = new ArrayList<OrderSummaryDto>();
         // TODO: Get all orders from orderSummary.storeId
         // append a new order

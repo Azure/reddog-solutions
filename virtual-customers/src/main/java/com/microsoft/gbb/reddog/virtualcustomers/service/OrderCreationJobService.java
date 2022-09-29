@@ -43,7 +43,7 @@ public class OrderCreationJobService {
     public void setOrderServiceUrlStatic(String orderServiceUrl) {
         OrderCreationJobService.ORDER_SVC_URL = orderServiceUrl + "/";
     }
-    @Recurring(id = "create-orders", cron = "*/5 * * * * *")
+    @Recurring(id = "create-orders", cron = "*/15 * * * *")
     @Job(name = "Virtual Customers")
     public void execute() {
         LOGGER.info("Creating orders");

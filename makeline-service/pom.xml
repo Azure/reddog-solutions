@@ -20,6 +20,7 @@
         <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
         <spring-cloud-stream.version>3.2.5</spring-cloud-stream.version>
         <azure-support.version>0.1.8</azure-support.version>
+        <azure.spring.data.cosmos.version>3.27.0</azure.spring.data.cosmos.version>
     </properties>
     <dependencies>
         <dependency>
@@ -95,6 +96,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-spring-data-cosmos</artifactId>
+            <version>${azure.spring.data.cosmos.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>

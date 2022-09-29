@@ -1,6 +1,8 @@
 spring:
   application:
     name: makeline-service
+  main:
+    allow-bean-definition-overriding: true
   banner:
     location: static/banner.txt
   redis:
@@ -14,6 +16,12 @@ messaging:
     enabled: true
     TOPIC_NAME: makeline-service-topic
     SUB_NAME: pubsub
+cosmos:
+  uri: ${AZURE_COSMOSDB_URI}
+  key: ${AZURE_COSMOSDB_KEY}
+  secondaryKey: ${AZURE_COSMOSDB_SECONDARY_KEY}
+  databaseName: ${AZURE_COSMOSDB_DATABASE_NAME}
+  queryMetricsEnabled: true
 management:
   endpoints:
     web:

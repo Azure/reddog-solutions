@@ -1,7 +1,10 @@
 package com.microsoft.gbb.rasa.accountingservice.dto;
 
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Container(containerName = "reddog", ru = "400")
 public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderCompletedDate")
@@ -30,12 +34,14 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private String lastName;
 
     @JsonProperty("orderId")
-    private UUID orderId;
+    @Id
+    private String orderId;
 
     @JsonProperty("storeId")
     private String storeId;
 
     @JsonProperty("orderDate")
+    @PartitionKey
     private String orderDate;
 
     @JsonProperty("orderItems")
