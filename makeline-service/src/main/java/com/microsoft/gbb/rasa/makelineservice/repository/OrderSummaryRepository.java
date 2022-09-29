@@ -1,33 +1,20 @@
 package com.microsoft.gbb.rasa.makelineservice.repository;
 
+import com.azure.spring.data.cosmos.repository.CosmosRepository;
+import com.azure.spring.data.cosmos.repository.Query;
 import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.ReactiveRedisOperations;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
-public class OrderSummaryRepository {
-    public static final String KEY = "ordersummaries";
-    private final ReactiveRedisOperations<String, List<OrderSummaryDto>> reactiveRedisOperations;
+public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto, String> {
+    // Query all orders
+    @Query(value = "SELECT * FROM c")
+    List<OrderSummaryDto> getAllOrders();
 
-    public Flux<List<OrderSummaryDto>> findAll(){
-        return this.reactiveRedisOperations.opsForList().range(KEY, 0, -1);
-    }
-
-    public Mono<Long> save(List<OrderSummaryDto> orderSummaries){
-        return this.reactiveRedisOperations.opsForList().rightPush(KEY, orderSummaries);
-    }
-
-    public Mono<List<OrderSummaryDto>> findById(String id) {
-        return this.findAll().filter(p -> p.get(Integer.parseInt(id)).getOrderId().equals(id)).last();
-    }
-
-    public Mono<Boolean> deleteAll() {
-        return this.reactiveRedisOperations.opsForList().delete(KEY);
-    }
+    // Query for equality using ==
+    @Query(value = "SELECT * FROM c WHERE c.id = @storeId")
+    List<OrderSummaryDto> getOrdersForStore(@Param("storeId") String storeId);
 }
