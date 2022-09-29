@@ -1,7 +1,7 @@
 package com.microsoft.gbb.rasa.orderservice.controller;
 
+import com.microsoft.gbb.rasa.orderservice.dto.CustomerOrderDto;
 import com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.orderservice.entities.CustomerOrder;
 import com.microsoft.gbb.rasa.orderservice.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class OrderController {
                  produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<OrderSummaryDto> order(@Valid @RequestBody CustomerOrder order) {
+    public ResponseEntity<OrderSummaryDto> order(@RequestBody CustomerOrderDto order) {
         return ResponseEntity.ok(orderService.createOrder(order));
     }
 }
