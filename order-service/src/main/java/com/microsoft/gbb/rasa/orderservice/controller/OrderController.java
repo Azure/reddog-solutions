@@ -23,7 +23,7 @@ public class OrderController {
                  produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<OrderSummaryDto> order(@RequestBody CustomerOrderDto order) {
+    public ResponseEntity<OrderSummaryDto> order(@RequestBody @Valid CustomerOrderDto order) {
         return ResponseEntity.ok(orderService.createOrder(order));
     }
 }

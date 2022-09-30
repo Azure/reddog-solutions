@@ -24,7 +24,7 @@ public class CustomerOrder {
     @JsonProperty("lastName")
     private String lastName;
 
-    @JsonProperty("OrderItems")
+    @JsonProperty("orderItems")
     private List<CustomerOrderItem> orderItems;
 
     @JsonProperty("storeId")

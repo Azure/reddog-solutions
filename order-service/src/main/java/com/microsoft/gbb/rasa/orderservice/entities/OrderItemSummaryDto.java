@@ -1,6 +1,5 @@
 package com.microsoft.gbb.rasa.orderservice.entities;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +11,7 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name = "customer_order_item")
-public class CustomerOrderItem {
+public class OrderItemSummaryDto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

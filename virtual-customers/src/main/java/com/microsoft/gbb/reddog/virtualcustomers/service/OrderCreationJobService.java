@@ -1,5 +1,8 @@
 package com.microsoft.gbb.reddog.virtualcustomers.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.microsoft.gbb.reddog.virtualcustomers.model.CustomerOrder;
 import com.microsoft.gbb.reddog.virtualcustomers.model.Product;
 import com.microsoft.gbb.reddog.virtualcustomers.util.CustomerGenerator;
@@ -9,6 +12,7 @@ import org.jobrunr.spring.annotations.Recurring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -65,8 +69,18 @@ public class OrderCreationJobService {
                 .loyaltyId(customerGenerator.generateLoyaltyId())
                 .orderItems(customerGenerator.generateOrderItems(products))
                 .build();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        String orderJson = null;
+        try {
+            orderJson = mapper.writeValueAsString(order);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error serializing order to JSON {}", e);
+        }
+        log.info("Creating order: {}", orderJson);
         return webClient.post()
                 .uri(ORDER_SVC_URL + "order")
+                .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(order)
                 .retrieve()
                 .bodyToMono(CustomerOrder.class)
