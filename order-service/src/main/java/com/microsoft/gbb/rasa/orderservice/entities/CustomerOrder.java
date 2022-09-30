@@ -32,6 +32,6 @@ public class CustomerOrder {
     private String storeId;
 
     @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CustomerOrderItem> orderItems = new ArrayList<>();
+    private List<OrderItemSummaryDto> orderItems = new ArrayList<>();
 
 }

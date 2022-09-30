@@ -1,6 +1,7 @@
 package com.microsoft.gbb.reddog.virtualcustomers.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.*;
 
 /**
@@ -11,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonRootName("orderItem")
 public class CustomerOrderItem {
 
     @JsonProperty("quantity")

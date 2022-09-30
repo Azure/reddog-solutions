@@ -13,6 +13,7 @@ import java.util.List;
 @Component
 public class CustomerGenerator {
     private static final Faker faker = new Faker();
+    public static final int TOTAL_NUM_OF_PRODUCTS_IN_DB = 52;
     @Value("${data.MAX_UNIQUE_ITEMS_PER_ORDER}")
     private int MAX_UNIQUE_ITEMS_PER_ORDER;
 
@@ -71,7 +72,7 @@ public class CustomerGenerator {
         for (int i = 0; i < numOrderItems; i++) {
             Product product = products.get(i);
             orderItems.add(CustomerOrderItem.builder()
-                    .productId(product.getProductId())
+                    .productId(faker.number().numberBetween(1, TOTAL_NUM_OF_PRODUCTS_IN_DB))
                     .quantity(faker.number().numberBetween(1, 10))
                     .build());
         }

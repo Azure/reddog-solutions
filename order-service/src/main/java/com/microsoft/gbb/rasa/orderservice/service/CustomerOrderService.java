@@ -50,6 +50,7 @@ public class CustomerOrderService implements OrderService {
     }
 
     public OrderSummaryDto getOrderSummary(CustomerOrderDto order) {
+        log.info("Creating order summary with order: {}", order.toString());
         // Retrieve all the items
         List<Product> products = Optional.ofNullable(productRepository.findAll()).orElseThrow(() -> {
             log.error("Unable to fetch products");
