@@ -1,0 +1,63 @@
+{
+  "name": "OrderSummary",
+  "type": "record",
+  "namespace": "com.microsoft.gbb.reddog",
+  "fields": [
+    {
+      "name": "loyaltyId",
+      "type": "string"
+    },
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "string"
+    },
+    {
+      "name": "orderId",
+      "type": "string"
+    },
+    {
+      "name": "storeId",
+      "type": "string"
+    },
+    {
+      "name": "orderDate",
+      "type": "string"
+    },
+    {
+      "name": "orderTotal",
+      "type": "double"
+    },
+    {
+      "name": "orderItems",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "orderItems_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "quantity",
+              "type": "int"
+            },
+            {
+              "name": "productId",
+              "type": "int"
+            },
+            {
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "name": "unitPrice",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

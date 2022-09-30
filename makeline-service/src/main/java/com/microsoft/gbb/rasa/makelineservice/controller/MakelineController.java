@@ -25,7 +25,7 @@ public class MakelineController {
     @PostMapping(value = "/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> addOrderToMakeLine(@RequestBody OrderSummaryDto orderSummaryDto) {
+    public ResponseEntity<OrderSummaryDto> addOrderToMakeLine(@RequestBody OrderSummaryDto orderSummaryDto) {
         if (null == orderSummaryDto) {
             throw new SaveOrderException("OrderSummary is empty");
         }
@@ -44,7 +44,7 @@ public class MakelineController {
 
     @GetMapping(value = "/orders/{storeId}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<ArrayList<OrderSummary>> getOrders(@PathVariable String storeId) {
+    public ResponseEntity<ArrayList<OrderSummaryDto>> getOrders(@PathVariable String storeId) {
         if (null == storeId) {
             throw new SaveOrderException("Store ID is empty");
         }
