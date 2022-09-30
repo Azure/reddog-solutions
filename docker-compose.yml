@@ -35,14 +35,20 @@ services:
     image: provectuslabs/kafka-ui
     container_name: kafka-ui
     ports:
-      - "8081:8080"
+      - "8099:8080"
     restart: always
     environment:
-      - KAFKA_CLUSTERS_0_NAME=local
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
-      - KAFKA_CLUSTERS_0_ZOOKEEPER=localhost:2181
-    depends_on:
-      - kafka
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: ${KAFKA_BOOTSTRAP_SERVERS}
+#      KAFKA_CLUSTERS_0_ZOOKEEPER: ${KAFKA_BOOTSTRAP_SERVERS}
+      KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL: SASL_SSL
+      KAFKA_CLUSTERS_0_PROPERTIES_SASL_MECHANISM: PLAIN
+      KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG: ${KAFKA_SASL_JAAS_CONFIG}
+#      - KAFKA_CLUSTERS_0_NAME=local
+#      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+#      - KAFKA_CLUSTERS_0_ZOOKEEPER=localhost:2181
+#    depends_on:
+#      - kafka
   mysql:
     image: mysql:8
     ports:

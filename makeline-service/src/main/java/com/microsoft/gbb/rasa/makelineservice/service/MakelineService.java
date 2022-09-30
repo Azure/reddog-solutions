@@ -1,5 +1,6 @@
 package com.microsoft.gbb.rasa.makelineservice.service;
 
+import com.microsoft.gbb.rasa.makelineservice.dto.OrderItemSummaryDto;
 import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.makelineservice.messaging.KafkaPublisher;
 import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
@@ -28,22 +29,19 @@ public class MakelineService {
         this.orderSummaryRepository = orderSummaryRepository;
     }
 
-    public String addOrderToMakeLine(OrderSummaryDto orderSummary) {
+    public OrderSummaryDto addOrderToMakeLine(OrderSummaryDto orderSummary) {
         LOGGER.info("Adding order to makeline");
         // TODO: Extract dates to seperate attributes for range queries
-        orderSummaryRepository.save(orderSummary);
-        List<OrderSummaryDto> orderSummaries = new ArrayList<OrderSummaryDto>();
+        return orderSummaryRepository.save(orderSummary);
+        // List<OrderSummaryDto> orderSummaries = new ArrayList<OrderSummaryDto>();
         // TODO: Get all orders from orderSummary.storeId
         // append a new order
         // save state to a new persistent store for java via daprClient
-        return "WIP";
     }
 
-    public ArrayList<OrderSummary> getOrders(String storeId) {
+    public ArrayList<OrderSummaryDto> getOrders(String storeId) {
         LOGGER.info("Getting all orders for storeId: " + storeId);
-        // TODO: Get all orders from state store using daprClient
-        // Q: In C# version where are the orders stored in redis?
-        return new ArrayList<>();
+        return orderSummaryRepository.getOrdersForStore(storeId);
     }
 
     public String completeOrder(String storeId, UUID orderId) {
