@@ -16,7 +16,7 @@ public class KafkaTopicConfiguration {
 
     public static final int PARTITION_COUNT = 3;
     public static final int REPLICA_COUNT = 3;
-    @Value("${topic.name.producer}")
+    @Value("${spring.kafka.topic.name}")
     private String topicName;
     @Value("${spring.kafka.producer.bootstrap-servers}")
     private String bootstrapAddress;

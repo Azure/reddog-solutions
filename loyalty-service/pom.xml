@@ -18,6 +18,7 @@
         <opentelemetry.version>1.6.0</opentelemetry.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <spring-cloud-starter-openfeign.version>3.1.4</spring-cloud-starter-openfeign.version>
+        <spring-kafka.version>2.8.8</spring-kafka.version>
     </properties>
     <dependencies>
         <dependency>
@@ -65,6 +66,7 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry</groupId>

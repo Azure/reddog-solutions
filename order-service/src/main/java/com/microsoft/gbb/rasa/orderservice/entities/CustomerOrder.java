@@ -32,6 +32,7 @@ public class CustomerOrder {
     private String storeId;
 
     @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItemSummaryDto> orderItems = new ArrayList<>();
+    @ToString.Exclude
+    private List<OrderItemSummary> orderItems = new ArrayList<>();
 
 }

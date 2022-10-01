@@ -80,7 +80,7 @@ public class CustomerOrderService implements OrderService {
 
         // return initialized order summary
         return OrderSummaryDto.builder()
-                .orderId(UUID.randomUUID())
+                .orderId(UUID.randomUUID().toString())
                 .storeId(order.getStoreId())
                 .firstName(order.getFirstName())
                 .lastName(order.getLastName())

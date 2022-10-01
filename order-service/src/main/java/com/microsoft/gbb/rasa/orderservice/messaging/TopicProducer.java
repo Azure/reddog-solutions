@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TopicProducer {
 
-    @Value("${topic.name.producer}")
+    @Value("${spring.kafka.topic.name}")
     private String topicName;
 
     private final KafkaTemplate<String, OrderSummaryDto> kafkaTemplate;

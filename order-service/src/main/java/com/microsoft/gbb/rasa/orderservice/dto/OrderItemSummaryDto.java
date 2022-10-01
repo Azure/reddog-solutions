@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OrderItemSummaryDto extends AbstractDto<String> {
+public class OrderItemSummaryDto {
     @JsonProperty("unitPrice")
     private double unitPrice;
 

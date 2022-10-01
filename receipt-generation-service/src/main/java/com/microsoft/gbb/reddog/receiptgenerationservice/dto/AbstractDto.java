@@ -1,4 +1,4 @@
-package com.microsoft.gbb.rasa.makelineservice.dto;
+package com.microsoft.gbb.reddog.receiptgenerationservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

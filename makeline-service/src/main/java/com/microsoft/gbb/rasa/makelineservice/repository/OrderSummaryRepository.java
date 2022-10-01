@@ -3,7 +3,6 @@ package com.microsoft.gbb.rasa.makelineservice.repository;
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import com.azure.spring.data.cosmos.repository.Query;
 import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +19,5 @@ public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto
     @Query(value = "SELECT * FROM c WHERE c.id = @storeId")
     ArrayList<OrderSummaryDto> getOrdersForStore(@Param("storeId") String storeId);
 
-    ArrayList<OrderSummary> findAllByStoreId(String storeId);
+    List<OrderSummaryDto> findAllByStoreId(String storeId);
 }

@@ -45,4 +45,8 @@ public class OrderItemSummary {
     @Column(name = "order_summary_id", nullable = false)
     private Long orderSummaryId;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_order_id")
+    private CustomerOrder customerOrder;
+
 }

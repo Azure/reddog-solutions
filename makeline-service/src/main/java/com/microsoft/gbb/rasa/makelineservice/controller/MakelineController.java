@@ -2,14 +2,14 @@ package com.microsoft.gbb.rasa.makelineservice.controller;
 
 import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.makelineservice.exception.SaveOrderException;
-import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
 import com.microsoft.gbb.rasa.makelineservice.service.MakelineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,26 +25,25 @@ public class MakelineController {
     @PostMapping(value = "/orders")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<OrderSummaryDto> addOrderToMakeLine(@RequestBody OrderSummaryDto orderSummaryDto) {
-        if (null == orderSummaryDto) {
+    public ResponseEntity<OrderSummaryDto> addOrderToMakeLine(@RequestBody OrderSummaryDto orderSummary) {
+        if (null == orderSummary) {
             throw new SaveOrderException("OrderSummary is empty");
         }
-        return ResponseEntity.ok(makelineService.addOrderToMakeLine(orderSummaryDto));
+        return ResponseEntity.ok(makelineService.addOrderToMakeLine(orderSummary));
     }
 
     // TODO: Refactor with Avro schema in EH Schema Registry
-    // @KafkaListener(topics = "reddog.ordercompleted" , groupId = "${'${data.topic.group}'")
-    public void addOrderToMakeLineAsync(OrderSummaryDto orderSummaryDto) {
-        log.info("Received order to make line: " + orderSummaryDto);
-        if (null == orderSummaryDto) {
-            throw new SaveOrderException("OrderSummary is empty");
-        }
-        makelineService.addOrderToMakeLine(orderSummaryDto);
+    @KafkaListener(id="makeline",
+            topics = "#{'${spring.kafka.topic.name}'}",
+            groupId = "#{'${spring.kafka.topic.group}'}")
+    public void addOrderToMakeLineAsync(OrderSummaryDto orderSummary) {
+        log.info("Received order to make line: " + orderSummary);
+        this.addOrderToMakeLine(orderSummary);
     }
 
     @GetMapping(value = "/orders/{storeId}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<ArrayList<OrderSummaryDto>> getOrders(@PathVariable String storeId) {
+    public ResponseEntity<List<OrderSummaryDto>> getOrders(@PathVariable String storeId) {
         if (null == storeId) {
             throw new SaveOrderException("Store ID is empty");
         }
@@ -58,6 +57,6 @@ public class MakelineController {
         if (null == storeId || null == orderId) {
             throw new SaveOrderException("Store ID or Order ID is empty");
         }
-        return ResponseEntity.ok(makelineService.completeOrder(storeId, UUID.fromString(orderId)));
+        return ResponseEntity.ok(makelineService.completeOrder(storeId, orderId));
     }
 }
