@@ -15,7 +15,10 @@
     <description>receipt-generation-service</description>
     <properties>
         <java.version>17</java.version>
-        <opentelemetry.version>1.6.0</opentelemetry.version>
+        <opentelemetry.version>1.18.0</opentelemetry.version>
+        <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
+        <spring-cloud-azure-starter-storage-blob.version>4.3.0</spring-cloud-azure-starter-storage-blob.version>
+        <spring-kafka.version>2.8.8</spring-kafka.version>
     </properties>
     <dependencies>
         <dependency>
@@ -44,7 +47,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.9</version>
+            <version>${springdoc-openapi-ui.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -54,7 +57,7 @@
         <dependency>
             <groupId>com.azure.spring</groupId>
             <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
-            <version>4.3.0</version>
+            <version>${spring-cloud-azure-starter-storage-blob.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry</groupId>
@@ -70,6 +73,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
         </dependency>
     </dependencies>
     <build>

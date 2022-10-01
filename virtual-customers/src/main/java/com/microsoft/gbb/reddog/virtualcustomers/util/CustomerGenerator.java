@@ -25,46 +25,13 @@ public class CustomerGenerator {
         return faker.name().lastName();
     }
 
-    public String generateLoyaltyId() {
-        return faker.number().digits(10);
+    public long generateLoyaltyId() {
+        return faker.number().numberBetween(System.currentTimeMillis(), Long.MAX_VALUE);
     }
 
     public int generateNumOrderItems(int totalNumOfProducts) {
         return faker.number().numberBetween(1, Math.min(totalNumOfProducts, MAX_UNIQUE_ITEMS_PER_ORDER));
     }
-
-    public String generateStoreId() {
-        return faker.number().digits(10);
-    }
-
-    public String generateProductId() {
-        return faker.number().digits(10);
-    }
-
-    public String generateCategory() {
-        return faker.commerce().department();
-    }
-
-    public String generateProductName() {
-        return faker.commerce().productName();
-    }
-
-    public String generateDescription() {
-        return faker.commerce().material();
-    }
-
-    public String generateImageUrl() {
-        return faker.internet().url();
-    }
-
-    public double generateUnitPrice() {
-        return faker.number().randomDouble(2, 1, 100);
-    }
-
-    public double generateUnitCost() {
-        return faker.number().randomDouble(2, 1, 100);
-    }
-
 
     public List<CustomerOrderItem> generateOrderItems(List<Product> products) {
         int numOrderItems = generateNumOrderItems(products.size());

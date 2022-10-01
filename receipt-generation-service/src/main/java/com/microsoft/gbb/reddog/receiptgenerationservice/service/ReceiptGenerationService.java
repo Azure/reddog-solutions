@@ -1,8 +1,7 @@
 package com.microsoft.gbb.reddog.receiptgenerationservice.service;
 
+import com.microsoft.gbb.reddog.receiptgenerationservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.reddog.receiptgenerationservice.exception.ReceiptSaveException;
-import com.microsoft.gbb.reddog.receiptgenerationservice.model.OrderSummary;
-
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +38,7 @@ public class ReceiptGenerationService {
     }
 
 
-    public String generateReceipt(OrderSummary orderSummary) {
+    public String generateReceipt(OrderSummaryDto orderSummary) {
         LOGGER.info("Generating receipt");
         try {
             return writeBlobFile(orderSummary, orderSummary.getOrderId().toString()+".json");
@@ -48,7 +47,7 @@ public class ReceiptGenerationService {
         }
     }
 
-    public String writeBlobFile(OrderSummary orderSummary, String filename) throws IOException {
+    public String writeBlobFile(OrderSummaryDto orderSummary, String filename) throws IOException {
         String link = String.format("azure-blob://%s/receipts/%s", receiptsStorageBlobContainer, filename);
         Resource blobFile = resourceLoader.getResource(link);
         try (OutputStream os = ((WritableResource) blobFile).getOutputStream()) {

@@ -5,6 +5,25 @@ spring:
     name: receipt-generation-service
   banner:
     location: static/banner.txt
+  kafka:
+    topic:
+      name: ${KAFKA_TOPIC_NAME:reddog930}
+      group: ${KAFKA_TOPIC_GROUP:receipt-service}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:receiptservice}
+      auto-offset-reset: latest
+      properties:
+        spring:
+          json:
+            trusted.packages: "*"
+            type.mapping: ordersummary:com.microsoft.gbb.reddog.receiptgenerationservice.dto.OrderSummaryDto
+        sasl:
+          jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
+          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
   cloud:
     azure:
       storage:

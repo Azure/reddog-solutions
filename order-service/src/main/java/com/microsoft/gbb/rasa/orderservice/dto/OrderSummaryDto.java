@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The type Order summary.
@@ -30,7 +29,7 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private String lastName;
 
     @JsonProperty("orderId")
-    private UUID orderId;
+    private String orderId;
 
     @JsonProperty("storeId")
     private String storeId;

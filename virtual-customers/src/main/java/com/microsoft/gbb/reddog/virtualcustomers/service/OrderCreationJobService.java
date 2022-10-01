@@ -47,7 +47,7 @@ public class OrderCreationJobService {
     public void setOrderServiceUrlStatic(String orderServiceUrl) {
         OrderCreationJobService.ORDER_SVC_URL = orderServiceUrl + "/";
     }
-    @Recurring(id = "create-orders", cron = "*/15 * * * *")
+    @Recurring(id = "create-orders", cron = "#{'${data.CREATE_ORDER_CRON_SCHEDULE}'}")
     @Job(name = "Virtual Customers")
     public void execute() {
         LOGGER.info("Creating orders");
@@ -66,7 +66,7 @@ public class OrderCreationJobService {
                 .storeId(STORE_ID)
                 .firstName(customerGenerator.generateFirstName())
                 .lastName(customerGenerator.generateLastName())
-                .loyaltyId(customerGenerator.generateLoyaltyId())
+                .loyaltyId(String.valueOf(customerGenerator.generateLoyaltyId()))
                 .orderItems(customerGenerator.generateOrderItems(products))
                 .build();
         ObjectMapper mapper = new ObjectMapper();

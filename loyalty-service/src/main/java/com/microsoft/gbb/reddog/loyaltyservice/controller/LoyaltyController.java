@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,10 +33,12 @@ public class LoyaltyController {
     }
 
     // TODO: Refactor with Avro schema in EH Schema Registry
-    // @KafkaListener(topics = "reddog.orders" , groupId = "${'${data.topic.group}'")
+    @KafkaListener(id="updateloyalty",
+            topics = "#{'${spring.kafka.topic.name}'}",
+            groupId = "#{'${spring.kafka.topic.group}'}")
     public void updateLoyaltyAsync(OrderSummaryDto orderSummaryDto) {
         log.info("Received Message in group loyalty-service: " + orderSummaryDto);
-        updateLoyalty(orderSummaryDto);
+        this.updateLoyalty(orderSummaryDto);
     }
 
 }

@@ -5,7 +5,7 @@ spring:
     location: static/banner.txt
 data:
   STORE_ID: ${STORE_ID:Redmond}
-  CREATE_ORDER_CRON_SCHEDULE: ${CREATE_ORDER_CRON_SCHEDULE:"*/* 5 * * *"}
+  CREATE_ORDER_CRON_SCHEDULE: ${CREATE_ORDER_CRON_SCHEDULE:*/15 * * * *}
   MAX_UNIQUE_ITEMS_PER_ORDER: ${MAX_UNIQUE_ITEMS_PER_ORDER:10}
   ORDER_SVC_URL: ${ORDER_SVC_URL:http://localhost:8082}
 messaging:

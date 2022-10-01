@@ -1,16 +1,14 @@
 package com.microsoft.gbb.reddog.loyaltyservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
-public class OrderItemSummaryDto extends AbstractDto<String> {
+@NoArgsConstructor
+public class OrderItemSummaryDto {
     @JsonProperty("unitPrice")
     private double unitPrice;
 

@@ -12,6 +12,9 @@ spring:
     ssl: true
     connect-timeout: 5000
   kafka:
+    topic:
+      name: ${KAFKA_TOPIC_NAME:reddog930}
+      group: ${KAFKA_TOPIC_GROUP:loyalty-service}
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     security:
       protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
@@ -27,10 +30,6 @@ spring:
           jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
           mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-data:
-  topic:
-    name: ${KAFKA_TOPIC_NAME:reddog.orders}
-    group: ${KAFKA_TOPIC_GROUP:loyalty-service}
 
 management:
   endpoints:

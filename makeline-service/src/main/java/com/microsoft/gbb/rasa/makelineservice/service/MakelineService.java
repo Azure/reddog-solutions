@@ -1,16 +1,13 @@
 package com.microsoft.gbb.rasa.makelineservice.service;
 
-import com.microsoft.gbb.rasa.makelineservice.dto.OrderItemSummaryDto;
 import com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.makelineservice.messaging.KafkaPublisher;
-import com.microsoft.gbb.rasa.makelineservice.model.OrderSummary;
 import com.microsoft.gbb.rasa.makelineservice.repository.OrderSummaryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,12 +36,12 @@ public class MakelineService {
         // save state to a new persistent store for java via daprClient
     }
 
-    public ArrayList<OrderSummaryDto> getOrders(String storeId) {
+    public List<OrderSummaryDto> getOrders(String storeId) {
         LOGGER.info("Getting all orders for storeId: " + storeId);
-        return orderSummaryRepository.getOrdersForStore(storeId);
+        return orderSummaryRepository.findAllByStoreId(storeId);
     }
 
-    public String completeOrder(String storeId, UUID orderId) {
+    public String completeOrder(String storeId, String orderId) {
         LOGGER.info("Completing order for storeId: " + storeId + " orderId: " + orderId);
         // TODO: Set Order completed date
         // Publish event to order completed topic using daprClient
