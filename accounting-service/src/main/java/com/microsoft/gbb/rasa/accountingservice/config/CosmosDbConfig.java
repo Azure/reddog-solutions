@@ -20,7 +20,7 @@ import org.springframework.lang.Nullable;
 @EnableCosmosRepositories
 @EnableReactiveCosmosRepositories
 @Slf4j
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yaml")
 public class CosmosDbConfig extends AbstractCosmosConfiguration {
 
     @Autowired

@@ -13,7 +13,7 @@ spring:
     connect-timeout: 5000
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddog930}
+      name: ${KAFKA_TOPIC_NAME:reddogoct3}
       group: ${KAFKA_TOPIC_GROUP:loyalty-service}
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     security:

@@ -33,6 +33,10 @@ public class CustomerGenerator {
         return faker.number().numberBetween(1, Math.min(totalNumOfProducts, MAX_UNIQUE_ITEMS_PER_ORDER));
     }
 
+    public String generateStoreId() {
+        return faker.gameOfThrones().city();
+    }
+
     public List<CustomerOrderItem> generateOrderItems(List<Product> products) {
         int numOrderItems = generateNumOrderItems(products.size());
         List<CustomerOrderItem> orderItems = new ArrayList<>();

@@ -1,7 +1,7 @@
 spring:
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddog930}
+      name: ${KAFKA_TOPIC_NAME:reddogoct3}
       group: ${KAFKA_TOPIC_GROUP:loyalty-service}
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -45,6 +45,6 @@ springdoc:
     path: /api-docs
 topic:
   name:
-    producer: ${KAFKA_TOPIC_NAME:reddog930}
+    producer: ${KAFKA_TOPIC_NAME:reddogoct3}
 server:
   port: '8082'

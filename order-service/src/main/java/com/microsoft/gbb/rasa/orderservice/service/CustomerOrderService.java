@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -85,7 +87,8 @@ public class CustomerOrderService implements OrderService {
                 .firstName(order.getFirstName())
                 .lastName(order.getLastName())
                 .loyaltyId(order.getLoyaltyId())
-                .orderDate(String.valueOf(new Date()))
+                .orderDate(LocalDateTime.now())
+                .orderDateInstant(Instant.now().getEpochSecond())
                 .orderItems(itemSummaries)
                 .orderTotal(BigDecimal.valueOf(orderTotal.get()).setScale(2, RoundingMode.HALF_DOWN).doubleValue())
                 .build();

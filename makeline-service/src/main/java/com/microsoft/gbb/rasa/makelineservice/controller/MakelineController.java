@@ -10,7 +10,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @Slf4j
@@ -53,7 +52,7 @@ public class MakelineController {
     @DeleteMapping(value = "/orders/{storeId}/{orderId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> completeOrder(@PathVariable String storeId, @PathVariable String orderId) {
+    public ResponseEntity<OrderSummaryDto> completeOrder(@PathVariable String storeId, @PathVariable String orderId) {
         if (null == storeId || null == orderId) {
             throw new SaveOrderException("Store ID or Order ID is empty");
         }

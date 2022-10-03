@@ -3,8 +3,9 @@ spring:
     name: virtual-worker
   banner:
     location: static/banner.txt
+# TODO: Refactor with Eureka and Feign
 data:
-  STORE_ID: ${STORE_ID:Redmond}
+  MAKELINE_SVC_URL: ${MAKELINE_SVC_URL:http://localhost:8084/}
 management:
   endpoints:
     web:

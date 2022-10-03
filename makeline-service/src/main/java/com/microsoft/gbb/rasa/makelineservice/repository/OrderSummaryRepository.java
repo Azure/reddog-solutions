@@ -20,4 +20,7 @@ public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto
     ArrayList<OrderSummaryDto> getOrdersForStore(@Param("storeId") String storeId);
 
     List<OrderSummaryDto> findAllByStoreId(String storeId);
+
+    // find order by order id and store id
+    OrderSummaryDto findByOrderIdAndStoreId(String orderId, String storeId);
 }

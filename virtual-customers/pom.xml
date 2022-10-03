@@ -19,6 +19,7 @@
         <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
         <jobrunr-spring-boot-starter.version>5.1.7</jobrunr-spring-boot-starter.version>
         <javafaker.version>1.0.2</javafaker.version>
+        <spring-cloud-starter-sleuth.version>3.1.4</spring-cloud-starter-sleuth.version>
     </properties>
     <dependencies>
         <dependency>
@@ -55,14 +56,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-api</artifactId>
-            <version>${opentelemetry.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-extension-annotations</artifactId>
-            <version>${opentelemetry.version}</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <version>${spring-cloud-starter-sleuth.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

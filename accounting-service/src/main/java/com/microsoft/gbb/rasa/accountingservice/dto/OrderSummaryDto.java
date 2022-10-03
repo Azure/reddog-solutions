@@ -2,13 +2,14 @@ package com.microsoft.gbb.rasa.accountingservice.dto;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The type Order summary.
@@ -18,13 +19,14 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Container(containerName = "reddog", ru = "400")
+@Container(containerName="reddog", ru="400")
 public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderCompletedDate")
     private Date orderCompletedDate;
 
     @JsonProperty("loyaltyId")
+    @PartitionKey
     private String loyaltyId;
 
     @JsonProperty("firstName")
@@ -41,8 +43,11 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private String storeId;
 
     @JsonProperty("orderDate")
-    @PartitionKey
-    private String orderDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime orderDate;
+
+    @JsonProperty("orderDateInstant")
+    private Long orderDateInstant;
 
     @JsonProperty("orderItems")
     private List<OrderItemSummaryDto> orderItems;
