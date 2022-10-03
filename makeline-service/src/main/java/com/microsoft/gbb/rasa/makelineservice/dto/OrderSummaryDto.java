@@ -2,10 +2,13 @@ package com.microsoft.gbb.rasa.makelineservice.dto;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private Date orderCompletedDate;
 
     @JsonProperty("loyaltyId")
-    @Id
+    @PartitionKey
     private String loyaltyId;
 
     @JsonProperty("firstName")
@@ -34,14 +37,18 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private String lastName;
 
     @JsonProperty("orderId")
+    @Id
     private String orderId;
 
     @JsonProperty("storeId")
     private String storeId;
 
     @JsonProperty("orderDate")
-    @PartitionKey
-    private String orderDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime orderDate;
+
+    @JsonProperty("orderDateInstant")
+    private Long orderDateInstant;
 
     @JsonProperty("orderItems")
     private List<OrderItemSummaryDto> orderItems;

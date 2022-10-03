@@ -63,7 +63,7 @@ public class OrderCreationJobService {
 
     private CustomerOrder createCustomerOrder(List<Product> products) {
         CustomerOrder order = CustomerOrder.builder()
-                .storeId(STORE_ID)
+                .storeId(customerGenerator.generateStoreId())
                 .firstName(customerGenerator.generateFirstName())
                 .lastName(customerGenerator.generateLastName())
                 .loyaltyId(String.valueOf(customerGenerator.generateLoyaltyId()))

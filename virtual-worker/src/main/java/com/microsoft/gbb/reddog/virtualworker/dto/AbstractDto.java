@@ -1,4 +1,4 @@
-package com.microsoft.gbb.rasa.accountingservice.dto;
+package com.microsoft.gbb.reddog.virtualworker.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.loyaltyservice.dto;
+package com.microsoft.gbb.reddog.virtualworker.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

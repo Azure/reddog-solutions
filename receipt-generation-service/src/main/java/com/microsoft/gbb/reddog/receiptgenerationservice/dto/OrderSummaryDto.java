@@ -1,11 +1,12 @@
 package com.microsoft.gbb.reddog.receiptgenerationservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The type Order summary.
@@ -30,14 +31,17 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private String lastName;
 
     @JsonProperty("orderId")
-    private UUID orderId;
+    private String orderId;
 
     @JsonProperty("storeId")
     private String storeId;
 
     @JsonProperty("orderDate")
-    private String orderDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime orderDate;
 
+    @JsonProperty("orderDateInstant")
+    private Long orderDateInstant;
     @JsonProperty("orderItems")
     private List<OrderItemSummaryDto> orderItems;
 

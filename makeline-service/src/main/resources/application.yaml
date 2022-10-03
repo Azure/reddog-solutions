@@ -11,13 +11,28 @@ spring:
     password: ${AZURE_REDIS_ACCESS_KEY}
     ssl: true
     connect-timeout: 5000
+#  cloud:
+#    stream:
+#      default-binder: kafka
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddog930}
+      name: ${KAFKA_TOPIC_NAME:reddogoct3}
+      completed-orders-name: ${KAFKA_COMPLETED_ORDERS_TOPIC:orderscompleted}
       group: ${KAFKA_TOPIC_GROUP:makeline-service}
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     security:
       protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        sasl:
+          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          jaas:
+            config: ${KAFKA_SASL_JAAS_CONFIG}
+        spring:
+          json:
+            type:
+              mapping: ordersummary:com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:makelineservice}
       auto-offset-reset: latest
@@ -27,7 +42,8 @@ spring:
             trusted.packages: "*"
             type.mapping: ordersummary:com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto
         sasl:
-          jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
+          jaas:
+            config: ${KAFKA_SASL_JAAS_CONFIG}
           mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 messaging:

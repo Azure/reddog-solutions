@@ -16,6 +16,7 @@
     <properties>
         <java.version>17</java.version>
         <opentelemetry.version>1.6.0</opentelemetry.version>
+        <spring-cloud-starter-sleuth.version>3.1.4</spring-cloud-starter-sleuth.version>
     </properties>
     <dependencies>
         <dependency>
@@ -52,14 +53,14 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-api</artifactId>
-            <version>${opentelemetry.version}</version>
+            <groupId>io.leego</groupId>
+            <artifactId>banana</artifactId>
+            <version>2.1.0</version>
         </dependency>
         <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-extension-annotations</artifactId>
-            <version>${opentelemetry.version}</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <version>${spring-cloud-starter-sleuth.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

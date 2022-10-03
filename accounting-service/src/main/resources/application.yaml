@@ -1,0 +1,68 @@
+spring:
+  redis:
+    host: ${AZURE_REDIS_HOST}
+    port: ${AZURE_REDIS_PORT}
+    password: ${AZURE_REDIS_ACCESS_KEY}
+    ssl: true
+    connect-timeout: 5000
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: ordersummary:com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto
+        sasl:
+          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          jaas:
+            config: ${KAFKA_SASL_JAAS_CONFIG}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: ${MYSQL_PASSWORD}
+    username: ${MYSQL_USER}
+    url: ${MYSQL_URL}
+  flyway:
+    baseline-on-migrate: 'true'
+  jpa:
+    properties:
+      hibernate:
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: '3'
+        generate_statistics: 'true'
+        dialect: org.hibernate.dialect.MySQL5Dialect
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+    show-sql: 'true'
+  config:
+    import: optional:classpath:.env[.properties]
+  banner:
+    location: static/banner.txt
+cosmos:
+  queryMetricsEnabled: 'true'
+  key: ${AZURE_COSMOSDB_KEY}
+  secondaryKey: ${AZURE_COSMOSDB_SECONDARY_KEY}
+  databaseName: ${AZURE_COSMOSDB_DATABASE_NAME}
+  uri: ${AZURE_COSMOSDB_URI}
+eureka:
+  client:
+    fetch-registry: 'false'
+    register-with-eureka: 'false'
+server:
+  port: '8087'
+topic:
+  name:
+    producer: ${KAFKA_TOPIC_NAME:reddog.orders}
+logging:
+  level:
+    org:
+      hibernate:
+        stat: DEBUG
+        SQL: DEBUG
