@@ -1,22 +1,12 @@
 package com.microsoft.gbb.rasa.accountingservice.service;
 
-import com.microsoft.gbb.rasa.accountingservice.dto.OrderItemSummaryDto;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.accountingservice.entities.CustomerOrder;
-import com.microsoft.gbb.rasa.accountingservice.entities.Product;
-import com.microsoft.gbb.rasa.accountingservice.exception.ProductsNotFoundException;
-import com.microsoft.gbb.rasa.accountingservice.messaging.TopicProducer;
-import com.microsoft.gbb.rasa.accountingservice.repositories.CustomerOrderRepository;
-import com.microsoft.gbb.rasa.accountingservice.repositories.ProductRepository;
+import com.microsoft.gbb.rasa.accountingservice.repositories.OrderSummaryRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.List;
 
 /**
  * Handle accounting related queries.
@@ -25,14 +15,15 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 @Transactional
 public class AccountingService {
-    private final TopicProducer topicProducer;
-    private final ProductRepository productRepository;
+    private final OrderSummaryRepository orderSummaryRepository;
 
-    public AccountingService(TopicProducer topicProducer,
-                             ProductRepository productRepository,
-                             CustomerOrderRepository customerOrderRepository) {
-        this.topicProducer = topicProducer;
-        this.productRepository = productRepository;
+    public AccountingService(OrderSummaryRepository orderSummaryRepository) {
+        this.orderSummaryRepository = orderSummaryRepository;
+    }
+
+    public List<OrderSummaryDto> findAllInflightOrders() {
+        log.info("Finding all inflight orders");
+        return orderSummaryRepository.findAllInflightOrders();
     }
 
     // TODO: implement the following methods with JPA queries
@@ -48,5 +39,6 @@ public class AccountingService {
     public void getOrdersByMinute() { }
     public void getOrdersByHour() { }
     public void getOrdersByDay() { }
+
 
 }

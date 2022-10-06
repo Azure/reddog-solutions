@@ -1,13 +1,11 @@
 package com.microsoft.gbb.rasa.accountingservice.controller;
 
-import com.microsoft.gbb.rasa.accountingservice.dto.CustomerOrderDto;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.accountingservice.service.AccountingService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class AccountingController {
@@ -18,12 +16,9 @@ public class AccountingController {
         this.accountingService = accountingService;
     }
 
-    @PostMapping(value = "/todo",
-                 consumes = "application/json",
-                 produces = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(value = "/orders")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<OrderSummaryDto> order(@Valid @RequestBody CustomerOrderDto order) {
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<List<OrderSummaryDto>> getAllInFlightOrders() {
+        return ResponseEntity.ok(accountingService.findAllInflightOrders());
     }
 }

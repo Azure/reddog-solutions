@@ -12,9 +12,15 @@ import java.util.List;
 public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto, String> {
     // Query all orders
     @Query(value = "SELECT * FROM c")
-    List<OrderSummaryDto> getAllOrders();
+    List<OrderSummaryDto> findAllOrders();
 
     // Query for equality using ==
     @Query(value = "SELECT * FROM c WHERE c.id = @storeId")
-    List<OrderSummaryDto> getOrdersForStore(@Param("storeId") String storeId);
+    List<OrderSummaryDto> findAllOrdersForStore(@Param("storeId") String storeId);
+
+    @Query(value = "SELECT * FROM c where c.orderCompletedDate = null")
+    List<OrderSummaryDto> findAllInflightOrders();
+
+    @Query(value = "SELECT * FROM c WHERE c.id = @storeId and c.orderCompletedDate = null")
+    List<OrderSummaryDto> findAllInflightOrdersForStore(@Param("storeId") String storeId);
 }

@@ -1,7 +1,7 @@
 package com.microsoft.gbb.rasa.accountingservice.mapper;
 
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.accountingservice.entities.OrderSummary;
+import com.microsoft.gbb.rasa.accountingservice.model.OrderSummary;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

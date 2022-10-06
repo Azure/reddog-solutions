@@ -1,10 +1,4 @@
 spring:
-  redis:
-    host: ${AZURE_REDIS_HOST}
-    port: ${AZURE_REDIS_PORT}
-    password: ${AZURE_REDIS_ACCESS_KEY}
-    ssl: true
-    connect-timeout: 5000
   kafka:
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -20,27 +14,6 @@ spring:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     security:
       protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${MYSQL_PASSWORD}
-    username: ${MYSQL_USER}
-    url: ${MYSQL_URL}
-  flyway:
-    baseline-on-migrate: 'true'
-  jpa:
-    properties:
-      hibernate:
-        session:
-          events:
-            log:
-              LOG_QUERIES_SLOWER_THAN_MS: '3'
-        generate_statistics: 'true'
-        dialect: org.hibernate.dialect.MySQL5Dialect
-      javax:
-        persistence:
-          sharedCache:
-            mode: ENABLE_SELECTIVE
-    show-sql: 'true'
   config:
     import: optional:classpath:.env[.properties]
   banner:
