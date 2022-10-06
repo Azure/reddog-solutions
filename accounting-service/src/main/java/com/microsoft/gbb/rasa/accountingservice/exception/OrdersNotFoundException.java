@@ -6,13 +6,13 @@ import org.springframework.web.server.ResponseStatusException;
 /**
  * The type Order not found exception.
  */
-public class ProductsNotFoundException extends ResponseStatusException {
+public class OrdersNotFoundException extends ResponseStatusException {
     /**
      * Instantiates a new Order not found exception.
      *
      * @param message the message
      */
-    public ProductsNotFoundException(String message){
+    public OrdersNotFoundException(String message){
         super(HttpStatus.BAD_REQUEST, message);
     }
 }

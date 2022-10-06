@@ -1,16 +1,23 @@
-package com.microsoft.gbb.rasa.accountingservice.dto;
+package com.microsoft.gbb.rasa.accountingservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@AllArgsConstructor
+/**
+ * The type Order item summary.
+ */
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
-public class ProductDto extends AbstractDto<String>{
+public class OrderItemSummary {
+
     @JsonProperty("unitPrice")
     private double unitPrice;
+
+    @JsonProperty("quantity")
+    private int quantity;
 
     @JsonProperty("productId")
     private int productId;
@@ -21,25 +28,18 @@ public class ProductDto extends AbstractDto<String>{
     @JsonProperty("imageUrl")
     private String imageUrl;
 
-    @JsonProperty("description")
-    private String description;
-
     @JsonProperty("productName")
     private String productName;
 
-    @JsonProperty("categoryId")
-    private String categoryId;
-
     @Override
     public String toString() {
-        return "ProductDto{" +
+        return "OrderItemSummary{" +
                 "unitPrice=" + unitPrice +
+                ", quantity=" + quantity +
                 ", productId=" + productId +
                 ", unitCost=" + unitCost +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", description='" + description + '\'' +
                 ", productName='" + productName + '\'' +
-                ", categoryId='" + categoryId + '\'' +
                 '}';
     }
 }
