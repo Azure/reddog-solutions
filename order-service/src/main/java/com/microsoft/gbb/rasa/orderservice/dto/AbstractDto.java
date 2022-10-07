@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class AbstractDto<E> {
     @JsonProperty("createdAt")
     private LocalDateTime createdAt = LocalDateTime.now();
+
     @JsonProperty("lastModifiedAt")
     private LocalDateTime lastModifiedAt;
 }

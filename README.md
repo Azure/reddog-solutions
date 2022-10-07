@@ -5,7 +5,7 @@
 
 ### Background
 
-This repo, based on [reddog-code](https://github.com/Azure/reddog-code), is intended for Java, specifically Spring, developers to understand Azure hosting options and idiomatic java sdks that integrate with managed backing services. Using a retail scenario that depicts a typical event-driven microservices architecture, this codebase (and associated lab) will ease the migration and modernization of Java workloads on Azure. 
+This repo, based on [reddog-code](https://github.com/Azure/reddog-code), is intended for Java/Spring developers to understand Azure hosting options and idiomatic java sdks that integrate with managed backing services. Using a retail scenario that depicts a typical event-driven microservices architecture, this codebase (and associated lab) will ease the migration and modernization of Java workloads on Azure. 
 
 
 ![](ancillary/architecture.png)
