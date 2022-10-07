@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -88,9 +89,15 @@ public class CustomerOrderService implements OrderService {
                 .lastName(order.getLastName())
                 .loyaltyId(order.getLoyaltyId())
                 .orderDate(LocalDateTime.now())
-                .orderDateInstant(Instant.now().getEpochSecond())
+                .orderDateInstant(getOrderDateInstant())
                 .orderItems(itemSummaries)
                 .orderTotal(BigDecimal.valueOf(orderTotal.get()).setScale(2, RoundingMode.HALF_DOWN).doubleValue())
                 .build();
+    }
+
+    private static long getOrderDateInstant() {
+        Clock clock = Clock.systemDefaultZone();
+        Instant instant = clock.instant();
+        return instant.toEpochMilli();
     }
 }

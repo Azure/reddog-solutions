@@ -48,7 +48,7 @@ public class OrderSummaryDto extends AbstractDto<String> {
     private LocalDateTime orderDate;
 
     @JsonProperty("orderDateInstant")
-    private Long orderDateInstant;
+    private long orderDateInstant;
 
     @JsonProperty("orderItems")
     private List<OrderItemSummaryDto> orderItems;
