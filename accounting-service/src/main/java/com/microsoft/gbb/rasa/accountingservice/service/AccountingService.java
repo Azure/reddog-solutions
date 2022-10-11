@@ -28,8 +28,16 @@ public class AccountingService {
     }
 
     public OrdersTimeSeries getOrderCountOverTime(String period, String timeSpan, String storeId) {
-        log.info("Getting order count over time");
-        return orderSummaryRepository.getOrderCountOverTime(period, timeSpan, storeId);
+        log.info("Getting order count for the prior {} {}", timeSpan, period);
+        return orderSummaryRepository.getOrderCountForThePastTimeSpan(period, timeSpan, storeId);
+    }
+
+    public OrdersTimeSeries getOrderCountWithinTimeInterval(String period,
+                                                            String timeStart,
+                                                            String timeEnd,
+                                                            String storeId) {
+        log.info("Getting order count between {} and {}", timeStart, timeEnd);
+        return orderSummaryRepository.getOrderCountWithinTimeInterval(period, timeStart, timeEnd, storeId);
     }
 
     // TODO: implement the following methods with JPA queries

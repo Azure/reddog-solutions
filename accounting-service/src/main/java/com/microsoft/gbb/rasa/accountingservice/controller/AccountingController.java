@@ -30,4 +30,13 @@ public class AccountingController {
                                                                     @RequestHeader("store-id") String storeId) {
         return ResponseEntity.ok(accountingService.getOrderCountOverTime(period, timeSpan, storeId));
     }
+
+    @GetMapping(value = "/orders/{period}/{timeStart}/{timeEnd}")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<OrdersTimeSeries> getOrderCountWithinTimeInterval(@PathVariable String period,
+                                                              @PathVariable String timeStart,
+                                                                @PathVariable String timeEnd,
+                                                              @RequestHeader("store-id") String storeId) {
+        return ResponseEntity.ok(accountingService.getOrderCountWithinTimeInterval(period, timeStart, timeEnd, storeId));
+    }
 }
