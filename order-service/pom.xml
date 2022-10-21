@@ -139,6 +139,11 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi-ui.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.jeg.illuminate</groupId>
+            <artifactId>application-insights-agent-illuminate</artifactId>
+            <version>3.4.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -206,5 +211,19 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+        <!--Configure and add personal access token in maven settings, see-->
+        <!-- https://devdiv.visualstudio.com/OnlineServices/_artifacts/feed/java-engineering-feed/connect/maven -->
+            <id>java-engineering-feed</id>
+            <url>https://devdiv.pkgs.visualstudio.com/_packaging/java-engineering-feed/maven/v1</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
