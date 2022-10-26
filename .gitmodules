@@ -1,0 +1,3 @@
+[submodule "ui/RedDog.UI"]
+	path = ui/RedDog.UI
+	url = https://github.com/appdevgbb/reddog-code-java/tree/master/RedDog.UI
