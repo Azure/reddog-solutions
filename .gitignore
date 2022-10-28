@@ -41,3 +41,5 @@ order-service/flyway.conf
 *.conf
 
 makeline-service/.fleet/
+
+*.jar

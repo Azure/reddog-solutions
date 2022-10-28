@@ -1,0 +1,16 @@
+{
+  "connectionString": "${APPLICATIONINSIGHTS_CONNECTION_STRING}",
+  "preview" : {
+    "profiler" : {
+      "enabled" : true,
+      "enableDiagnostics" : true,
+      "cpuTriggeredSettings" : "diagnostic-profile",
+      "memoryTriggeredSettings" : "diagnostic-profile",
+      "manualTriggeredSettings" : "diagnostic-profile"
+    }
+  },
+  "role" : {
+    "instance" : "reddog-asa",
+    "name" : "reddog-order-service"
+  }
+}

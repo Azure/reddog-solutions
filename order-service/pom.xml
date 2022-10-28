@@ -144,6 +144,21 @@
             <artifactId>application-insights-agent-illuminate</artifactId>
             <version>3.4.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>applicationinsights-runtime-attach</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-extension-annotations</artifactId>
+            <version>1.18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-api</artifactId>
+            <version>1.19.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
