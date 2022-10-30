@@ -19,16 +19,16 @@ const navigation = (): HorizontalNavItemsType => [
     path: '/locations'
   },
   {
-    title: 'Virtual Customers',
+    title: 'Customers',
     icon: AccountGroupOutline,
-    path: '/virtual-customers',
+    path: '/customers',
     action: 'read',
     subject: 'acl-page'
   },
   {
-    title: 'Virtual Worker',
+    title: 'Worker',
     icon: WrenchOutline,
-    path: '/virtual-workers',
+    path: '/worker',
     action: 'read',
     subject: 'acl-page'
   }
