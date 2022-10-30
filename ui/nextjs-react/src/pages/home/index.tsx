@@ -25,6 +25,11 @@ import RechartsAreaChart from 'src/views/charts/recharts/RechartsAreaChart'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
+import CardWidgetsInflightOrders from "../../views/ui/widgets/CardWidgetsInflightOrders";
+import CardWidgetsWeeklyOverview from "../../views/ui/widgets/CardWidgetsWeeklyOverview";
+import CardWidgetsSalesProfit from "../../views/ui/widgets/CardWidgetsSalesProfit";
+import CardWidgetsOrdersByDay from "../../views/ui/widgets/CardWidgetsOrdersByDay";
+import CardWidgetsSvcFullfilment from "../../views/ui/widgets/CardWidgetsSvcFullfilment";
 
 const Home = () => {
 
@@ -49,34 +54,34 @@ const Home = () => {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <Card>
-          <CardHeader title='Orders over time 🚀'></CardHeader>
-          <CardContent>
-            <RechartsWrapper>
-              <DatePickerWrapper>
-                <Grid container spacing={6}>
-                  <Grid item xs={12} md={6}>
-                  <RechartsLineChart direction={settings.direction} />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                  <RechartsAreaChart direction={settings.direction} />
-                  </Grid>
-                </Grid>
-              </DatePickerWrapper>
-            </RechartsWrapper>
-          </CardContent>
-        </Card>
+      <Grid item xs={12} sm={6} md={4}>
+        <CardWidgetsOrdersByDay />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <CardWidgetsSvcFullfilment />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <CardWidgetsSalesProfit />
       </Grid>
       <Grid item xs={12}>
-        <Card>
-          <CardHeader title='Order Activity'></CardHeader>
-          <CardContent>
-            <Typography sx={{ mb: 2 }}>
-              TODO: Add order timeline.
-            </Typography>
-          </CardContent>
-        </Card>
+        <RechartsWrapper>
+          <DatePickerWrapper>
+            <Grid container spacing={6}>
+              <Grid item xs={12} md={6}>
+                <RechartsLineChart direction={settings.direction} />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <RechartsAreaChart direction={settings.direction} />
+              </Grid>
+            </Grid>
+          </DatePickerWrapper>
+        </RechartsWrapper>
+      </Grid>
+      <Grid item xs={12} md={8}>
+        <CardWidgetsInflightOrders />
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <CardWidgetsWeeklyOverview />
       </Grid>
     </Grid>
   )
