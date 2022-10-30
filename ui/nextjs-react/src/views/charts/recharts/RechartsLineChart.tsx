@@ -55,7 +55,7 @@ const RechartsLineChart = ({ direction }: Props) => {
   return (
     <Card>
       <CardHeader
-        title='Current'
+        title='Orders over time'
         titleTypographyProps={{ variant: 'h6' }}
         subheader='versus 10 mins ago'
         subheaderTypographyProps={{ variant: 'caption', sx: { color: 'text.disabled' } }}
