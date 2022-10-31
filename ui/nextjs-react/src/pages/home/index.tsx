@@ -29,7 +29,7 @@ import CardWidgetsInflightOrders from "../../views/ui/widgets/CardWidgetsInfligh
 import CardWidgetsWeeklyOverview from "../../views/ui/widgets/CardWidgetsWeeklyOverview";
 import CardWidgetsSalesProfit from "../../views/ui/widgets/CardWidgetsSalesProfit";
 import CardWidgetsOrdersByDay from "../../views/ui/widgets/CardWidgetsOrdersByDay";
-import CardWidgetsSvcFullfilment from "../../views/ui/widgets/CardWidgetsSvcFullfilment";
+import CardWidgetsSvcFulfillment from "../../views/ui/widgets/CardWidgetsSvcFulfillment";
 
 const Home = () => {
 
@@ -58,7 +58,7 @@ const Home = () => {
         <CardWidgetsOrdersByDay />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <CardWidgetsSvcFullfilment />
+        <CardWidgetsSvcFulfillment />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
         <CardWidgetsSalesProfit />

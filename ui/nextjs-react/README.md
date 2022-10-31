@@ -22,4 +22,4 @@ yarn install
 yarn dev
 ```
 
-[^fn]: [Credits](https://pixinvent.com/materialize-material-design-admin-template/landing/)
+[^fn]: [Starter-kit](https://pixinvent.com/materialize-material-design-admin-template/landing/)

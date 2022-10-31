@@ -161,7 +161,7 @@ const RechartsAreaChart = ({ direction }: Props) => {
             <Typography>Myr</Typography>
           </Box>
         </Box>
-        <Box sx={{ height: 350 }}>
+        <Box sx={{ height: 328 }}>
           <ResponsiveContainer>
             <AreaChart height={350} data={data} style={{ direction }} margin={{ left: -20 }}>
               <CartesianGrid />

@@ -33,7 +33,7 @@ const series = [
   }
 ]
 
-const CardWidgetsWeeklyOverview = () => {
+const CardWidgetsSvcFulfillment = () => {
   // ** Hook
   const theme = useTheme()
 
@@ -106,7 +106,7 @@ const CardWidgetsWeeklyOverview = () => {
   return (
     <Card>
       <CardHeader
-        title='Profit / Order'
+        title='Service Fulfillment over time'
         action={
           <IconButton size='small' aria-label='settings' className='card-more-options'>
             <DotsVertical />
@@ -119,16 +119,17 @@ const CardWidgetsWeeklyOverview = () => {
           '& .apexcharts-canvas .apexcharts-yaxis-label': { fontSize: '0.75rem', fill: theme.palette.text.disabled }
         }}
       >
-        <ReactApexcharts type='line' height={230} series={series} options={options} />
+        <ReactApexcharts type='line' height={256} series={series} options={options} />
         <Box sx={{ mb: 4, display: 'flex', alignItems: 'center' }}>
           <Typography sx={{ mr: 4 }} variant='h5'>
-            $xx
+            3s
           </Typography>
-          <Typography variant='body2'>Summary</Typography>
+          <Typography variant='body2'>Average time to complete new orders</Typography>
         </Box>
+
       </CardContent>
     </Card>
   )
 }
 
-export default CardWidgetsWeeklyOverview
+export default CardWidgetsSvcFulfillment
