@@ -9,7 +9,7 @@ import CardContent from '@mui/material/CardContent'
 
 // ** Icons Imports
 import DotsVertical from 'mdi-material-ui/DotsVertical'
-import ChevronRight from 'mdi-material-ui/ChevronRight'
+import { HandPointingLeft } from 'mdi-material-ui'
 
 // ** Third Party Imports
 import { ApexOptions } from 'apexcharts'
@@ -95,7 +95,7 @@ const CardWidgetsOrdersByDay = () => {
             <Typography variant='body2'>Total 1.4k Orders on Thursday</Typography>
           </Box>
           <CustomAvatar skin='light' variant='rounded'>
-            <ChevronRight />
+            <HandPointingLeft />
           </CustomAvatar>
         </Box>
       </CardContent>

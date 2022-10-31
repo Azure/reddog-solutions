@@ -1,5 +1,4 @@
 const path = require('path')
-require("dotenv").config
 
 /** @type {import('next').NextConfig} */
 
@@ -12,7 +11,7 @@ const withTM = require('next-transpile-modules')([
   '@fullcalendar/timegrid'
 ])
 
-const BING_MAPS_KEY = process.env.BING_MAPS_KEY
+//const BING_MAPS_KEY = process.env.BING_MAPS_KEY
 
 module.exports = withTM({
   trailingSlash: true,
