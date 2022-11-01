@@ -81,3 +81,13 @@ export type PaymentTypes = {
   formatCardNumber(elem: HTMLInputElement): HTMLInputElement
   formatCardExpiry(elem: HTMLInputElement): HTMLInputElement
 }
+
+export type OrdersGridRowType = {
+  orderId: string
+  firstName: string
+  lastName: string
+  loyaltyId: string
+  orderTotal: number
+  orderCompletedDate: number
+  storeId: string
+}

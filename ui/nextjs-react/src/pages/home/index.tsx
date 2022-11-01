@@ -1,19 +1,11 @@
 // ** MUI Imports
-import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 // ** MUI Imports
-import Link from '@mui/material/Link'
-
 // ** Custom Components Imports
-import PageHeader from 'src/@core/components/page-header'
-
 // ** Hooks
-import { useSettings } from 'src/@core/hooks/useSettings'
+import {useSettings} from 'src/@core/hooks/useSettings'
 
 // ** Styled Components
 import RechartsWrapper from 'src/@core/styles/libs/recharts'
@@ -25,11 +17,11 @@ import RechartsAreaChart from 'src/views/charts/recharts/RechartsAreaChart'
 
 // ** Third Party Styles Imports
 import 'react-datepicker/dist/react-datepicker.css'
-import CardWidgetsInflightOrders from "../../views/ui/widgets/CardWidgetsInflightOrders";
 import CardWidgetsWeeklyOverview from "../../views/ui/widgets/CardWidgetsWeeklyOverview";
 import CardWidgetsSalesProfit from "../../views/ui/widgets/CardWidgetsSalesProfit";
 import CardWidgetsOrdersByDay from "../../views/ui/widgets/CardWidgetsOrdersByDay";
 import CardWidgetsSvcFulfillment from "../../views/ui/widgets/CardWidgetsSvcFulfillment";
+import TableServerSide from "../../views/table/data-grid/TableServerSide";
 
 const Home = () => {
 
@@ -78,7 +70,7 @@ const Home = () => {
         </RechartsWrapper>
       </Grid>
       <Grid item xs={12} md={8}>
-        <CardWidgetsInflightOrders />
+        <TableServerSide />
       </Grid>
       <Grid item xs={12} md={4}>
         <CardWidgetsWeeklyOverview />
