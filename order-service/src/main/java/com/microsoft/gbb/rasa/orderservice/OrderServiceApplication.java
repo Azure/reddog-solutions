@@ -12,7 +12,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 public class OrderServiceApplication {
 
     public static void main(String[] args) {
-        ApplicationInsights.attach();
+        // ApplicationInsights.attach();
         SpringApplication.run(OrderServiceApplication.class, args);
     }
 
