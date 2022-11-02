@@ -30,6 +30,12 @@ org:
     dashboard:
       enabled: true
       port: 8001
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true
 ---
 spring:
   profiles: dev

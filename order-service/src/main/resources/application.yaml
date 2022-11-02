@@ -2,7 +2,7 @@ spring:
   kafka:
     topic:
       name: ${KAFKA_TOPIC_NAME:reddogoct3}
-      group: ${KAFKA_TOPIC_GROUP:loyalty-service}
+      group: ${KAFKA_TOPIC_GROUP:order-service}
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:

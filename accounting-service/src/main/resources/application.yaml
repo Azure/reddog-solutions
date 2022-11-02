@@ -39,3 +39,9 @@ logging:
       hibernate:
         stat: DEBUG
         SQL: DEBUG
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true

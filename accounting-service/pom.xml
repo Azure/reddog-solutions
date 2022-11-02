@@ -51,6 +51,11 @@
             <artifactId>spring-cloud-circuitbreaker-resilience4j</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.9</version>
+        </dependency>
+        <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-spring-data-cosmos</artifactId>
             <version>${azure.spring.data.cosmos.version}</version>
