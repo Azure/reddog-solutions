@@ -5,7 +5,7 @@ This is a set of endpoints that surface Azure AI services as a REST API.
 ## Getting Started
 To get started, you'll need to have the following installed and provisioned:
 - [Docker](https://www.docker.com/)
-- [Python 3.8](https://www.python.org/downloads/)
+- [Python](https://www.python.org/downloads/)
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - [Azure Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/)
 - [Azure Storage Account](https://azure.microsoft.com/en-us/services/storage/)
@@ -16,13 +16,11 @@ To get started, you'll need to have the following installed and provisioned:
 ## Setup
 To get started, you'll need to create a `.env` file in the root of the project. This file will contain all of the environment variables that are used in the project. You can use the `.env.example` file as a template.
 
-### Azure
-You'll need to create an Azure account and then create the following services:
-- [Azure Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/)
-- [Azure Storage Account](https://azure.microsoft.com/en-us/services/storage/)
-- [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry/)
-- [Azure OpenAI](https://azure.microsoft.com/en-us/services/openai/)
-- [Hugging Face](https://huggingface.co/)
+### Local Development
+To run the project locally, you'll need to run the following commands:
+```bash
+docker-compose up
+```
 
 ### Contributing
 
@@ -38,4 +36,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-:warning: :construction: Java version of [reddog-code](https://github.com/Azure/reddog-code) for [Azure Spring Apps (ASA)](https://docs.microsoft.com/en-us/azure/spring-apps/) and [App Service](https://docs.microsoft.com/en-us/azure/app-service/) is WIP
+:warning: :construction: Neural-net bindings are WIP
