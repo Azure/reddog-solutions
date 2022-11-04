@@ -4,24 +4,16 @@ import openai
 
 app = FastAPI()
 
+
 @app.get("/health")
 async def pong():
     return {"status": "Ok"}
 
 
 @app.get("/generate/product-names", response_model=str)
-async def generate_product_names(prompt: str):
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=prompt,
-        temperature=0.8,
-        max_tokens=60,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=None
-    )
-    return response.choices[0].text
+async def generate_product_names_route(prompt: str):
+    return generate_product_names(prompt)
+
 
 @app.get("/translate/to-french", response_model=str)
 async def generate_product_names(prompt: str):
@@ -36,3 +28,18 @@ async def generate_product_names(prompt: str):
         stop=["\n"]
     )
     return response.choices[0].text
+
+
+class Transformers():
+    def generate_product_names(self, prompt: str):
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=self,
+            temperature=0.8,
+            max_tokens=60,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0,
+            stop=None
+        )
+        return response.choices[0].text
