@@ -26,7 +26,6 @@ import java.util.Objects;
 @Slf4j
 @Component
 public class OrderCreationJobService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderCreationJobService.class);
 
     @Value("${data.ORDER_SVC_URL}")
     private String orderServiceUrl;
@@ -50,15 +49,28 @@ public class OrderCreationJobService {
     @Recurring(id = "create-orders", cron = "#{'${data.CREATE_ORDER_CRON_SCHEDULE}'}")
     @Job(name = "Virtual Customers")
     public void execute() {
-        LOGGER.info("Creating orders");
+        log.info("Creating orders");
         // TODO: add additional configs similar to .NET
         List<Product> products = getProducts();
         if (products.isEmpty()) {
-            LOGGER.info("No products to generate orders for. Exiting.");
+            log.info("No products to generate orders for. Exiting.");
             return;
         }
         CustomerOrder customerOrder = createCustomerOrder(products);
-        LOGGER.info("Created order: {}", customerOrder);
+        log.info("Created order: {}", customerOrder);
+    }
+
+    public List<CustomerOrder> createOrders(int numOrders) {
+        List<CustomerOrder> orders = new ArrayList<>();
+        List<Product> products = getProducts();
+        if (products.isEmpty()) {
+            log.info("No products to generate orders for. Exiting.");
+            return orders;
+        }
+        for (int i = 0; i < numOrders; i++) {
+            orders.add(createCustomerOrder(products));
+        }
+        return orders;
     }
 
     private CustomerOrder createCustomerOrder(List<Product> products) {
