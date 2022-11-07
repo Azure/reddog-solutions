@@ -2,6 +2,7 @@ package com.microsoft.gbb.rasa.accountingservice.repositories;
 
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import com.azure.spring.data.cosmos.repository.Query;
+import com.microsoft.gbb.rasa.accountingservice.dto.ChartKeyValue;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrdersTimeSeries;
 import org.springframework.data.repository.query.Param;
@@ -47,4 +48,9 @@ public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto
                                            @Param("timeStart") String timeStart,
                                            @Param("timeEnd") String timeEnd,
                                            @Param("storeId") String storeId);
+
+    @Query(value = "SELECT count(1) as pv, SUBSTRING(TimestampToDateTime(ROUND((c.orderDateInstant) / 60 / 100000) * 60 * 100000),5,8) as label \n" +
+            "FROM c \n" +
+            "group by ROUND((c.orderDateInstant) / 60 / 100000)")
+    List<ChartKeyValue<Long>> getOrderCountByDay(String storeId);
 }

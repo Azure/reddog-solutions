@@ -1,5 +1,6 @@
 package com.microsoft.gbb.rasa.accountingservice.controller;
 
+import com.microsoft.gbb.rasa.accountingservice.dto.ChartKeyValue;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrdersTimeSeries;
 import com.microsoft.gbb.rasa.accountingservice.service.AccountingService;
@@ -38,5 +39,12 @@ public class AccountingController {
                                                                 @PathVariable String timeEnd,
                                                               @RequestHeader("store-id") String storeId) {
         return ResponseEntity.ok(accountingService.getOrderCountWithinTimeInterval(period, timeStart, timeEnd, storeId));
+    }
+
+    @GetMapping(value = "/orders/day")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<List<ChartKeyValue<Long>>> getOrdersGroupedByDay(
+            @RequestHeader(value = "store-id", required = false) String storeId) {
+        return ResponseEntity.ok(accountingService.getOrderCountByDay(storeId));
     }
 }

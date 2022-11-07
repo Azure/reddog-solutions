@@ -1,5 +1,6 @@
 package com.microsoft.gbb.rasa.accountingservice.service;
 
+import com.microsoft.gbb.rasa.accountingservice.dto.ChartKeyValue;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.rasa.accountingservice.dto.OrdersTimeSeries;
 import com.microsoft.gbb.rasa.accountingservice.repositories.OrderSummaryRepository;
@@ -52,4 +53,8 @@ public class AccountingService {
     public void getOrdersByDay() { }
 
 
+    public List<ChartKeyValue<Long>> getOrderCountByDay(String storeId) {
+        log.info("Getting order count by day");
+        return orderSummaryRepository.getOrderCountByDay(storeId);
+    }
 }
