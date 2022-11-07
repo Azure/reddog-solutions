@@ -44,3 +44,6 @@ build/
 
 order-service/flyway.conf
 makeline-service/.fleet/
+
+outputs/
+config.json
