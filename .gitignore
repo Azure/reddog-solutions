@@ -31,17 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+**/.vscode
 
 ### Local Dev ###
+.DS_Store
+**/.DS_Store
+
 .env
 .whitesource
+*.conf
+*.jar
 
 order-service/flyway.conf
-
-*.conf
-
 makeline-service/.fleet/
-
-
-
-*.jar
