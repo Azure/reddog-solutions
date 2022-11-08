@@ -28,3 +28,4 @@ resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' = {
 }
 
 output eventHubEndPoint string = eventHubNamespace.properties.serviceBusEndpoint
+output eventHubNamespaceName string = eventHubNamespaceName

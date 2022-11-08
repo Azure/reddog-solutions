@@ -71,3 +71,5 @@ output redisHost string = redis.outputs.redisHost
 output redisSslPort int = redis.outputs.redisSslPort
 output redisPassword string = redis.outputs.redisPassword
 output mySqlFQDN string = mySql.outputs.mySqlFQDN
+output eventHubEndPoint string = eventHub.outputs.eventHubEndPoint
+output eventHubNamespaceName string = eventHub.outputs.eventHubNamespaceName
