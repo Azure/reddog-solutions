@@ -30,6 +30,15 @@ public class LoyaltySummary {
     @JsonProperty("pointTotal")
     private int pointTotal;
 
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
+
     @Override
     public String toString() {
         return "LoyaltySummary{" +

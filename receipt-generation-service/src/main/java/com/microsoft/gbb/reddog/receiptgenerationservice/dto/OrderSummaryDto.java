@@ -49,6 +49,15 @@ public class OrderSummaryDto extends AbstractDto<String> {
     @JsonProperty("orderTotal")
     private double orderTotal;
 
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
+
     @Override
     public String toString() {
         return "OrderSummaryDto{" +

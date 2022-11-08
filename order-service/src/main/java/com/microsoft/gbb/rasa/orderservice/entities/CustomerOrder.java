@@ -1,5 +1,6 @@
 package com.microsoft.gbb.rasa.orderservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,6 +31,15 @@ public class CustomerOrder {
 
     @Column(name = "store_id")
     private String storeId;
+
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
 
     @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

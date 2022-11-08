@@ -30,6 +30,15 @@ public class CustomerOrder {
     @JsonProperty("storeId")
     private String storeId;
 
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
+
     @Override
     public String toString() {
         return "CustomerOrder{" +

@@ -20,7 +20,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Container(containerName="reddog", ru="400")
+@Container(containerName="reddog11", ru="400")
 public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderCompletedDate")
@@ -55,6 +55,15 @@ public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderTotal")
     private double orderTotal;
+
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
 
     @Override
     public String toString() {

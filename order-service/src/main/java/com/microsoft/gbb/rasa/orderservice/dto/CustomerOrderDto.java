@@ -28,6 +28,15 @@ public class CustomerOrderDto extends AbstractDto<String> {
     @JsonProperty("storeId")
     private String storeId;
 
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
+
     @JsonProperty("orderItems")
     private List<CustomerOrderItemDto> orderItems;
 

@@ -27,6 +27,7 @@ import java.util.Objects;
 @Component
 public class OrderCreationJobService {
 
+    public static final String ORIGIN = "jobrunr";
     @Value("${data.ORDER_SVC_URL}")
     private String orderServiceUrl;
 
@@ -56,11 +57,11 @@ public class OrderCreationJobService {
             log.info("No products to generate orders for. Exiting.");
             return;
         }
-        CustomerOrder customerOrder = createCustomerOrder(products);
+        CustomerOrder customerOrder = createCustomerOrder(products, ORIGIN);
         log.info("Created order: {}", customerOrder);
     }
 
-    public List<CustomerOrder> createOrders(int numOrders) {
+    public List<CustomerOrder> createOrders(int numOrders, String origin) {
         List<CustomerOrder> orders = new ArrayList<>();
         List<Product> products = getProducts();
         if (products.isEmpty()) {
@@ -68,18 +69,21 @@ public class OrderCreationJobService {
             return orders;
         }
         for (int i = 0; i < numOrders; i++) {
-            orders.add(createCustomerOrder(products));
+            orders.add(createCustomerOrder(products, origin));
         }
         return orders;
     }
 
-    private CustomerOrder createCustomerOrder(List<Product> products) {
+    private CustomerOrder createCustomerOrder(List<Product> products, String origin) {
         CustomerOrder order = CustomerOrder.builder()
                 .storeId(customerGenerator.generateStoreId())
                 .firstName(customerGenerator.generateFirstName())
                 .lastName(customerGenerator.generateLastName())
                 .loyaltyId(String.valueOf(customerGenerator.generateLoyaltyId()))
                 .orderItems(customerGenerator.generateOrderItems(products))
+                .storeLatitude(customerGenerator.generateLatitude())
+                .storeLongitude(customerGenerator.generateLongitude())
+                .origin(origin)
                 .build();
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
