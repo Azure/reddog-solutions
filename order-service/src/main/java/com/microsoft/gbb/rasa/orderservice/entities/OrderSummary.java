@@ -1,5 +1,6 @@
 package com.microsoft.gbb.rasa.orderservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -43,6 +44,15 @@ public class OrderSummary {
 
     @Column(name = "order_total", nullable = false)
     private double orderTotal;
+
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
 
     @OneToMany(mappedBy = "orderSummary", orphanRemoval = true)
     @ToString.Exclude

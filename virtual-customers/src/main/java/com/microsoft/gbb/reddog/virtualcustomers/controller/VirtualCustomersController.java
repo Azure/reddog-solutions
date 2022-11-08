@@ -26,12 +26,12 @@ public class VirtualCustomersController {
     @CrossOrigin(origins = "*")
     public ResponseEntity<List<CustomerOrder>> createOrderJob(
             @RequestParam(value = "numOrders", defaultValue = "1") int numOrders,
-            @RequestHeader(value="x-source", required = false) String origin) {
+            @RequestHeader(value="x-origin", required = false) String origin) {
         if (numOrders < 1) {
             return ResponseEntity.badRequest().build();
         }
         log.info("Creating {} orders from {}", numOrders, origin);
-        List<CustomerOrder> orders = orderCreationJobService.createOrders(numOrders);
+        List<CustomerOrder> orders = orderCreationJobService.createOrders(numOrders, origin);
         jobScheduler.enqueue(orderCreationJobService::execute);
         return ResponseEntity.ok(orders);
     }

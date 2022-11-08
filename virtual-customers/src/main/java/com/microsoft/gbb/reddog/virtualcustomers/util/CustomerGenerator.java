@@ -33,6 +33,14 @@ public class CustomerGenerator {
         return faker.number().numberBetween(1, Math.min(totalNumOfProducts, MAX_UNIQUE_ITEMS_PER_ORDER));
     }
 
+    public String generateLatitude() {
+        return String.valueOf(faker.address().latitude());
+    }
+
+    public String generateLongitude() {
+        return String.valueOf(faker.address().longitude());
+    }
+
     public String generateStoreId() {
         return faker.gameOfThrones().city();
     }

@@ -45,6 +45,15 @@ public class OrderSummary {
     @JsonProperty("orderTotal")
     private double orderTotal;
 
+    @JsonProperty("origin")
+    private String origin;
+
+    @JsonProperty("storeLatitude")
+    private String storeLatitude;
+
+    @JsonProperty("storeLongitude")
+    private String storeLongitude;
+
     @Override
     public String toString() {
         return "OrderSummary{" +
