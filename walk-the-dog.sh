@@ -4,6 +4,8 @@ export SUFFIX=$3
 export ADMIN_PASSWORD=$5
 export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
 
+start_time=$(date +%s)
+
 # show all params
 echo '****************************************************'
 echo 'Starting Red Dog Spring deployment'
@@ -51,7 +53,7 @@ az deployment group create \
 
 echo ''
 echo '****************************************************'
-echo 'Base infra deployed. Starting config/app deployment'
+echo 'Base infra deployed'
 echo '****************************************************'    
 
 # Save deployment outputs
@@ -92,4 +94,12 @@ printf "export AZURE_REDIS_ACCESS_KEY='%s'\n" $REDIS_PWD >> $VARIABLES_FILE
 printf "export AZURE_STORAGE_ACCOUNT_NAME='%s'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
 printf "export AZURE_STORAGE_ACCOUNT_KEY='%s'\n" $STORAGE_ACCOUNT_KEY >> $VARIABLES_FILE
 printf "export AZURE_STORAGE_ENDPOINT='https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
+
+
+# elapsed time with second resolution
+echo ''
+end_time=$(date +%s)
+elapsed=$(( end_time - start_time ))
+printf 'Script elapsed time: %dh:%dm:%ds\n' $((elapsed/3600)) $((elapsed%3600/60)) $((elapsed%60))
+
 
