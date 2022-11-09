@@ -2,9 +2,8 @@ export RG=$1
 export LOCATION=$2
 export SUFFIX=$3
 export ADMIN_PASSWORD=$5
+export DEPLOY_TARGET=$6
 export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
-
-start_time=$(date +%s)
 
 # show all params
 echo '****************************************************'
@@ -14,6 +13,7 @@ echo 'Parameters:'
 echo 'LOCATION: ' $LOCATION
 echo 'RG: ' $RG
 echo 'UNIQUE NAME: ' $UNIQUE_SERVICE_NAME
+echo 'DEPLOY_TARGET: ' $DEPLOY_TARGET
 echo '****************************************************'
 echo ''
 
@@ -64,6 +64,7 @@ export COSMOS_ACCOUNT=$(jq -r .cosmosAccountName.value ./outputs/$RG-bicep-outpu
 export COSMOS_PRIMARY_RW_KEY=$(az cosmosdb keys list -n $COSMOS_ACCOUNT  -g $RG -o json | jq -r '.primaryMasterKey')
 export EH_NAME=$(jq -r .eventHubNamespaceName.value ./outputs/$RG-bicep-outputs.json)
 export EH_ENDPOINT=$(jq -r .eventHubEndPoint.value ./outputs/$RG-bicep-outputs.json)
+export EH_ENDPOINT=$EH_NAME'.servicebus.windows.net:9093'
 export EH_CONNECT_STRING=$(az eventhubs namespace authorization-rule keys list --resource-group $RG --namespace-name $EH_NAME --name RootManageSharedAccessKey -o json | jq -r '.primaryConnectionString')
 export EH_CONFIG='org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="'$EH_CONNECT_STRING'";'
 export SQL_FQDN=$(jq -r .mySqlFQDN.value ./outputs/$RG-bicep-outputs.json)
@@ -82,6 +83,7 @@ printf "export KAFKA_SASL_JAAS_CONFIG='${EH_CONFIG}'\n" >> $VARIABLES_FILE
 printf "export KAFKA_BOOTSTRAP_SERVERS='%s'\n" $EH_ENDPOINT >> $VARIABLES_FILE
 printf "export KAFKA_SECURITY_PROTOCOL='SASL_SSL'\n" >> $VARIABLES_FILE
 printf "export KAFKA_SASL_MECHANISM='PLAIN'\n" >> $VARIABLES_FILE
+printf "export KAFKA_TOPIC_NAME='reddog'\n" >> $VARIABLES_FILE
 
 printf "export MYSQL_URL='jdbc:mysql://%s/reddog'\n" $SQL_FQDN >> $VARIABLES_FILE
 printf "export MYSQL_USER='reddog'\n" >> $VARIABLES_FILE
@@ -95,11 +97,25 @@ printf "export AZURE_STORAGE_ACCOUNT_NAME='%s'\n" $STORAGE_ACCOUNT >> $VARIABLES
 printf "export AZURE_STORAGE_ACCOUNT_KEY='%s'\n" $STORAGE_ACCOUNT_KEY >> $VARIABLES_FILE
 printf "export AZURE_STORAGE_ENDPOINT='https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
 
-
-# elapsed time with second resolution
 echo ''
-end_time=$(date +%s)
-elapsed=$(( end_time - start_time ))
-printf 'Script elapsed time: %dh:%dm:%ds\n' $((elapsed/3600)) $((elapsed%3600/60)) $((elapsed%60))
+echo '****************************************************'
+echo 'Local variables file created: ' $VARIABLES_FILE
+echo '****************************************************'   
 
+if [ "$DEPLOY_TARGET" = "local" ]
+then
+    echo ''
+    echo 'Local deploy'
+elif [ "$DEPLOY_TARGET" = "asa" ]
+then
+    echo ''
+    echo 'Deploy to ASA'
+elif [ "$DEPLOY_TARGET" = "aks" ]
+then
+    echo ''
+    echo 'Deploy to AKS'
+else
+    echo 'ERROR: Value in config.json is not correct. Exiting'
+    exit 0
+fi
 
