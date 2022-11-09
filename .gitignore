@@ -44,7 +44,7 @@ build/
 
 order-service/flyway.conf
 makeline-service/.fleet/
-
+start.sh
 outputs/
 config.json
 ./scripts/config.json
