@@ -47,3 +47,4 @@ makeline-service/.fleet/
 
 outputs/
 config.json
+./scripts/config.json
