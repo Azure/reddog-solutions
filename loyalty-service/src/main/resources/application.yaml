@@ -6,18 +6,18 @@ spring:
   banner:
     location: static/banner.txt
   redis:
-    host: ${AZURE_REDIS_HOST}
-    port: ${AZURE_REDIS_PORT}
-    password: ${AZURE_REDIS_ACCESS_KEY}
+    host: ${AZUREREDISHOST}
+    port: ${AZUREREDISPORT}
+    password: ${AZUREREDISACCESSKEY}
     ssl: true
     connect-timeout: 5000
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddogoct3}
-      group: ${KAFKA_TOPIC_GROUP:loyalty-service}
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      name: ${KAFKATOPICNAME:reddogoct3}
+      group: ${KAFKATOPICGROUP:loyalty-service}
+    bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
-      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:loyaltyservice}
       auto-offset-reset: latest
@@ -27,8 +27,8 @@ spring:
             trusted.packages: "*"
             type.mapping: ordersummary:com.microsoft.gbb.reddog.loyaltyservice.dto.OrderSummaryDto
         sasl:
-          jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
-          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          jaas.config: ${KAFKASASLJAASCONFIG}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
 management:

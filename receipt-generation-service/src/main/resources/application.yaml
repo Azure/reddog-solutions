@@ -7,11 +7,11 @@ spring:
     location: static/banner.txt
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddogoct3}
-      group: ${KAFKA_TOPIC_GROUP:receipt-service}
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      name: ${KAFKATOPICNAME:reddogoct3}
+      group: ${KAFKATOPICGROUP:receipt-service}
+    bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
-      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:receiptservice}
       auto-offset-reset: latest
@@ -21,16 +21,16 @@ spring:
             trusted.packages: "*"
             type.mapping: ordersummary:com.microsoft.gbb.reddog.receiptgenerationservice.dto.OrderSummaryDto
         sasl:
-          jaas.config: ${KAFKA_SASL_JAAS_CONFIG}
-          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          jaas.config: ${KAFKASASLJAASCONFIG}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
   cloud:
     azure:
       storage:
         blob:
-          account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-          account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
-          endpoint: ${AZURE_STORAGE_ENDPOINT}
+          account-name: ${AZURESTORAGEACCOUNTNAME}
+          account-key: ${AZURESTORAGEACCOUNTKEY}
+          endpoint: ${AZURESTORAGEENDPOINT}
 data:
   BLOB:
     CONTAINER: ${BLOB_CONTAINER:reddogasa}

@@ -76,26 +76,26 @@ export STORAGE_ACCOUNT_KEY=$(jq -r .storageAccountKey.value ./outputs/$RG-bicep-
 VARIABLES_FILE="./outputs/var-$RG.sh"
 
 # Write variables to file
-printf "export AZURE_COSMOSDB_URI='%s'\n" $COSMOS_URI >> $VARIABLES_FILE
-printf "export AZURE_COSMOSDB_KEY='%s'\n" $COSMOS_PRIMARY_RW_KEY >> $VARIABLES_FILE
-printf "export AZURE_COSMOSDB_DATABASE_NAME='reddog' \n" >> $VARIABLES_FILE
-printf "export KAFKA_SASL_JAAS_CONFIG='${EH_CONFIG}'\n" >> $VARIABLES_FILE
-printf "export KAFKA_BOOTSTRAP_SERVERS='%s'\n" $EH_ENDPOINT >> $VARIABLES_FILE
-printf "export KAFKA_SECURITY_PROTOCOL='SASL_SSL'\n" >> $VARIABLES_FILE
-printf "export KAFKA_SASL_MECHANISM='PLAIN'\n" >> $VARIABLES_FILE
-printf "export KAFKA_TOPIC_NAME='reddog'\n" >> $VARIABLES_FILE
+printf "export AZURECOSMOSDBURI='%s'\n" $COSMOS_URI >> $VARIABLES_FILE
+printf "export AZURECOSMOSDBKEY='%s'\n" $COSMOS_PRIMARY_RW_KEY >> $VARIABLES_FILE
+printf "export AZURECOSMOSDBDATABASENAME='reddog' \n" >> $VARIABLES_FILE
+printf "export KAFKASASLJAASCONFIG='${EH_CONFIG}'\n" >> $VARIABLES_FILE
+printf "export KAFKABOOTSTRAPSERVERS='%s'\n" $EH_ENDPOINT >> $VARIABLES_FILE
+printf "export KAFKASECURITYPROTOCOL='SASL_SSL'\n" >> $VARIABLES_FILE
+printf "export KAFKASASLMECHANISM='PLAIN'\n" >> $VARIABLES_FILE
+printf "export KAFKATOPICNAME='reddog'\n" >> $VARIABLES_FILE
 
-printf "export MYSQL_URL='jdbc:mysql://%s/reddog'\n" $SQL_FQDN >> $VARIABLES_FILE
-printf "export MYSQL_USER='reddog'\n" >> $VARIABLES_FILE
-printf "export MYSQL_PASSWORD='%s'\n" $ADMIN_PASSWORD >> $VARIABLES_FILE
+printf "export MYSQLURL='jdbc:mysql://%s/reddog'\n" $SQL_FQDN >> $VARIABLES_FILE
+printf "export MYSQLUSER='reddog'\n" >> $VARIABLES_FILE
+printf "export MYSQLPASSWORD='%s'\n" $ADMIN_PASSWORD >> $VARIABLES_FILE
 
-printf "export AZURE_REDIS_HOST='%s'\n" $REDIS_HOST >> $VARIABLES_FILE
-printf "export AZURE_REDIS_PORT='6380'\n" >> $VARIABLES_FILE
-printf "export AZURE_REDIS_ACCESS_KEY='%s'\n" $REDIS_PWD >> $VARIABLES_FILE
+printf "export AZUREREDISHOST='%s'\n" $REDIS_HOST >> $VARIABLES_FILE
+printf "export AZUREREDISPORT='6380'\n" >> $VARIABLES_FILE
+printf "export AZUREREDISACCESSKEY='%s'\n" $REDIS_PWD >> $VARIABLES_FILE
 
-printf "export AZURE_STORAGE_ACCOUNT_NAME='%s'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
-printf "export AZURE_STORAGE_ACCOUNT_KEY='%s'\n" $STORAGE_ACCOUNT_KEY >> $VARIABLES_FILE
-printf "export AZURE_STORAGE_ENDPOINT='https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
+printf "export AZURESTORAGEACCOUNTNAME='%s'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
+printf "export AZURESTORAGEACCOUNTKEY='%s'\n" $STORAGE_ACCOUNT_KEY >> $VARIABLES_FILE
+printf "export AZURESTORAGEENDPOINT='https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
 
 echo ''
 echo '****************************************************'
