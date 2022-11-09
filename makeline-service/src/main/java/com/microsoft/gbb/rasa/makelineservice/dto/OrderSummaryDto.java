@@ -77,6 +77,9 @@ public class OrderSummaryDto extends AbstractDto<String> {
                 ", orderDate='" + orderDate + '\'' +
                 ", orderItems=" + orderItems +
                 ", orderTotal=" + orderTotal +
+                ", origin='" + origin + '\'' +
+                ", storeLatitude='" + storeLatitude + '\'' +
+                ", storeLongitude='" + storeLongitude + '\'' +
                 '}';
     }
 }

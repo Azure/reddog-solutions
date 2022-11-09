@@ -64,6 +64,9 @@ public class OrderSummary {
                 ", orderDate='" + orderDate + '\'' +
                 ", orderItems=" + orderItems +
                 ", orderTotal=" + orderTotal +
+                ", origin='" + origin + '\'' +
+                ", storeLatitude='" + storeLatitude + '\'' +
+                ", storeLongitude='" + storeLongitude + '\'' +
                 '}';
     }
 }
