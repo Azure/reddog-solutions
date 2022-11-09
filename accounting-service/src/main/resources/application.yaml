@@ -8,22 +8,22 @@ spring:
             type:
               mapping: ordersummary:com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto
         sasl:
-          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
           jaas:
-            config: ${KAFKA_SASL_JAAS_CONFIG}
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+            config: ${KAFKASASLJAASCONFIG}
+      bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
-      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
   config:
     import: optional:classpath:.env[.properties]
   banner:
     location: static/banner.txt
 cosmos:
   queryMetricsEnabled: 'true'
-  key: ${AZURE_COSMOSDB_KEY}
-  secondaryKey: ${AZURE_COSMOSDB_SECONDARY_KEY}
-  databaseName: ${AZURE_COSMOSDB_DATABASE_NAME}
-  uri: ${AZURE_COSMOSDB_URI}
+  key: ${AZURECOSMOSDBKEY}
+  secondaryKey: ${AZURECOSMOSDBSECONDARYKEY}
+  databaseName: ${AZURECOSMOSDBDATABASENAME}
+  uri: ${AZURECOSMOSDBURI}
 eureka:
   client:
     fetch-registry: 'false'
@@ -32,7 +32,7 @@ server:
   port: '8087'
 topic:
   name:
-    producer: ${KAFKA_TOPIC_NAME:reddog.orders}
+    producer: ${KAFKATOPICNAME:reddog.orders}
 logging:
   level:
     org:

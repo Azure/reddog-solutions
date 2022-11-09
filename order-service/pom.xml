@@ -15,13 +15,14 @@
     <description>order-service</description>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud-azure.version>4.3.0</spring-cloud-azure.version>
+        <spring-cloud-azure.version>4.4.1</spring-cloud-azure.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
         <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
         <spring-boot-maven-plugin.version>2.7.3</spring-boot-maven-plugin.version>
         <flyway-maven-plugin.version>9.3.0</flyway-maven-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <azure-spring-boot-starter-keyvault-secrets.version>4.0.0</azure-spring-boot-starter-keyvault-secrets.version>
     </properties>
     <dependencies>
         <dependency>
@@ -139,16 +140,16 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi-ui.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.microsoft.jeg.illuminate</groupId>-->
-<!--            <artifactId>application-insights-agent-illuminate</artifactId>-->
-<!--            <version>3.4.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.microsoft.azure</groupId>-->
-<!--            <artifactId>applicationinsights-runtime-attach</artifactId>-->
-<!--            <version>3.4.2</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.microsoft.jeg.illuminate</groupId>-->
+        <!--            <artifactId>application-insights-agent-illuminate</artifactId>-->
+        <!--            <version>3.4.1-SNAPSHOT</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.microsoft.azure</groupId>-->
+        <!--            <artifactId>applicationinsights-runtime-attach</artifactId>-->
+        <!--            <version>3.4.2</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-extension-annotations</artifactId>
@@ -158,6 +159,11 @@
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-api</artifactId>
             <version>1.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
+            <version>${azure-spring-boot-starter-keyvault-secrets.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -169,13 +175,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--            <dependency>-->
-            <!--                <groupId>com.azure.spring</groupId>-->
-            <!--                <artifactId>spring-cloud-azure-dependencies</artifactId>-->
-            <!--                <version>${spring-cloud-azure.version}</version>-->
-            <!--                <type>pom</type>-->
-            <!--                <scope>import</scope>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.azure.spring</groupId>
+                <artifactId>spring-cloud-azure-dependencies</artifactId>
+                <version>${spring-cloud-azure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -228,8 +234,8 @@
     </build>
     <repositories>
         <repository>
-        <!--Configure and add personal access token in maven settings, see-->
-        <!-- https://devdiv.visualstudio.com/OnlineServices/_artifacts/feed/java-engineering-feed/connect/maven -->
+            <!--Configure and add personal access token in maven settings, see-->
+            <!-- https://devdiv.visualstudio.com/OnlineServices/_artifacts/feed/java-engineering-feed/connect/maven -->
             <id>java-engineering-feed</id>
             <url>https://devdiv.pkgs.visualstudio.com/_packaging/java-engineering-feed/maven/v1</url>
             <releases>

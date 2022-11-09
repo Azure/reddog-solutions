@@ -1,22 +1,22 @@
 spring:
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddogoct3}
-      group: ${KAFKA_TOPIC_GROUP:order-service}
+      name: ${KAFKATOPICNAME:reddogoct3}
+      group: ${KAFKATOPICGROUP:order-service}
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         sasl:
-          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
           jaas:
-            config: ${KAFKA_SASL_JAAS_CONFIG}
+            config: ${KAFKASASLJAASCONFIG}
         spring:
           json:
             type:
               mapping: ordersummary:com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
-      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
   jpa:
     properties:
       hibernate:
@@ -26,13 +26,24 @@ spring:
     import: optional:classpath:.env[.properties]
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${MYSQL_PASSWORD}
-    username: ${MYSQL_USER}
-    url: ${MYSQL_URL}
+    password: ${MYSQLPASSWORD}
+    username: ${MYSQLUSER}
+    url: ${MYSQLURL}
   flyway:
     baseline-on-migrate: 'true'
   banner:
     location: static/banner.txt
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources[0]:
+            credential:
+              client-id: ${AZUREKEYVAULTCLIENTID}
+              client-secret: ${AZUREKEYVAULTCLIENTSECRET}
+            endpoint: ${AZUREKEYVAULTENDPOINT}
+            profile:
+              tenant-id: ${AZUREKEYVAULTTENANTID}
 eureka:
   client:
     register-with-eureka: 'false'
@@ -45,6 +56,6 @@ springdoc:
     path: /api-docs
 topic:
   name:
-    producer: ${KAFKA_TOPIC_NAME:reddogoct3}
+    producer: ${KAFKATOPICNAME:reddogoct3}
 server:
   port: '8082'

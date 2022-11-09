@@ -6,9 +6,9 @@ spring:
   banner:
     location: static/banner.txt
   redis:
-    host: ${AZURE_REDIS_HOST}
-    port: ${AZURE_REDIS_PORT}
-    password: ${AZURE_REDIS_ACCESS_KEY}
+    host: ${AZUREREDISHOST}
+    port: ${AZUREREDISPORT}
+    password: ${AZUREREDISACCESSKEY}
     ssl: true
     connect-timeout: 5000
 #  cloud:
@@ -16,19 +16,19 @@ spring:
 #      default-binder: kafka
   kafka:
     topic:
-      name: ${KAFKA_TOPIC_NAME:reddogoct3}
+      name: ${KAFKATOPICNAME:reddogoct3}
       completed-orders-name: ${KAFKA_COMPLETED_ORDERS_TOPIC:orderscompleted}
-      group: ${KAFKA_TOPIC_GROUP:makeline-service}
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      group: ${KAFKATOPICGROUP:makeline-service}
+    bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
-      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         sasl:
-          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
           jaas:
-            config: ${KAFKA_SASL_JAAS_CONFIG}
+            config: ${KAFKASASLJAASCONFIG}
         spring:
           json:
             type:
@@ -43,8 +43,8 @@ spring:
             type.mapping: ordersummary:com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto
         sasl:
           jaas:
-            config: ${KAFKA_SASL_JAAS_CONFIG}
-          mechanism: ${KAFKA_SASL_MECHANISM:PLAIN}
+            config: ${KAFKASASLJAASCONFIG}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 messaging:
   pubsub:
@@ -52,10 +52,10 @@ messaging:
     TOPIC_NAME: makeline-service-topic
     SUB_NAME: pubsub
 cosmos:
-  uri: ${AZURE_COSMOSDB_URI}
-  key: ${AZURE_COSMOSDB_KEY}
-  secondaryKey: ${AZURE_COSMOSDB_SECONDARY_KEY}
-  databaseName: ${AZURE_COSMOSDB_DATABASE_NAME}
+  uri: ${AZURECOSMOSDBURI}
+  key: ${AZURECOSMOSDBKEY}
+  secondaryKey: ${AZURECOSMOSDBSECONDARYKEY}
+  databaseName: ${AZURECOSMOSDBDATABASENAME}
   queryMetricsEnabled: true
   containerName: ${AZURE_COSMOSDB_CONTAINER_NAME:reddog}
   requestUnits: ${AZURE_COSMOSDB_REQUEST_UNITS:400}
