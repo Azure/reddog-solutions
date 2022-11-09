@@ -1,5 +1,6 @@
 package com.microsoft.gbb.reddog.virtualcustomers.controller;
 
+import com.microsoft.gbb.reddog.virtualcustomers.model.CustomerOrder;
 import com.microsoft.gbb.reddog.virtualcustomers.service.OrderCreationJobService;
 import org.jobrunr.jobs.lambdas.JobLambda;
 import org.jobrunr.scheduling.JobScheduler;
@@ -11,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,10 +36,8 @@ class VirtualCustomersControllerTest {
     @DisplayName("Should schedule the job when the request is valid")
     void createOrderJobWhenRequestIsValidThenScheduleTheJob() {
         int numOrders = 10;
-        ResponseEntity<String> responseEntity =
-                virtualCustomersController.createOrderJob(numOrders);
+        ResponseEntity<List<CustomerOrder>> responseEntity =
+                virtualCustomersController.createOrderJob(numOrders, "test");
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals("Order creation job scheduled", responseEntity.getBody());
-        verify(jobScheduler, times(1)).enqueue((JobLambda) any());
     }
 }
