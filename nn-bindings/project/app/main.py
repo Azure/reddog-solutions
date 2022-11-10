@@ -2,6 +2,7 @@ import os
 
 import openai
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 
 
@@ -14,6 +15,16 @@ class Settings(BaseSettings):
 
 settings = Settings()
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")
