@@ -25,15 +25,10 @@ This repo, based on [reddog-code](https://github.com/Azure/reddog-code), is inte
 
 ### Setup:
 
-To run locally, after completing above pre-reqs, install gnu-parallel using `brew install parallel`[^1] , and update the env variables in `start.sh`; then:
+Jump over to the docs to get started.
 
-```bash
-./start.sh
-```
+[Initial setup docs](docs/initial-setup.md)
 
-#### :construction: Deployment to Azure, via bicep and GH-actions, are WIP
-
-[^1]:[WSL users](https://docs.brew.sh/Homebrew-on-Linux)
 
 ### Services and local port mappings
 

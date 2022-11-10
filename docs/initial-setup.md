@@ -17,7 +17,7 @@ Instructions for both are below.
             "location":"eastus",
             "username": "shortname",
             "adminpassword": "replaceSecurePassword",
-            "_comment1": "for deploy target one of: local, azure-spring-apps, azure-aks",
+            "_comment1": "for deploy target one of: local, asa, aks",
             "deploytarget": "local"
         }
         ```
@@ -77,11 +77,13 @@ This deployment will require a bash shell of your choice. It will not work on Az
 
 ### Azure Spring Apps Deployment
 
+In progress
+
 
 
 ### Azure Kubernetes Service (AKS) Deployment
 
-
+In progress
 
 
 
