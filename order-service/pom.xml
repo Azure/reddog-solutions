@@ -22,7 +22,6 @@
         <spring-boot-maven-plugin.version>2.7.3</spring-boot-maven-plugin.version>
         <flyway-maven-plugin.version>9.3.0</flyway-maven-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <azure-spring-boot-starter-keyvault-secrets.version>4.0.0</azure-spring-boot-starter-keyvault-secrets.version>
     </properties>
     <dependencies>
         <dependency>
@@ -160,11 +159,6 @@
             <artifactId>opentelemetry-api</artifactId>
             <version>1.19.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
-            <version>${azure-spring-boot-starter-keyvault-secrets.version}</version>
-        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -175,13 +169,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.azure.spring</groupId>
-                <artifactId>spring-cloud-azure-dependencies</artifactId>
-                <version>${spring-cloud-azure.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.azure.spring</groupId>-->
+<!--                <artifactId>spring-cloud-azure-dependencies</artifactId>-->
+<!--                <version>${spring-cloud-azure.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
