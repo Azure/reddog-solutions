@@ -33,17 +33,6 @@ spring:
     baseline-on-migrate: 'true'
   banner:
     location: static/banner.txt
-  cloud:
-    azure:
-      keyvault:
-        secret:
-          property-sources[0]:
-            credential:
-              client-id: ${AZUREKEYVAULTCLIENTID}
-              client-secret: ${AZUREKEYVAULTCLIENTSECRET}
-            endpoint: ${AZUREKEYVAULTENDPOINT}
-            profile:
-              tenant-id: ${AZUREKEYVAULTTENANTID}
 eureka:
   client:
     register-with-eureka: 'false'
