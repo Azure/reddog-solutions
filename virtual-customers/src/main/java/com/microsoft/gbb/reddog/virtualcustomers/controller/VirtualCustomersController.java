@@ -22,7 +22,7 @@ public class VirtualCustomersController {
         this.orderCreationJobService = orderCreationJobService1;
     }
 
-    @PostMapping(value = "/stimulate-orders")
+    @PostMapping(value = "/simulate-orders")
     @CrossOrigin(origins = "*")
     public ResponseEntity<List<CustomerOrder>> createOrderJob(
             @RequestParam(value = "numOrders", defaultValue = "1") int numOrders,
