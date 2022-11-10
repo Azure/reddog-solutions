@@ -1,62 +1,65 @@
 param location string
-//https://learn.microsoft.com/en-us/azure/templates/microsoft.appplatform/spring/apps?pivots=deployment-language-bicep
+param springCloudName string
+param logAnalyticsName string
+param appInsightsName string
 
-resource symbolicname 'Microsoft.AppPlatform/Spring/apps@2022-09-01-preview' = {
-  name: 'string'
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+  name: logAnalyticsName
   location: location
-  identity: {
-    principalId: 'string'
-    tenantId: 'string'
-    type: 'string'
-    userAssignedIdentities: {}
-  }
   properties: {
-    addonConfigs: {}
-    customPersistentDisks: [
-      {
-        customPersistentDiskProperties: {
-          mountOptions: [
-            'string'
-          ]
-          mountPath: 'string'
-          readOnly: bool
-          type: 'string'
-          // For remaining properties, see CustomPersistentDiskProperties objects
-        }
-        storageId: 'string'
-      }
-    ]
-    enableEndToEndTLS: bool
-    httpsOnly: bool
-    ingressSettings: {
-      backendProtocol: 'string'
-      clientAuth: {
-        certificates: [
-          'string'
-        ]
-      }
-      readTimeoutInSeconds: int
-      sendTimeoutInSeconds: int
-      sessionAffinity: 'string'
-      sessionCookieMaxAge: int
+    sku: {
+      name: 'PerGB2018'
     }
-    loadedCertificates: [
-      {
-        loadTrustStore: bool
-        resourceId: 'string'
-      }
-    ]
-    persistentDisk: {
-      mountPath: 'string'
-      sizeInGB: int
-    }
-    public: bool
-    temporaryDisk: {
-      mountPath: 'string'
-      sizeInGB: int
-    }
-    vnetAddons: {
-      publicEndpoint: bool
-    }
+    retentionInDays: 30
   }
 }
+
+resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
+  name: appInsightsName
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+    Flow_Type: 'Bluefield'
+    Request_Source: 'rest'
+    WorkspaceResourceId: logAnalyticsWorkspace.id
+  }
+}
+
+resource springCloudService 'Microsoft.AppPlatform/Spring@2021-06-01-preview' = {
+  name: springCloudName
+  location: location
+  sku: {
+    name: 'S0'
+    tier: 'Standard'
+  }
+}
+
+resource springCloudMonitoringSettings 'Microsoft.AppPlatform/Spring/monitoringSettings@2020-07-01' = {
+  name: '${springCloudService.name}/default' // The only supported value is 'default'
+  properties: {
+    traceEnabled: true
+    appInsightsInstrumentationKey: appInsights.properties.InstrumentationKey
+  }
+}
+
+resource springCloudDiagnostics 'microsoft.insights/diagnosticSettings@2017-05-01-preview' = {
+  name: 'monitoring'
+  scope: springCloudService
+  properties: {
+    workspaceId: logAnalyticsWorkspace.id
+    logs: [
+      {
+        category: 'ApplicationConsole'
+        enabled: true
+        retentionPolicy: {
+          days: 30
+          enabled: false
+        }
+      }
+    ]
+  }
+}
+
+output workspaceId string = logAnalyticsWorkspace.id
+output appInsightsInstrumentationKey string = appInsights.properties.InstrumentationKey
