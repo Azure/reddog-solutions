@@ -1,0 +1,31 @@
+server:
+  port: 8088
+spring:
+  profiles:
+    active: native
+    cloud:
+        config:
+            server:
+            native:
+                search-locations: classpath:/,classpath:/config/,file:./,file:./config/
+                search-names: application,config
+                enabled: true
+            git:
+                uri: {GITREPOURL}
+                search-paths: config
+                username: {GITUSERNAME}
+                password: {GITPASSWORD}
+                enabled: false
+            label: master
+            enabled: true
+            fail-fast: true
+            retry:
+                max-attempts: 3
+                initial-interval: 1000
+                multiplier: 1.5
+                max-interval: 5000
+            discovery:
+                enabled: false
+                service-id: config-server
+            bootstrap:
+                enabled: true
