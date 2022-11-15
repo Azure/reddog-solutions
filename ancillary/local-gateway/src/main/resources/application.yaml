@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: local-cloud-gateway
+  config:
+    import: "optional:configserver:http://localhost:8088"
+  cloud:
+    gateway:
+        discovery:
+            locator:
+            enabled: true
+        routes:
+            - id: accounting-service
+            uri: lb://accounting-service
+            predicates:
+                - Path=/accounting/**
+            - id: config-server
+            uri: lb://config-server
+            predicates:
+                - Path=/config/**
+            - id: order-service
+            uri: lb://order-service
+            predicates:
+                - Path=/order/**
+            - id: receipt-generation-service
+            uri: lb://receipt-generation-service
+            predicates:
+                - Path=/receipt-generation/**
+            - id: loyalty-service
+            uri: lb://loyalty-service
+            predicates:
+                - Path=/loyalty/**
+            - id: makeline-service
+            uri: lb://makeline-service
+            predicates:
+                - Path=/makeline/**
+            - id: virtual-worker-service
+            uri: lb://virtual-worker-service
+            predicates:
+                - Path=/virtual-worker/**
+            - id: virtual-customers-service
+            uri: lb://virtual-customers-service
+            predicates:
+                - Path=/virtual-customers/**
+            - id: ui
+            uri: lb://ui
+            predicates:
+                - Path=/**

@@ -31,25 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-**/.vscode
-
-### Local Dev ###
-.DS_Store
-**/.DS_Store
-
-.env
-.whitesource
-*.conf
-*.jar
-
-order-service/flyway.conf
-makeline-service/.fleet/
-start.sh
-outputs/
-config.json
-./scripts/config.json
-ancillary/local-gateway/.mvn/wrapper/
-
-ancillary/local-gateway/mvnw
-
-*.cmd
