@@ -51,6 +51,11 @@ messaging:
     enabled: true
     TOPIC_NAME: makeline-service-topic
     SUB_NAME: pubsub
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 cosmos:
   uri: ${AZURECOSMOSDBURI}
   key: ${AZURECOSMOSDBKEY}

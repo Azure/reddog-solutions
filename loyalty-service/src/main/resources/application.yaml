@@ -30,7 +30,11 @@ spring:
           jaas.config: ${KAFKASASLJAASCONFIG}
           mechanism: ${KAFKASASLMECHANISM:PLAIN}
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 management:
   endpoints:
     web:

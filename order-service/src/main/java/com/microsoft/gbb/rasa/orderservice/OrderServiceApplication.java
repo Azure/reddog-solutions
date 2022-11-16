@@ -7,7 +7,6 @@ import org.springframework.kafka.annotation.EnableKafka;
 
 @EnableKafka
 @SpringBootApplication
-@EnableEurekaClient
 public class OrderServiceApplication {
 
     public static void main(String[] args) {
