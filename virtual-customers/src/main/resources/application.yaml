@@ -23,6 +23,11 @@ management:
       show-details: ALWAYS
 server:
   port: 8091
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 org:
   jobrunr:
     background-job-server:

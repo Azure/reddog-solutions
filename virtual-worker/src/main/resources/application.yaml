@@ -14,6 +14,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 server:
   port: 8086
 springdoc:
