@@ -28,6 +28,11 @@ public class AccountingService {
         return orderSummaryRepository.findAllInflightOrders();
     }
 
+    public List<OrderSummaryDto> findAllCompletedOrders() {
+        log.info("Finding all completed orders");
+        return orderSummaryRepository.findAllCompletedOrders();
+    }
+
     public OrdersTimeSeries getOrderCountOverTime(String period, String timeSpan, String storeId) {
         log.info("Getting order count for the prior {} {}", timeSpan, period);
         return orderSummaryRepository.getOrderCountForThePastTimeSpan(period, timeSpan, storeId);

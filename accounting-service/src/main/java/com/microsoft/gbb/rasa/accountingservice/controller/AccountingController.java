@@ -24,6 +24,12 @@ public class AccountingController {
         return ResponseEntity.ok(accountingService.findAllInflightOrders());
     }
 
+    @GetMapping(value = "/orders/completed")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<List<OrderSummaryDto>> getAllCompletedOrders() {
+        return ResponseEntity.ok(accountingService.findAllCompletedOrders());
+    }
+
     @GetMapping(value = "/orders/{period}/{timeSpan}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<OrdersTimeSeries> getOrdersByPeriod(@PathVariable String period,
