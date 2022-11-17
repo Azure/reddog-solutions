@@ -20,8 +20,11 @@ public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto
     @Query(value = "SELECT * FROM c WHERE c.id = @storeId")
     List<OrderSummaryDto> findAllOrdersForStore(@Param("storeId") String storeId);
 
-    @Query(value = "SELECT * FROM c where c.orderCompletedDate = null OFFSET 1 LIMIT 20")
+    @Query(value = "SELECT * FROM c where c.orderCompletedDate = null OFFSET 1 LIMIT 50")
     List<OrderSummaryDto> findAllInflightOrders();
+
+    @Query(value = "SELECT * FROM c where c.orderCompletedDate != null OFFSET 1 LIMIT 50")
+    List<OrderSummaryDto> findAllCompletedOrders();
 
     @Query(value = "SELECT * FROM c WHERE c.id = @storeId and c.orderCompletedDate = null")
     List<OrderSummaryDto> findAllInflightOrdersForStore(@Param("storeId") String storeId);
