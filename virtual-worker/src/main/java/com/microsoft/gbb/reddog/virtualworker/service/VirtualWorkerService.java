@@ -61,4 +61,17 @@ public class VirtualWorkerService {
                 .bodyToMono(Void.class)
                 .block();
     }
+
+    public List<OrderSummaryDto> completeOrders(String[] orderIds) {
+        List<OrderSummaryDto> orders = new ArrayList<>();
+        for (String orderId : orderIds) {
+            OrderSummaryDto order = webClient.delete()
+                    .uri(makelineServiceUrl + "orders/" + orderId)
+                    .retrieve()
+                    .bodyToMono(OrderSummaryDto.class)
+                    .block();
+            orders.add(order);
+        }
+        return orders;
+    }
 }

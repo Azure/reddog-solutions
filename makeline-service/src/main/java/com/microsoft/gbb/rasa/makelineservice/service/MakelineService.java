@@ -34,9 +34,19 @@ public class MakelineService {
         return orderSummaryRepository.findAllByStoreId(storeId);
     }
 
-    public OrderSummaryDto completeOrder(String storeId, String orderId) {
+    public OrderSummaryDto completeOrderForStore(String storeId, String orderId) {
         log.info("Completing order for storeId: " + storeId + " orderId: " + orderId);
         OrderSummaryDto orderSummary = orderSummaryRepository.findByOrderIdAndStoreId(orderId, storeId);
+        orderSummary.setOrderCompletedDate(new Date());
+        topicProducer.send(orderSummary);
+        log.info("Order completed: " + orderSummary);
+        return orderSummaryRepository.save(orderSummary);
+    }
+
+    // complete order for order id
+    public OrderSummaryDto completeOrder(String orderId) {
+        log.info("Completing order for orderId: " + orderId);
+        OrderSummaryDto orderSummary = orderSummaryRepository.findByOrderId(orderId).get(0);
         orderSummary.setOrderCompletedDate(new Date());
         topicProducer.send(orderSummary);
         log.info("Order completed: " + orderSummary);

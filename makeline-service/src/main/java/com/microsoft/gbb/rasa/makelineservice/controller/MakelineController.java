@@ -56,6 +56,17 @@ public class MakelineController {
         if (null == storeId || null == orderId) {
             throw new SaveOrderException("Store ID or Order ID is empty");
         }
-        return ResponseEntity.ok(makelineService.completeOrder(storeId, orderId));
+        return ResponseEntity.ok(makelineService.completeOrderForStore(storeId, orderId));
+    }
+
+    // complete order for a given order id
+    @DeleteMapping(value = "/orders/{orderId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<OrderSummaryDto> completeOrder(@PathVariable String orderId) {
+        if (null == orderId) {
+            throw new SaveOrderException("Order ID is empty");
+        }
+        return ResponseEntity.ok(makelineService.completeOrder(orderId));
     }
 }
