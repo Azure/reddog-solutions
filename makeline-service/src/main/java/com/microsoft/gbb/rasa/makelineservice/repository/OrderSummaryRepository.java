@@ -23,4 +23,7 @@ public interface OrderSummaryRepository extends CosmosRepository<OrderSummaryDto
 
     // find order by order id and store id
     OrderSummaryDto findByOrderIdAndStoreId(String orderId, String storeId);
+
+    @Query(value = "SELECT * FROM c WHERE c.orderId = @orderId")
+    List<OrderSummaryDto> findByOrderId(String orderId);
 }
