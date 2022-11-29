@@ -20,3 +20,9 @@ RUN pip install -r requirements.txt
 
 # add app
 COPY . .
+
+# expose port 1025
+EXPOSE 1025
+
+# run uvicorn command
+CMD ["uvicorn", "app.main:app", "--port", "1025", "--host", "0.0.0.0", "--reload"]
