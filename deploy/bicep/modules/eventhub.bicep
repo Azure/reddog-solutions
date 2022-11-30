@@ -23,7 +23,7 @@ resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' = {
   name: eventHubName
   properties: {
     messageRetentionInDays: 7
-    partitionCount: 1
+    partitionCount: 3
   }
 }
 
