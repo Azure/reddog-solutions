@@ -8,20 +8,6 @@ This repo, based on [reddog-code](https://github.com/Azure/reddog-code), is a de
 ![](ancillary/architecture.png)
 ![](ancillary/screenshot.png)
 
-### Pre-reqs:
-
-- [JDK-17](https://learn.microsoft.com/en-us/java/openjdk/overview)
-- `JAVA_HOME` set to ^ JDK location
-- [Maven](https://maven.apache.org/download.cgi) for building and running the project
-- Provision the following services and set their associated entries in `start.sh`
-  - Event-Hubs
-  - Azure MySQL
-  - Azure Redis
-  - CosmosDB
-  - Azure OpenAI Service
-  - Azure Service Bus
-  - Azure Key Vault
-  - Storage Account
 
 ### Setup:
 
