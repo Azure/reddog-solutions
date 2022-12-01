@@ -247,5 +247,4 @@
             <url>https://maven.pkg.github.com/appdevgbb/reddog-code-spring</url>
         </repository>
     </distributionManagement>
-
 </project>
