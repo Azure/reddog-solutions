@@ -240,5 +240,12 @@
             </snapshots>
         </repository>
     </repositories>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/appdevgbb/reddog-code-spring</url>
+        </repository>
+    </distributionManagement>
 
 </project>
