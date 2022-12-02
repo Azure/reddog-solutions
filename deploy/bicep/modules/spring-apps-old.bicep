@@ -64,7 +64,7 @@ resource reddogOrderServiceDeploy 'Microsoft.AppPlatform/Spring/apps/deployments
     source: {
       type: 'Source'
       artifactSelector: 'pom.xml'
-      relativePath: 'https://github.com/appdevgbb/reddog-code-spring/tree/main/order-service/'
+      relativePath: './order-service'
       runtimeVersion: 'Java_17'
     }
   }
