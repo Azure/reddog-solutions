@@ -123,6 +123,7 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     # Check apps and logs
     az spring app list -s $SPRING_CLUSTER -g $RG
     az spring app logs -n $SERVICE_NAME -s $SPRING_CLUSTER -g $RG --lines 1000
+    az spring app logs -s $SPRING_CLUSTER -g $RG --lines 1000 -n order-service
     az spring app logs -n $SERVICE_NAME -s $SPRING_CLUSTER -g $RG -f # tail logs live
 
     # Delete if needed
