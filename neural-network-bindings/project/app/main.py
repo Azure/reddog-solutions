@@ -1,9 +1,17 @@
+import base64
 import os
-
+from io import BytesIO
+import torch
 import openai
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.models import Response
 from pydantic import BaseSettings
+from diffusers import DiffusionPipeline
+
+TESTMODEL = "thegovind/pills1testmodel"
+
+pipe = DiffusionPipeline.from_pretrained(TESTMODEL)
 
 
 class Settings(BaseSettings):
@@ -78,3 +86,22 @@ class Transformers():
             stop=None
         )
         return response.choices[0].text
+
+
+@app.get("/generate/product-image")
+async def generate_product_image(prompt: str):
+    print(f'Image query: {prompt}')
+    return prompty(prompt)
+
+
+def prompty(prompt: str):
+    try:
+        image = pipe(prompt).images[0]
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        img = base64.b64encode(buffer.getvalue())
+        return Response(content=img, media_type="image/png")
+
+    except Exception as e:
+        print(e)
+        raise e
