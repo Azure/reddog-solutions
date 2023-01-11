@@ -15,7 +15,7 @@ spring:
         spring:
           json:
             type:
-              mapping: ordersummary:com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto
+              mapping: ordersummary:com.microsoft.gbb.reddog.orderservice.dto.OrderSummaryDto
       bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
       protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}

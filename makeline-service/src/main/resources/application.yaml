@@ -32,7 +32,7 @@ spring:
         spring:
           json:
             type:
-              mapping: ordersummary:com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto
+              mapping: ordersummary:com.microsoft.gbb.reddog.makelineservice.dto.OrderSummaryDto
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:makelineservice}
       auto-offset-reset: latest
@@ -40,7 +40,7 @@ spring:
         spring:
           json:
             trusted.packages: "*"
-            type.mapping: ordersummary:com.microsoft.gbb.rasa.makelineservice.dto.OrderSummaryDto
+            type.mapping: ordersummary:com.microsoft.gbb.reddog.makelineservice.dto.OrderSummaryDto
         sasl:
           jaas:
             config: ${KAFKASASLJAASCONFIG}
@@ -53,9 +53,9 @@ messaging:
     SUB_NAME: pubsub
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 cosmos:
   uri: ${AZURECOSMOSDBURI}
   key: ${AZURECOSMOSDBKEY}

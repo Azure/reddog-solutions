@@ -16,9 +16,9 @@ management:
       show-details: ALWAYS
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 server:
   port: 8086
 springdoc:

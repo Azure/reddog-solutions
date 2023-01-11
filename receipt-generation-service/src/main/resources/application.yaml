@@ -33,9 +33,9 @@ spring:
           endpoint: ${AZURESTORAGEENDPOINT}
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 data:
   BLOB:
     CONTAINER: ${BLOB_CONTAINER:reddogasa}

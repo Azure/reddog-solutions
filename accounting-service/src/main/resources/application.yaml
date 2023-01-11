@@ -8,7 +8,7 @@ spring:
         spring:
           json:
             type:
-              mapping: ordersummary:com.microsoft.gbb.rasa.accountingservice.dto.OrderSummaryDto
+              mapping: ordersummary:com.microsoft.gbb.reddog.accountingservice.dto.OrderSummaryDto
         sasl:
           mechanism: ${KAFKASASLMECHANISM:PLAIN}
           jaas:
@@ -28,9 +28,9 @@ cosmos:
   uri: ${AZURECOSMOSDBURI}
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 server:
   port: '8087'
 topic:
