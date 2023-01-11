@@ -26,6 +26,10 @@ spring:
     show-sql: 'true'
   config:
     import: optional:classpath:.env[.properties]
+  jms:
+    servicebus:
+      connection-string: ${SERVICEBUSCONNECTIONSTRING}
+      pricing-tier: ${SERVICEBUSPRICINGTIER:Basic}
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     password: ${MYSQLPASSWORD}
@@ -37,9 +41,9 @@ spring:
     location: static/banner.txt
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 springdoc:
   swagger-ui:
     enabled: 'true'

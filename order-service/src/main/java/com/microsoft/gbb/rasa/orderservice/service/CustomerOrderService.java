@@ -3,7 +3,6 @@ package com.microsoft.gbb.rasa.orderservice.service;
 import com.microsoft.gbb.rasa.orderservice.dto.CustomerOrderDto;
 import com.microsoft.gbb.rasa.orderservice.dto.OrderItemSummaryDto;
 import com.microsoft.gbb.rasa.orderservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.rasa.orderservice.entities.CustomerOrder;
 import com.microsoft.gbb.rasa.orderservice.entities.Product;
 import com.microsoft.gbb.rasa.orderservice.exception.ProductsNotFoundException;
 import com.microsoft.gbb.rasa.orderservice.messaging.TopicProducer;
