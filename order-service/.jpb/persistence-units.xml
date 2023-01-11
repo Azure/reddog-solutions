@@ -4,7 +4,7 @@
     <persistence-units>
       <persistence-unit name="Default">
         <packages>
-          <package value="com.microsoft.gbb.rasa.orderservice" />
+          <package value="com.microsoft.gbb.reddog.orderservice" />
         </packages>
       </persistence-unit>
     </persistence-units>

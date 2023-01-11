@@ -32,9 +32,9 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
-    enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 management:
   endpoints:
     web:
