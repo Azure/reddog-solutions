@@ -1,6 +1,6 @@
 package com.microsoft.gbb.reddog.virtualcustomers.util;
 
-import com.github.javafaker.Faker;
+import net.datafaker.Faker;
 
 import com.microsoft.gbb.reddog.virtualcustomers.model.CustomerOrderItem;
 import com.microsoft.gbb.reddog.virtualcustomers.model.Product;

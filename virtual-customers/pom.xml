@@ -18,7 +18,7 @@
         <opentelemetry.version>1.6.0</opentelemetry.version>
         <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
         <jobrunr-spring-boot-starter.version>5.1.7</jobrunr-spring-boot-starter.version>
-        <javafaker.version>1.0.2</javafaker.version>
+        <datafaker.version>1.7.0</datafaker.version>
         <spring-cloud-starter-sleuth.version>3.1.4</spring-cloud-starter-sleuth.version>
     </properties>
     <dependencies>
@@ -66,9 +66,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${javafaker.version}</version>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jobrunr</groupId>
