@@ -63,14 +63,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.azure.spring</groupId>-->
-        <!--            <artifactId>spring-cloud-azure-starter</artifactId>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.azure.spring</groupId>-->
-        <!--            <artifactId>spring-cloud-azure-starter-actuator</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
@@ -79,10 +71,6 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.azure.spring</groupId>-->
-        <!--            <artifactId>spring-cloud-azure-trace-sleuth</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
@@ -141,16 +129,6 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi-ui.version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.microsoft.jeg.illuminate</groupId>-->
-        <!--            <artifactId>application-insights-agent-illuminate</artifactId>-->
-        <!--            <version>3.4.1-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.microsoft.azure</groupId>-->
-        <!--            <artifactId>applicationinsights-runtime-attach</artifactId>-->
-        <!--            <version>3.4.2</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-extension-annotations</artifactId>
@@ -176,13 +154,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>com.azure.spring</groupId>-->
-<!--                <artifactId>spring-cloud-azure-dependencies</artifactId>-->
-<!--                <version>${spring-cloud-azure.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -233,20 +204,20 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <!--Configure and add personal access token in maven settings, see-->
-            <!-- https://devdiv.visualstudio.com/OnlineServices/_artifacts/feed/java-engineering-feed/connect/maven -->
-            <id>java-engineering-feed</id>
-            <url>https://devdiv.pkgs.visualstudio.com/_packaging/java-engineering-feed/maven/v1</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            &lt;!&ndash;Configure and add personal access token in maven settings, see&ndash;&gt;-->
+<!--            &lt;!&ndash; https://devdiv.visualstudio.com/OnlineServices/_artifacts/feed/java-engineering-feed/connect/maven &ndash;&gt;-->
+<!--            <id>java-engineering-feed</id>-->
+<!--            <url>https://devdiv.pkgs.visualstudio.com/_packaging/java-engineering-feed/maven/v1</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
     <distributionManagement>
         <repository>
             <id>github</id>
