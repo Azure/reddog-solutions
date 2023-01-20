@@ -40,7 +40,6 @@ build/
 .env
 .whitesource
 *.conf
-*.jar
 
 order-service/flyway.conf
 makeline-service/.fleet/
@@ -55,3 +54,7 @@ ancillary/local-gateway/mvnw
 *.cmd
 
 nn-bindings/reddog-sandbox
+
+order-service/application*.jar
+
+order-service/illuminate-diagnostics-*.jar

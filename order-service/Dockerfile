@@ -1,15 +1,16 @@
 # multi-stage build using Microsoft OpenJDK
-FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu as builder
+FROM openjdk:17-jdk-alpine as builder
+RUN apk add --no-cache maven
 WORKDIR /opt/app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
-RUN chmod 755 -R *
-RUN ./mvnw dependency:go-offline
+RUN mvn dependency:go-offline
 COPY ./src ./src
-RUN ./mvnw clean install
+RUN mvn clean install
 
 # Using MS Build of OpenJDK image
-FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu
+#FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu
+FROM openjdk:17-jdk-alpine
 # Setting the working directory
 WORKDIR /opt/app
 # Exposing the port
