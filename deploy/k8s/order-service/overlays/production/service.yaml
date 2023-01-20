@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+  namespace: reddog
+spec:
+  type: LoadBalancer

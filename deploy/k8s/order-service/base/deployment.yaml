@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  labels:
+    app: order-service
+  namespace: reddog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: crenqzyghyv6nfi.azurecr.io/gkdemostorestore/gkdemostorestore:azdev-deploy-1665697477
+          ports:
+            - containerPort: 8082
