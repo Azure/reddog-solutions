@@ -1,4 +1,4 @@
-# multi-stage build using Microsoft OpenJDK
+# multi-stage build
 FROM openjdk:17-jdk-alpine as builder
 RUN apk add --no-cache maven
 WORKDIR /opt/app
