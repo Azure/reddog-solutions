@@ -3,9 +3,9 @@ version: '3.8'
 services:
 
   web:
-    build: ./project
+    build: hf
     command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     volumes:
-      - ./project:/usr/src/app
+      - ./hf:/usr/src/app
     ports:
       - 8000:8000

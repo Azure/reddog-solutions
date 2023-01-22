@@ -1,6 +1,6 @@
 import logging
 import azure.functions as func
-from main import Transformers
+from main_hf import Transformers
 
 def main(msgIn: func.ServiceBusMessage, msgOut: func.Out[str]):
     body = msgIn.get_body().decode('utf-8')
