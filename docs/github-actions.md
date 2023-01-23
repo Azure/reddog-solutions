@@ -13,7 +13,7 @@ az acr create --resource-group $RG \
 docker build -t chzbrgr71/reddog-java-order-service:v1 .
 
 az acr build -r $ACR_NAME -t reddog-demo/reddog-java-order-service:v1 .
-
+ 
 az acr build -r $ACR_NAME -t reddog-demo/reddog-java-order-service:v1 -f ./order-service/Dockerfile ./order-service
 
 
