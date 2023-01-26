@@ -58,3 +58,5 @@ nn-bindings/reddog-sandbox
 order-service/application*.jar
 
 order-service/illuminate-diagnostics-*.jar
+
+temp-log.txt
