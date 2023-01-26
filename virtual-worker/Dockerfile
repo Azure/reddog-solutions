@@ -3,8 +3,7 @@ FROM openjdk:17-jdk-alpine
 RUN apk add dumb-init
 RUN mkdir /app
 RUN addgroup --system reddoguser && adduser -S -s /bin/false -G reddoguser reddoguser
-RUN ls -la
-COPY ./target/*SNAPSHOT.jar /app/app.jar
+COPY target/*.jar /app/app.jar
 WORKDIR /app
 RUN chown -R reddoguser:reddoguser /app
 USER reddoguser
