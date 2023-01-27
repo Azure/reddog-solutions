@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:19-jdk-alpine
 # Secure way to run the container as non-root user
 RUN apk add dumb-init
 RUN mkdir /app
