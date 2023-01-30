@@ -2,7 +2,7 @@ package com.microsoft.gbb.reddog.orderservice.service;
 
 import com.microsoft.gbb.reddog.orderservice.dto.ProductDto;
 import com.microsoft.gbb.reddog.orderservice.mapper.ProductMapper;
-import com.microsoft.gbb.reddog.orderservice.repositories.ProductRepository;
+import com.microsoft.gbb.reddog.orderservice.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
