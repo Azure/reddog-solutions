@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounting-service
+  namespace: reddog
+  labels:
+    app: accounting-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accounting-service
+  template:
+    metadata:
+      labels:
+        app: accounting-service
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "accounting-service"
+        dapr.io/app-port: "80"
+        dapr.io/config: "reddog.config"
+    spec:
+      containers:
+        - name: accounting-service
+          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-accounting-service:latest"
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /probes/ready
+              port: 80
+            timeoutSeconds: 30
+            successThreshold: 1
+            failureThreshold: 12
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /probes/healthz
+              port: 80
+            failureThreshold: 6
+            periodSeconds: 10

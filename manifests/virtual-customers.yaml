@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtual-customers
+  namespace: reddog
+  labels:
+    app: virtual-customers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: virtual-customers
+  template:
+    metadata:
+      labels:
+        app: virtual-customers
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "virtual-customers"
+        dapr.io/config: "reddog.config"
+    spec:
+      containers:
+        - name: virtual-customers
+          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-virtual-customers:latest"
+          imagePullPolicy: Always
+          env:
+          - name: STORE_ID
+            value: "denver"
+          - name: MAX_ITEM_QUANTITY
+            value: "9"
+          - name: MIN_SEC_TO_PLACE_ORDER
+            value: "2"
+          - name: MAX_SEC_TO_PLACE_ORDER
+            value: "8"
+          - name: MIN_SEC_BETWEEN_ORDERS
+            value: "2"
+          - name: MAX_SEC_BETWEEN_ORDERS
+            value: "8"
+          - name: NUM_ORDERS
+            value: "-1"
