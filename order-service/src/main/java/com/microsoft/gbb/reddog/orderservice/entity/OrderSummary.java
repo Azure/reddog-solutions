@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.orderservice.entities;
+package com.microsoft.gbb.reddog.orderservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

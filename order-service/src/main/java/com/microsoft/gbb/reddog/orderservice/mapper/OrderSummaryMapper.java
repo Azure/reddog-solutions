@@ -1,7 +1,7 @@
 package com.microsoft.gbb.reddog.orderservice.mapper;
 
 import com.microsoft.gbb.reddog.orderservice.dto.OrderSummaryDto;
-import com.microsoft.gbb.reddog.orderservice.entities.OrderSummary;
+import com.microsoft.gbb.reddog.orderservice.entity.OrderSummary;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
