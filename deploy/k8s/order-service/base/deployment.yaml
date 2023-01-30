@@ -19,4 +19,4 @@ spec:
         - name: order-service
           image: crenqzyghyv6nfi.azurecr.io/gkdemostorestore/gkdemostorestore:azdev-deploy-1665697477
           ports:
-            - containerPort: 8082
+            - containerPort: 8702

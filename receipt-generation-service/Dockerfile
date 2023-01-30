@@ -22,7 +22,7 @@ RUN rpm -Uhv https://packages.microsoft.com/config/centos/7/packages-microsoft-p
     echo java -Xshare:dump && \
     java -Xshare:dump
 
-ARG PORT=8085
+ARG PORT=8705
 RUN mkdir /app
 COPY target/*.jar /app/app.jar
 WORKDIR /app

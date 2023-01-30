@@ -7,5 +7,6 @@ COPY target/*.jar /app/app.jar
 WORKDIR /app
 RUN chown -R reddoguser:reddoguser /app
 USER reddoguser
-EXPOSE 8084
+ARG PORT=8704
+EXPOSE ${PORT}
 CMD "dumb-init" "java" "-jar" "app.jar"
