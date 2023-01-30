@@ -3,7 +3,7 @@ package com.microsoft.gbb.reddog.accountingservice.service;
 import com.microsoft.gbb.reddog.accountingservice.dto.ChartKeyValue;
 import com.microsoft.gbb.reddog.accountingservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.reddog.accountingservice.dto.OrdersTimeSeries;
-import com.microsoft.gbb.reddog.accountingservice.repositories.OrderSummaryRepository;
+import com.microsoft.gbb.reddog.accountingservice.repository.OrderSummaryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

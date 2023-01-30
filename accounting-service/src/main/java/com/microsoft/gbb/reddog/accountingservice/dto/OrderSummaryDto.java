@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ import java.util.List;
 public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderCompletedDate")
-    private Date orderCompletedDate;
+    private LocalDate orderCompletedDate;
 
     @JsonProperty("loyaltyId")
     @PartitionKey

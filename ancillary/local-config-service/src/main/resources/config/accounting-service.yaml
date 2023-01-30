@@ -29,7 +29,7 @@ eureka:
     fetch-registry: 'false'
     register-with-eureka: 'false'
 server:
-  port: '8087'
+  port: '8707'
 topic:
   name:
     producer: ${KAFKATOPICNAME:reddog.orders}

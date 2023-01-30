@@ -1,4 +1,4 @@
-package com.microsoft.gbb.reddog.accountingservice.repositories;
+package com.microsoft.gbb.reddog.accountingservice.repository;
 
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import com.azure.spring.data.cosmos.repository.Query;
