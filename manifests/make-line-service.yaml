@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: make-line-service
+  namespace: reddog
+  labels:
+    app: make-line-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: make-line-service
+  template:
+    metadata:
+      labels:
+        app: make-line-service
+    spec:
+      containers:
+        - name: make-line-service
+          image: ghcr.io/azure/reddog-demo/reddog-java-makeline-service:5b78ba1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+          imagePullPolicy: Always            
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: make-line-service
+  namespace: reddog
+  labels:
+    name: make-line-service
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 8082
+    targetPort: 8082
+  selector:
+    app: make-line-service              
