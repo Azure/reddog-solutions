@@ -14,7 +14,8 @@ FROM openjdk:17-jdk-alpine
 # Setting the working directory
 WORKDIR /opt/app
 # Exposing the port
-EXPOSE 8082
+ARG PORT=8703
+EXPOSE ${PORT}
 # Copying the jar file from builder image
 COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
 # Running the jar file

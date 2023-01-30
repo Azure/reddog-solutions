@@ -9,5 +9,5 @@ spec:
     app: order-service
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8702
+      targetPort: 8702

@@ -7,7 +7,7 @@ data:
   STORE_ID: ${STORE_ID:Redmond}
   CREATE_ORDER_CRON_SCHEDULE: ${CREATE_ORDER_CRON_SCHEDULE:*/5 * * * * *}
   MAX_UNIQUE_ITEMS_PER_ORDER: ${MAX_UNIQUE_ITEMS_PER_ORDER:10}
-  ORDER_SVC_URL: ${ORDER_SVC_URL:http://localhost:8082}
+  ORDER_SVC_URL: ${ORDER_SVC_URL:http://localhost:8702}
 messaging:
   pubsub:
     enabled: true
@@ -22,7 +22,7 @@ management:
     health:
       show-details: ALWAYS
 server:
-  port: 8091
+  port: 8701
 org:
   jobrunr:
     background-job-server:

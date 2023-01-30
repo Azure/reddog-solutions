@@ -48,11 +48,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8082/order",
+					"raw": "localhost:8702/order",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8702",
 					"path": [
 						"order"
 					]
@@ -75,11 +75,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8084/orders",
+					"raw": "localhost:8704/orders",
 					"host": [
 						"localhost"
 					],
-					"port": "8084",
+					"port": "8704",
 					"path": [
 						"orders"
 					]
@@ -93,11 +93,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8084/orders/{{store}}",
+					"raw": "localhost:8704/orders/{{store}}",
 					"host": [
 						"localhost"
 					],
-					"port": "8084",
+					"port": "8704",
 					"path": [
 						"orders",
 						"{{store}}"
@@ -124,11 +124,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8084/orders",
+					"raw": "localhost:8704/orders",
 					"host": [
 						"localhost"
 					],
-					"port": "8084",
+					"port": "8704",
 					"path": [
 						"orders"
 					]
@@ -161,11 +161,11 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "localhost:8086/orders/{{store}}",
+					"raw": "localhost:8706/orders/{{store}}",
 					"host": [
 						"localhost"
 					],
-					"port": "8086",
+					"port": "8706",
 					"path": [
 						"orders",
 						"{{store}}"
@@ -180,11 +180,11 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8084/orders/{{store}}/{{orderId}}",
+					"raw": "localhost:8704/orders/{{store}}/{{orderId}}",
 					"host": [
 						"localhost"
 					],
-					"port": "8084",
+					"port": "8704",
 					"path": [
 						"orders",
 						"{{store}}",
@@ -209,11 +209,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8085/orders",
+					"raw": "localhost:8705/orders",
 					"host": [
 						"localhost"
 					],
-					"port": "8085",
+					"port": "8705",
 					"path": [
 						"orders"
 					]
@@ -254,11 +254,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8082/products",
+					"raw": "localhost:8702/products",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8702",
 					"path": [
 						"products"
 					]
@@ -272,11 +272,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8082/products",
+					"raw": "localhost:8702/products",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8702",
 					"path": [
 						"products"
 					]
@@ -290,12 +290,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8091/simulate-orders",
+					"raw": "http://localhost:8701/simulate-orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8091",
+					"port": "8701",
 					"path": [
 						"simulate-orders"
 					]

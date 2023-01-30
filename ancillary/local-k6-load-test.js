@@ -5,6 +5,6 @@ export const options = {
   duration: '1s',
 };
 export default function () {
-  http.get('http://localhost:8091/simulate-orders');
+  http.get('http://localhost:8701/simulate-orders');
   sleep(1);
 }

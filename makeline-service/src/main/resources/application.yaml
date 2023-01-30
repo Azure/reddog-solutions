@@ -73,7 +73,7 @@ management:
     health:
       show-details: ALWAYS
 server:
-  port: 8084
+  port: 8704
 springdoc:
   api-docs:
     path: /api-docs
