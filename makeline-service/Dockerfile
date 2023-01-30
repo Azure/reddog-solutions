@@ -21,9 +21,10 @@ RUN rpm -Uhv https://packages.microsoft.com/config/centos/7/packages-microsoft-p
     rm -rf /usr/lib/jvm/${package}/lib/src.zip && \
     echo java -Xshare:dump && \
     java -Xshare:dump
-# Secure way to run the container as non-root user
+
+ARG PORT=8084
 RUN mkdir /app
 COPY target/*.jar /app/app.jar
 WORKDIR /app
-EXPOSE 8084
+EXPOSE ${PORT}
 CMD "java" "-jar" "app.jar"
