@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class OrderSummary {
 
     @JsonProperty("orderCompletedDate")
-    private Date orderCompletedDate;
+    private LocalDate orderCompletedDate;
 
     @JsonProperty("loyaltyId")
     private String loyaltyId;

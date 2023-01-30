@@ -3,7 +3,7 @@ package com.microsoft.gbb.reddog.accountingservice.service;
 import com.microsoft.gbb.reddog.accountingservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.reddog.accountingservice.dto.OrdersTimeSeries;
 import com.microsoft.gbb.reddog.accountingservice.dto.TimeSeries;
-import com.microsoft.gbb.reddog.accountingservice.repositories.OrderSummaryRepository;
+import com.microsoft.gbb.reddog.accountingservice.repository.OrderSummaryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

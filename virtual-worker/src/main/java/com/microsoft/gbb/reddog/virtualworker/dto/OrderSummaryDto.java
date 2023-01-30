@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
 public class OrderSummaryDto extends AbstractDto<String> {
 
     @JsonProperty("orderCompletedDate")
-    private Date orderCompletedDate;
+    private LocalDate orderCompletedDate;
 
     @JsonProperty("loyaltyId")
     private String loyaltyId;

@@ -6,7 +6,7 @@ import com.microsoft.gbb.reddog.makelineservice.repository.OrderSummaryRepositor
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -37,7 +37,7 @@ public class MakelineService {
     public OrderSummaryDto completeOrderForStore(String storeId, String orderId) {
         log.info("Completing order for storeId: " + storeId + " orderId: " + orderId);
         OrderSummaryDto orderSummary = orderSummaryRepository.findByOrderIdAndStoreId(orderId, storeId);
-        orderSummary.setOrderCompletedDate(new Date());
+        orderSummary.setOrderCompletedDate(LocalDate.now());
         topicProducer.send(orderSummary);
         log.info("Order completed: " + orderSummary);
         return orderSummaryRepository.save(orderSummary);
@@ -47,7 +47,7 @@ public class MakelineService {
     public OrderSummaryDto completeOrder(String orderId) {
         log.info("Completing order for orderId: " + orderId);
         OrderSummaryDto orderSummary = orderSummaryRepository.findByOrderId(orderId).get(0);
-        orderSummary.setOrderCompletedDate(new Date());
+        orderSummary.setOrderCompletedDate(LocalDate.now());
         topicProducer.send(orderSummary);
         log.info("Order completed: " + orderSummary);
         return orderSummaryRepository.save(orderSummary);
