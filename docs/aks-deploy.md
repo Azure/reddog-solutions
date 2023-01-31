@@ -11,8 +11,8 @@
 2. Create ConfigMap
 
     ```bash
-    export DEPLOY_UNIQUE_SUFFIX=7962
-    kubectl apply -f ./outputs/config-map-reddog-java-$DEPLOY_UNIQUE_SUFFIX.yaml
+    export DEPLOY_UNIQUE_SUFFIX=12345
+    kubectl apply -f ./outputs/config-map-reddog-java-spring-$DEPLOY_UNIQUE_SUFFIX.yaml
     ```
 
 3. Deploy Services
@@ -31,6 +31,22 @@
     ```
 
 4. Deploy GitOps and Config
+
+    ```bash
+    export RG='reddog-java-spring-12345'
+    export AKS_NAME='aksreddog12345briar12345'
+
+    az k8s-configuration flux create \
+    --resource-group $RG \
+    --cluster-name $AKS_NAME \
+    --cluster-type managedClusters \
+    --scope cluster \
+    --name reddog-java-apps \
+    --namespace flux-system \
+    --url https://github.com/appdevgbb/reddog-code-spring.git \
+    --branch briar \
+    --kustomization name=kustomize path=./manifests/ prune=true 
+    ```
 
 5. Ingress
 

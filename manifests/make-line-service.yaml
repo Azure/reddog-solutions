@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-makeline-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8084
+            - containerPort: 8704
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8084
-    targetPort: 8084
+    port: 8704
+    targetPort: 8704
   selector:
     app: make-line-service              
