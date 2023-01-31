@@ -106,7 +106,7 @@ printf "  KAFKASASLMECHANISM: 'PLAIN'\n" >> $CONFIGMAP_FILE
 printf "  KAFKATOPICNAME: 'reddog'\n" >> $CONFIGMAP_FILE
 printf "  KAFKATOPICGROUP: 'order-service'\n" >> $CONFIGMAP_FILE
 printf "  KAFKATOPICNAME: 'reddognov'\n" >> $CONFIGMAP_FILE
-printf "  MYSQLURL: '%s'\n" $SQL_FQDN >> $CONFIGMAP_FILE
+printf "  MYSQLURL: 'jdbc:mysql://%s/reddog'\n" $SQL_FQDN >> $CONFIGMAP_FILE
 printf "  MYSQLUSER: 'reddog'\n" >> $CONFIGMAP_FILE
 printf "  MYSQLPASSWORD: '%s'\n" $ADMIN_PASSWORD >> $CONFIGMAP_FILE
 printf "  AZUREREDISHOST: '%s'\n" $REDIS_HOST >> $CONFIGMAP_FILE
@@ -114,8 +114,9 @@ printf "  AZUREREDISPORT: '6380'\n" >> $CONFIGMAP_FILE
 printf "  AZUREREDISACCESSKEY: '%s'\n" $REDIS_PWD >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEACCOUNTNAME: '%s'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEACCOUNTKEY: '%s'\n" $STORAGE_ACCOUNT_KEY >> $CONFIGMAP_FILE
-printf "  AZURESTORAGEENDPOINT: '%s'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
+printf "  AZURESTORAGEENDPOINT: 'https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
 printf "  SERVICEBUSCONNECTIONSTRING: '%s'\n" $SB_CONNECT_STRING >> $CONFIGMAP_FILE
+printf "  ORDER_SVC_URL: 'http://order-service.reddog.svc.cluster.local:8082'\n" >> $CONFIGMAP_FILE
 
 echo ''
 echo 'Local variables file created: ' $VARIABLES_FILE

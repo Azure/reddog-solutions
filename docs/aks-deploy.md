@@ -18,6 +18,9 @@
 3. Deploy Services
 
     ```bash
+    kubectl apply -f ./manifests/
+
+    # or
     kubectl apply -f ./manifests/accounting-service.yaml
     kubectl apply -f ./manifests/loyalty-service.yaml
     kubectl apply -f ./manifests/make-line-service.yaml
