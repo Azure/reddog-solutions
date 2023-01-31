@@ -1,10 +1,9 @@
 # Functions
 
 deploy_azure_spring_apps () {
-
     # Bicep deploy ASA
     az deployment group create \
-    --name spring-reddog-asa \
+    --name reddog-asa \
     --mode Incremental \
     --only-show-errors \
     --resource-group $RG \
@@ -13,15 +12,18 @@ deploy_azure_spring_apps () {
     
 }
 
-# write_variables_to_keyvault () {
+deploy_azure_kubernetes_service () {
+    # Bicep deploy AKS
+    az deployment group create \
+    --name reddog-aks \
+    --mode Incremental \
+    --only-show-errors \
+    --resource-group $RG \
+    --template-file .././deploy/bicep/aks.bicep \
+    --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME \
+    --parameters nodeCount=5
 
-
-# }
-
-# deploy_reddog_asa () {
-
-
-# }
+}
 
 check_for_azure_login () {
     echo 'Checking to ensure logged into Azure CLI'
