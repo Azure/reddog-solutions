@@ -22,8 +22,7 @@ public class OrderSummary {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id", nullable = false)
     private Long orderId;
-
-    @Temporal(TemporalType.DATE)
+    
     @Column(name = "order_completed_date")
     private LocalDate orderCompletedDate;
 
@@ -38,8 +37,8 @@ public class OrderSummary {
 
     @Column(name = "store_id")
     private String storeId;
-
-    @Temporal(TemporalType.DATE)
+    
+    
     @Column(name = "order_date")
     private LocalDateTime orderDate;
 
