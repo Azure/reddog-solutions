@@ -14,21 +14,30 @@ spec:
     metadata:
       labels:
         app: loyalty-service
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "loyalty-service"
-        dapr.io/app-port: "80"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: loyalty-service
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-loyalty-service:latest"
-          ports:
-            - containerPort: 80
+          image: ghcr.io/azure/reddog-demo/reddog-java-loyalty-service:latest
           imagePullPolicy: Always
-          startupProbe:
-            httpGet:
-              path: /probes/healthz
-              port: 80
-            failureThreshold: 6
-            periodSeconds: 10
+          ports:
+            - containerPort: 8083
+          imagePullPolicy: Always            
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: loyalty-service
+  namespace: reddog
+  labels:
+    name: loyalty-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8083
+    targetPort: 8083
+  selector:
+    app: loyalty-service

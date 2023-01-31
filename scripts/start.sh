@@ -10,7 +10,7 @@ export DEPLOY_TARGET="$(echo $CONFIG | jq -r '.deploytarget')"
 
 # set initial variables
 export SUFFIX=$RANDOM
-export RG=reddog-spring-$SUFFIX
+export RG=reddog-java-spring-$SUFFIX
 export LOGFILE_NAME=".././outputs/${RG}.log"
 
 ./walk-the-dog.sh $RG $LOCATION $SUFFIX $USERNAME $ADMIN_PASSWORD $DEPLOY_TARGET 2>&1 | tee -a $LOGFILE_NAME

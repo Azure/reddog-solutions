@@ -14,21 +14,30 @@ spec:
     metadata:
       labels:
         app: receipt-generation-service
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "receipt-generation-service"
-        dapr.io/app-port: "80"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: receipt-generation-service
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-receipt-generation-service:latest"
-          ports:
-            - containerPort: 80
+          image: ghcr.io/azure/reddog-demo/reddog-java-receipt-generation-service:latest
           imagePullPolicy: Always
-          startupProbe:
-            httpGet:
-              path: /probes/healthz
-              port: 80
-            failureThreshold: 6
-            periodSeconds: 10
+          ports:
+            - containerPort: 8085
+          imagePullPolicy: Always            
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: receipt-generation-service
+  namespace: reddog
+  labels:
+    name: receipt-generation-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8085
+    targetPort: 8085
+  selector:
+    app: receipt-generation-service

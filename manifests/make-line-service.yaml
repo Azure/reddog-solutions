@@ -17,10 +17,10 @@ spec:
     spec:
       containers:
         - name: make-line-service
-          image: ghcr.io/azure/reddog-demo/reddog-java-makeline-service:5b78ba1
+          image: ghcr.io/azure/reddog-demo/reddog-java-makeline-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8082
+            - containerPort: 8084
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -34,10 +34,10 @@ metadata:
   labels:
     name: make-line-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
-    port: 8082
-    targetPort: 8082
+    port: 8084
+    targetPort: 8084
   selector:
     app: make-line-service              

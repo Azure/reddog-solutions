@@ -14,28 +14,30 @@ spec:
     metadata:
       labels:
         app: order-service
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "order-service"
-        dapr.io/app-port: "80"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: order-service
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-order-service:latest"
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "200m"
-            limits:
-              memory: "512Mi"
-              cpu: "1.0"
-          ports:
-            - containerPort: 80
+          image: ghcr.io/azure/reddog-demo/reddog-java-order-service:latest
           imagePullPolicy: Always
-          startupProbe:
-            httpGet:
-              path: /probes/healthz
-              port: 80
-            failureThreshold: 6
-            periodSeconds: 10
+          ports:
+            - containerPort: 8082
+          imagePullPolicy: Always            
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+  namespace: reddog
+  labels:
+    name: order-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8082
+    targetPort: 8082
+  selector:
+    app: order-service

@@ -14,29 +14,30 @@ spec:
     metadata:
       labels:
         app: accounting-service
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "accounting-service"
-        dapr.io/app-port: "80"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: accounting-service
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-accounting-service:latest"
-          ports:
-            - containerPort: 80
+          image: ghcr.io/azure/reddog-demo/reddog-java-accounting-service:latest
           imagePullPolicy: Always
-          readinessProbe:
-            httpGet:
-              path: /probes/ready
-              port: 80
-            timeoutSeconds: 30
-            successThreshold: 1
-            failureThreshold: 12
-            periodSeconds: 10
-          startupProbe:
-            httpGet:
-              path: /probes/healthz
-              port: 80
-            failureThreshold: 6
-            periodSeconds: 10
+          ports:
+            - containerPort: 8087
+          imagePullPolicy: Always            
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: accounting-service
+  namespace: reddog
+  labels:
+    name: accounting-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8087
+    targetPort: 8087
+  selector:
+    app: accounting-service
