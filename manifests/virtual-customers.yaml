@@ -14,27 +14,30 @@ spec:
     metadata:
       labels:
         app: virtual-customers
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "virtual-customers"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: virtual-customers
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-virtual-customers:latest"
+          image: ghcr.io/azure/reddog-demo/reddog-java-virtual-customers:latest
           imagePullPolicy: Always
-          env:
-          - name: STORE_ID
-            value: "denver"
-          - name: MAX_ITEM_QUANTITY
-            value: "9"
-          - name: MIN_SEC_TO_PLACE_ORDER
-            value: "2"
-          - name: MAX_SEC_TO_PLACE_ORDER
-            value: "8"
-          - name: MIN_SEC_BETWEEN_ORDERS
-            value: "2"
-          - name: MAX_SEC_BETWEEN_ORDERS
-            value: "8"
-          - name: NUM_ORDERS
-            value: "-1"
+          ports:
+            - containerPort: 8091
+          imagePullPolicy: Always            
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: virtual-customers
+  namespace: reddog
+  labels:
+    name: virtual-customers
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8091
+    targetPort: 8091
+  selector:
+    app: virtual-customers

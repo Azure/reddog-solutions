@@ -6,9 +6,9 @@ resource redis 'Microsoft.Cache/redis@2020-12-01' = {
   location: location
   properties: {
     sku: {
-      name: 'Standard'
-      family: 'C'
-      capacity: 1
+      name: 'Premium'
+      family: 'P'
+      capacity: 2
     }
     enableNonSslPort: false
   }

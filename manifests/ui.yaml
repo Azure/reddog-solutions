@@ -1,19 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: ui
-  namespace: reddog  
-  labels:
-    name: ui
-spec:
-  type: LoadBalancer
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080
-  selector:
-    app: ui 
----    
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,10 +14,6 @@ spec:
     metadata:
       labels:
         app: ui
-      annotations:
-        dapr.io/enabled: "true"
-        dapr.io/app-id: "ui"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: ui
@@ -41,16 +21,19 @@ spec:
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
-          env:
-          - name: VUE_APP_SITE_TITLE
-            value: "Red Dog Pharmacy - Denver"
-          - name: VUE_APP_SITE_TYPE
-            value: "Pharmacy"
-          - name: VUE_APP_IS_CORP
-            value: "false"
-          - name: VUE_APP_STORE_ID
-            value: "denver"
-          - name: VUE_APP_MAKELINE_BASE_URL
-            value: "http://make-line-service.reddog:8082"
-          - name: VUE_APP_ACCOUNTING_BASE_URL
-            value: "http://accounting-service.reddog:8083"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui
+  namespace: reddog  
+  labels:
+    name: ui
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: ui 

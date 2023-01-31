@@ -1,18 +1,39 @@
 ## AKS Deployment
 
-### Post deployment steps
+### Manual Deployment Steps
 
-1. Deploy ConfigMap
-2. Test yaml manually
-3. Deploy GitOps extension
-4. GitOps config
+1. Create namespace
+
+    ```bash
+    kubectl create ns reddog
+    ```
+
+2. Create ConfigMap
+
+    ```bash
+    export DEPLOY_UNIQUE_SUFFIX=7962
+    kubectl apply -f ./outputs/config-map-reddog-java-$DEPLOY_UNIQUE_SUFFIX.yaml
+    ```
+
+3. Deploy Services
+
+    ```bash
+    kubectl apply -f ./manifests/accounting-service.yaml
+    kubectl apply -f ./manifests/loyalty-service.yaml
+    kubectl apply -f ./manifests/make-line-service.yaml
+    kubectl apply -f ./manifests/order-service.yaml
+    kubectl apply -f ./manifests/receipt-generation-service.yaml
+    kubectl apply -f ./manifests/virtual-customers.yaml
+    kubectl apply -f ./manifests/virtual-worker.yaml
+    ```
+
+4. Deploy GitOps and Config
+
 5. Ingress
 
-```bash
-kubectl create ns reddog
-kubectl apply -f ./manifests/config-map.yaml
-kubectl apply -f ./outputs/config-map-reddog-spring-30548.yaml
 
-kubectl apply -f ./manifests/make-line-service.yaml
 
-```
+
+
+
+

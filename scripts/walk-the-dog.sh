@@ -115,7 +115,7 @@ printf "  AZUREREDISACCESSKEY: '%s'\n" $REDIS_PWD >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEACCOUNTNAME: '%s'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEACCOUNTKEY: '%s'\n" $STORAGE_ACCOUNT_KEY >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEENDPOINT: '%s'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
-printf "  SERVICEBUSCONNECTIONSTRING: '%s'\n" $SB_CONNECT_STRING >> $VARIABLES_FILE
+printf "  SERVICEBUSCONNECTIONSTRING: '%s'\n" $SB_CONNECT_STRING >> $CONFIGMAP_FILE
 
 echo ''
 echo 'Local variables file created: ' $VARIABLES_FILE
@@ -138,7 +138,9 @@ then
 elif [ "$DEPLOY_TARGET" = "asa" ]
 then
     echo ''
+    echo '****************************************************'
     echo 'Deploying Azure Spring Apps'
+    echo '****************************************************'
 
     deploy_azure_spring_apps
 
@@ -150,7 +152,9 @@ then
 elif [ "$DEPLOY_TARGET" = "aks" ]
 then
     echo ''
+    echo '****************************************************'
     echo 'Deploying AKS'
+    echo '****************************************************'
 
     deploy_azure_kubernetes_service
 
