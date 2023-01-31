@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-accounting-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8087
+            - containerPort: 8707
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8087
-    targetPort: 8087
+    port: 8707
+    targetPort: 8707
   selector:
     app: accounting-service

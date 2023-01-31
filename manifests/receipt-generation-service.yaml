@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-receipt-generation-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8085
+            - containerPort: 8705
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8085
-    targetPort: 8085
+    port: 8705
+    targetPort: 8705
   selector:
     app: receipt-generation-service

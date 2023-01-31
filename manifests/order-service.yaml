@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-order-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8082
+            - containerPort: 8702
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8082
-    targetPort: 8082
+    port: 8702
+    targetPort: 8702
   selector:
     app: order-service

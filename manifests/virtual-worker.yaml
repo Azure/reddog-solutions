@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-virtual-worker:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8086
+            - containerPort: 8706
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8086
-    targetPort: 8086
+    port: 8706
+    targetPort: 8706
   selector:
     app: virtual-worker

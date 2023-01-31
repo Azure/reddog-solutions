@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-virtual-customers:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8091
+            - containerPort: 8701
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8091
-    targetPort: 8091
+    port: 8701
+    targetPort: 8701
   selector:
     app: virtual-customers

@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-loyalty-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8083
+            - containerPort: 8703
           imagePullPolicy: Always            
           envFrom:
           - configMapRef:
@@ -37,7 +37,7 @@ spec:
   type: ClusterIP
   ports:
   - name: http
-    port: 8083
-    targetPort: 8083
+    port: 8703
+    targetPort: 8703
   selector:
     app: loyalty-service
