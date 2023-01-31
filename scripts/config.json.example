@@ -1,7 +1,7 @@
 {
     "location":"eastus",
-    "username": "briar",
+    "username": "myusername",
     "adminpassword": "replaceSecurePassword",
-    "_comment1": "for deploy target one of: local, azure-spring-apps, azure-aks",
+    "_comment1": "for deploy target one of: local, asa, aks, aro",
     "deploytarget": "local"    
 }
