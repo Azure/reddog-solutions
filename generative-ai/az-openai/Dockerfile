@@ -25,4 +25,4 @@ COPY . .
 EXPOSE 1025
 
 # run uvicorn command
-CMD ["uvicorn", "app.main:app", "--port", "1025", "--host", "0.0.0.0", "--reload"]
+CMD ["uvicorn", "main:app", "--port", "1025", "--host", "0.0.0.0", "--reload"]
