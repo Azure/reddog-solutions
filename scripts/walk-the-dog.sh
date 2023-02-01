@@ -78,7 +78,7 @@ printf "export KAFKASECURITYPROTOCOL='SASL_SSL'\n" >> $VARIABLES_FILE
 printf "export KAFKASASLMECHANISM='PLAIN'\n" >> $VARIABLES_FILE
 printf "export KAFKATOPICNAME='reddog'\n" >> $VARIABLES_FILE
 printf "export KAFKATOPICGROUP='order-service'\n" >> $VARIABLES_FILE
-printf "export KAFKATOPICNAME='reddognov'\n" >> $VARIABLES_FILE
+printf "export KAFKATOPICNAME='reddog'\n" >> $VARIABLES_FILE
 printf "export MYSQLURL='jdbc:mysql://%s/reddog'\n" $SQL_FQDN >> $VARIABLES_FILE
 printf "export MYSQLUSER='reddog'\n" >> $VARIABLES_FILE
 printf "export MYSQLPASSWORD='%s'\n" $ADMIN_PASSWORD >> $VARIABLES_FILE
@@ -105,7 +105,7 @@ printf "  KAFKASECURITYPROTOCOL: 'SASL_SSL'\n" >> $CONFIGMAP_FILE
 printf "  KAFKASASLMECHANISM: 'PLAIN'\n" >> $CONFIGMAP_FILE
 printf "  KAFKATOPICNAME: 'reddog'\n" >> $CONFIGMAP_FILE
 printf "  KAFKATOPICGROUP: 'order-service'\n" >> $CONFIGMAP_FILE
-printf "  KAFKATOPICNAME: 'reddognov'\n" >> $CONFIGMAP_FILE
+printf "  KAFKATOPICNAME: 'reddog'\n" >> $CONFIGMAP_FILE
 printf "  MYSQLURL: 'jdbc:mysql://%s/reddog'\n" $SQL_FQDN >> $CONFIGMAP_FILE
 printf "  MYSQLUSER: 'reddog'\n" >> $CONFIGMAP_FILE
 printf "  MYSQLPASSWORD: '%s'\n" $ADMIN_PASSWORD >> $CONFIGMAP_FILE
@@ -116,7 +116,7 @@ printf "  AZURESTORAGEACCOUNTNAME: '%s'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEACCOUNTKEY: '%s'\n" $STORAGE_ACCOUNT_KEY >> $CONFIGMAP_FILE
 printf "  AZURESTORAGEENDPOINT: 'https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
 printf "  SERVICEBUSCONNECTIONSTRING: '%s'\n" $SB_CONNECT_STRING >> $CONFIGMAP_FILE
-printf "  ORDER_SVC_URL: 'http://order-service.reddog.svc.cluster.local:8082'\n" >> $CONFIGMAP_FILE
+printf "  ORDER_SVC_URL: 'http://order-service.reddog.svc.cluster.local:8702'\n" >> $CONFIGMAP_FILE
 
 echo ''
 echo 'Local variables file created: ' $VARIABLES_FILE

@@ -2,6 +2,8 @@
 
 ### Manual Deployment Steps
 
+Start these steps from the root directory of the repo.
+
 1. Create namespace
 
     ```bash
@@ -28,6 +30,8 @@
     kubectl apply -f ./manifests/receipt-generation-service.yaml
     kubectl apply -f ./manifests/virtual-customers.yaml
     kubectl apply -f ./manifests/virtual-worker.yaml
+    kubectl apply -f ./manifests/ui.yaml
+    kubectl apply -f ./manifests/openai-service.yaml
     ```
 
 4. Deploy GitOps and Config
