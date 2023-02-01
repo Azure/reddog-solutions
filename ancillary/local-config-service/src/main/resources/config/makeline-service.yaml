@@ -16,7 +16,7 @@ spring:
 #      default-binder: kafka
   kafka:
     topic:
-      name: ${KAFKATOPICNAME:reddogoct3}
+      name: ${KAFKATOPICNAME}
       completed-orders-name: ${KAFKA_COMPLETED_ORDERS_TOPIC:orderscompleted}
       group: ${KAFKATOPICGROUP:makeline-service}
     bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}

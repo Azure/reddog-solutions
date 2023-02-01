@@ -3,7 +3,7 @@ spring:
       name: order-service
   kafka:
     topic:
-      name: ${KAFKATOPICNAME:reddogoct3}
+      name: ${KAFKATOPICNAME}
       group: ${KAFKATOPICGROUP:order-service}
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -52,6 +52,6 @@ springdoc:
     path: /api-docs
 topic:
   name:
-    producer: ${KAFKATOPICNAME:reddogoct3}
+    producer: ${KAFKATOPICNAME}
 server:
   port: '8702'
