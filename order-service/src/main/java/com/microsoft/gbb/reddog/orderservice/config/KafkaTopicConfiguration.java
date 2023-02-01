@@ -13,9 +13,7 @@ import java.util.Map;
 
 @Configuration
 public class KafkaTopicConfiguration {
-
-    public static final int PARTITION_COUNT = 3;
-    public static final int REPLICA_COUNT = 3;
+    
     @Value("${spring.kafka.topic.name}")
     private String topicName;
     @Value("${spring.kafka.producer.bootstrap-servers}")
@@ -40,8 +38,6 @@ public class KafkaTopicConfiguration {
     @Bean
     public NewTopic ordersTopic() {
         return TopicBuilder.name(topicName)
-                .partitions(PARTITION_COUNT)
-                .replicas(REPLICA_COUNT)
                 .build();
     }
 }

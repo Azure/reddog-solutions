@@ -7,7 +7,7 @@ spring:
     location: static/banner.txt
   kafka:
     topic:
-      name: ${KAFKATOPICNAME:reddogoct3}
+      name: ${KAFKATOPICNAME}
       group: ${KAFKATOPICGROUP:receipt-service}
     bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
