@@ -17,10 +17,23 @@ spec:
     spec:
       containers:
         - name: ui
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-ui:latest"
+          image: ghcr.io/azure/reddog-demo/reddog-ui-nextjs:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           imagePullPolicy: Always
+          env:
+          - name: VIRTUAL_CUSTOMERS_URL
+            value: http://virtual-customers.reddog.svc.cluster.local:8701
+          - name: ORDERS_URL
+            value: http://order-service.reddog.svc.cluster.local:8702
+          - name: ACCOUNTING_URL
+            value: http://accounting-service.reddog.svc.cluster.local:8707
+          - name: OPENAI_URL
+            value: http://openai-service.reddog.svc.cluster.local:8000
+          - name: WORKER_URL
+            value: http://virtual-worker.reddog.svc.cluster.local:8706
+          - name: PORT
+            value: '3000'
 ---
 apiVersion: v1
 kind: Service
@@ -33,7 +46,7 @@ spec:
   type: LoadBalancer
   ports:
   - name: http
-    port: 8080
-    targetPort: 8080
+    port: 3000
+    targetPort: 3000
   selector:
     app: ui 

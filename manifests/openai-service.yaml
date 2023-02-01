@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openai-service
+  namespace: reddog
+  labels:
+    app: openai-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openai-service
+  template:
+    metadata:
+      labels:
+        app: openai-service
+    spec:
+      containers:
+        - name: openai-service
+          image: ghcr.io/azure/reddog-demo/reddog-az-openai:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 1025
+          imagePullPolicy: Always
+          env:
+          - name: OPENAI_API_BASE
+            value: <replace>
+          - name: OPENAI_API_KEY
+            value: <replace>
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: openai-service
+  namespace: reddog
+  labels:
+    name: openai-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 1025
+  selector:
+    app: openai-service
