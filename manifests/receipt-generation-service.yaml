@@ -20,8 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-receipt-generation-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8705
-          imagePullPolicy: Always            
+            - containerPort: 8705         
           envFrom:
           - configMapRef:
               name: reddog-env-vars

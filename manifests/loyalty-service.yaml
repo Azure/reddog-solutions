@@ -20,8 +20,7 @@ spec:
           image: ghcr.io/azure/reddog-demo/reddog-java-loyalty-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8703
-          imagePullPolicy: Always            
+            - containerPort: 8703        
           envFrom:
           - configMapRef:
               name: reddog-env-vars

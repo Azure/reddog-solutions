@@ -21,7 +21,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 1025
-          imagePullPolicy: Always
           env:
           - name: OPENAI_API_BASE
             value: <replace>

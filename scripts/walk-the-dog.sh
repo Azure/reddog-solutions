@@ -6,6 +6,7 @@ export SUFFIX=$3
 export ADMIN_PASSWORD=$5
 export DEPLOY_TARGET=$6
 export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
+export AKS_NAME=aks$UNIQUE_SERVICE_NAME
 
 # show all params
 echo '****************************************************'
@@ -47,7 +48,9 @@ echo 'Azure bicep deployment complete'
 
 # Save deployment outputs
 echo ''
+echo '****************************************************'
 echo "Collecting deployment outputs"
+echo '****************************************************'  
 az deployment group show -g $RG -n reddog-backing-services -o json --query properties.outputs > ".././outputs/$RG-bicep-outputs.json"
 
 export COSMOS_URI=$(jq -r .cosmosUri.value .././outputs/$RG-bicep-outputs.json)
@@ -143,7 +146,7 @@ then
     echo 'Deploying Azure Spring Apps'
     echo '****************************************************'
 
-    deploy_azure_spring_apps
+    deploy_azure_spring_apps # from functions.sh
 
     echo ''
     echo '****************************************************'
@@ -157,7 +160,29 @@ then
     echo 'Deploying AKS'
     echo '****************************************************'
 
-    deploy_azure_kubernetes_service
+    deploy_azure_kubernetes_service # from functions.sh
+
+    # connect to AKS cluster and deploy namespace, configmap
+    echo ''
+    echo "connect to AKS cluster and deploy namespace, configmap"
+    az aks get-credentials --resource-group $RG --name $AKS_NAME
+    kubectl create ns reddog
+    CONFIGMAP_FILE=../outputs/config-map-reddog-java-spring-$SUFFIX.yaml
+    kubectl apply -f $CONFIGMAP_FILE
+
+    # deploy Flux configuration with AKS extension
+    echo ''
+    echo "deploy Flux configuration with AKS extension"
+    az k8s-configuration flux create \
+        --resource-group $RG \
+        --cluster-name $AKS_NAME \
+        --cluster-type managedClusters \
+        --scope cluster \
+        --name reddog-java-apps \
+        --namespace flux-system \
+        --url https://github.com/appdevgbb/reddog-code-spring.git \
+        --branch main \
+        --kustomization name=kustomize path=./manifests/ prune=true 
 
     echo ''
     echo '****************************************************'

@@ -1,15 +1,16 @@
 // Params
-param uniqueServiceName string
 param nodeCount int = 5
-param aksName string = 'aks${uniqueServiceName}'
+param aksName string
+param rgLocation string = resourceGroup().location
 
-module aks 'modules/aks.bicep' = {
-  //name: 'reddog-aks-cluster'
+module aks 'modules/aks-cluster.bicep' = {
   name: '${deployment().name}--aks'
   params: {
     name: aksName
     nodeCount: nodeCount
+    location: rgLocation
   }
 }
 
 // Outputs
+output name string = aks.name
