@@ -21,7 +21,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8704
-          imagePullPolicy: Always            
           envFrom:
           - configMapRef:
               name: reddog-env-vars

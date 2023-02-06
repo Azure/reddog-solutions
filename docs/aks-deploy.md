@@ -48,7 +48,7 @@ Start these steps from the root directory of the repo.
     --name reddog-java-apps \
     --namespace flux-system \
     --url https://github.com/appdevgbb/reddog-code-spring.git \
-    --branch briar \
+    --branch main \
     --kustomization name=kustomize path=./manifests/ prune=true 
     ```
 

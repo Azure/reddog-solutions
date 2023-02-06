@@ -20,9 +20,8 @@ deploy_azure_kubernetes_service () {
     --only-show-errors \
     --resource-group $RG \
     --template-file .././deploy/bicep/aks.bicep \
-    --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME \
+    --parameters aksName=$AKS_NAME \
     --parameters nodeCount=5
-
 }
 
 check_for_azure_login () {
@@ -39,11 +38,3 @@ check_for_azure_login () {
         export AZURE_LOGIN
     fi
 }
-
-aks_get_credentials() {
-    AKS_NAME=$(cat ./outputs/$RG_NAME-bicep-outputs.json | jq -r .aksName.value)
-    az aks get-credentials \
-        -n $AKS_NAME \
-        -g $RG_NAME
-}
-

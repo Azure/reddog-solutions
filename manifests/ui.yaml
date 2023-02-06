@@ -18,9 +18,9 @@ spec:
       containers:
         - name: ui
           image: ghcr.io/azure/reddog-demo/reddog-ui-nextjs:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          imagePullPolicy: Always
           env:
           - name: VIRTUAL_CUSTOMERS_URL
             value: http://virtual-customers.reddog.svc.cluster.local:8701
