@@ -14,7 +14,7 @@ export BASE=reddog-$USERNAME-$DEPLOY_TARGET
 export LOGFILE_NAME=".././outputs/${RG}.log"
 
 # cut down to a max of 20 characters
-export RGCUT=${BASE:0:22}
+export RGCUT=${BASE:0:20}
 
 # make it lowercase
 export RG=$(echo $RGCUT | tr '[:upper:]' '[:lower:]')
