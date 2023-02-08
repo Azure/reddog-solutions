@@ -11,12 +11,12 @@ export DEPLOY_TARGET="$(echo $CONFIG | jq -r '.deploytarget')"
 # set initial variables
 export SUFFIX=$RANDOM
 export BASE=reddog-$USERNAME-$DEPLOY_TARGET
-export LOGFILE_NAME=".././outputs/${RG}.log"
 
 # cut down to a max of 20 characters
 export RGCUT=${BASE:0:20}
 
 # make it lowercase
-export RG=$(echo $RGCUT | tr '[:upper:]' '[:lower:]')
+export RG=$(echo $RGCUT | tr '[:upper:]' '[:lower:]')-$SUFFIX
+export LOGFILE_NAME=".././outputs/${RG}.log"
 
 ./walk-the-dog.sh $RG $LOCATION $SUFFIX $USERNAME $ADMIN_PASSWORD $DEPLOY_TARGET 2>&1 | tee -a $LOGFILE_NAME

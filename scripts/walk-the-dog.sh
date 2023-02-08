@@ -43,6 +43,9 @@ az deployment group create \
     --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME \
     --parameters adminPassword=$ADMIN_PASSWORD
 
+# need error handling here
+
+
 echo ''
 echo 'Azure bicep deployment complete'
 
@@ -67,6 +70,9 @@ export REDIS_PWD=$(jq -r .redisPassword.value .././outputs/$RG-bicep-outputs.jso
 export STORAGE_ACCOUNT=$(jq -r .storageAccountName.value .././outputs/$RG-bicep-outputs.json)
 export STORAGE_ACCOUNT_KEY=$(jq -r .storageAccountKey.value .././outputs/$RG-bicep-outputs.json)
 export SB_CONNECT_STRING=$(jq -r .sbConnectionString.value .././outputs/$RG-bicep-outputs.json)
+export OPENAI_NAME=$(jq -r .openAIName.value .././outputs/$RG-bicep-outputs.json)
+export OPENAI_API_BASE=$(az cognitiveservices account show -n $OPENAI_NAME -g $RG -o json | jq -r .properties.endpoint)
+export OPENAI_API_KEY=$(az cognitiveservices account keys list -n $OPENAI_NAME -g $RG -o json | jq -r .key1)
 
 # Write variables to files
 VARIABLES_FILE=".././outputs/var-$RG.sh"
@@ -92,6 +98,8 @@ printf "export AZURESTORAGEACCOUNTNAME='%s'\n" $STORAGE_ACCOUNT >> $VARIABLES_FI
 printf "export AZURESTORAGEACCOUNTKEY='%s'\n" $STORAGE_ACCOUNT_KEY >> $VARIABLES_FILE
 printf "export AZURESTORAGEENDPOINT='https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $VARIABLES_FILE
 printf "export SERVICEBUSCONNECTIONSTRING='%s'\n" $SB_CONNECT_STRING >> $VARIABLES_FILE
+printf "export OPENAI_API_BASE='%s'\n" $OPENAI_API_BASE >> $VARIABLES_FILE
+printf "export OPENAI_API_KEY='%s'\n" $OPENAI_API_KEY >> $VARIABLES_FILE
 
 printf "apiVersion: v1\n" >> $CONFIGMAP_FILE
 printf "kind: ConfigMap\n" >> $CONFIGMAP_FILE
@@ -120,6 +128,8 @@ printf "  AZURESTORAGEACCOUNTKEY: '%s'\n" $STORAGE_ACCOUNT_KEY >> $CONFIGMAP_FIL
 printf "  AZURESTORAGEENDPOINT: 'https://%s.blob.core.windows.net'\n" $STORAGE_ACCOUNT >> $CONFIGMAP_FILE
 printf "  SERVICEBUSCONNECTIONSTRING: '%s'\n" $SB_CONNECT_STRING >> $CONFIGMAP_FILE
 printf "  ORDER_SVC_URL: 'http://order-service.reddog.svc.cluster.local:8702'\n" >> $CONFIGMAP_FILE
+printf "  OPENAI_API_BASE: '%s'\n" $OPENAI_API_BASE >> $CONFIGMAP_FILE
+printf "  OPENAI_API_KEY: '%s'\n" $OPENAI_API_KEY >> $CONFIGMAP_FILE
 
 echo ''
 echo 'Local variables file created: ' $VARIABLES_FILE
@@ -167,7 +177,6 @@ then
     echo "connect to AKS cluster and deploy namespace, configmap"
     az aks get-credentials --resource-group $RG --name $AKS_NAME
     kubectl create ns reddog
-    CONFIGMAP_FILE=../outputs/config-map-reddog-java-spring-$SUFFIX.yaml
     kubectl apply -f $CONFIGMAP_FILE
 
     # deploy Flux configuration with AKS extension
