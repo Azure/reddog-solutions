@@ -9,6 +9,7 @@ param blobContainerName string = 'receipts'
 param eventHubNamespaceName string = 'eh${uniqueServiceName}'
 param serviceBusName string = 'sbus${uniqueServiceName}'
 param mysqlservername string = 'sql${uniqueServiceName}'
+param openAIAccountName string = 'openai${uniqueServiceName}'
 param dbName string = 'reddog'
 param adminLogin string = 'reddog'
 param deployLocation string = resourceGroup().location
@@ -72,6 +73,14 @@ module serviceBus 'modules/servicebus.bicep' = {
   }
 }
 
+module openAI 'modules/openai.bicep' = {
+  name: '${deployment().name}--openai'
+  params: {
+    openAIServiceName: openAIAccountName
+    location: deployLocation
+  }
+}
+
 // Outputs
 output cosmosUri string = cosmos.outputs.cosmosUri
 output cosmosAccountName string = cosmos.outputs.cosmosAccountName
@@ -84,3 +93,4 @@ output mySqlFQDN string = mySql.outputs.mySqlFQDN
 output eventHubEndPoint string = eventHub.outputs.eventHubEndPoint
 output eventHubNamespaceName string = eventHub.outputs.eventHubNamespaceName
 output sbConnectionString string = serviceBus.outputs.rootConnectionString
+output openAIName string = openAI.outputs.openAIName

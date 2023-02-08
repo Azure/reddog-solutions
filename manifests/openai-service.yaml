@@ -21,11 +21,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 1025
-          env:
-          - name: OPENAI_API_BASE
-            value: <replace>
-          - name: OPENAI_API_KEY
-            value: <replace>
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
 ---              
 apiVersion: v1
 kind: Service
