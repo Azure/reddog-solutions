@@ -1,5 +1,11 @@
 mkdir -p .././outputs
 
+FILE=config.json
+if [ ! -f "$FILE" ]; then
+    echo "$FILE does not exist"
+    exit 0
+fi
+
 # get params from config.json file
 export CONFIG="$(cat config.json | jq -r .)"
 
