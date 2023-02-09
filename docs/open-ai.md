@@ -45,8 +45,8 @@ az deployment group create \
 az deployment group show -g $RG -n reddog-openai -o json
 
 # example values
-export OPENAI_API_BASE='https://reddog-openai.openai.azure.com'
-export OPENAI_API_KEY='2d8ee46fbd3240989e3a5ecc482826ae'
+export OPENAI_API_BASE=''
+export OPENAI_API_KEY=''
 
 export OPENAI_API_BASE=$(az cognitiveservices account show -n $OPENAI_NAME -g $RG -o json | jq -r .properties.endpoint)
 echo $OPENAI_API_BASE
@@ -60,9 +60,9 @@ echo $OPENAI_API_KEY
 2. CLI
 
 ```bash
-export RG='briar-openai'
-export LOCATION='eastus'
-export OPENAI_NAME='briar-openai-test'
+export RG=''
+export LOCATION=''
+export OPENAI_NAME=''
 
 az group create --name $RG --location $LOCATION
 
@@ -85,11 +85,22 @@ az cognitiveservices account keys list \
 az cognitiveservices account deployment create \
    -g $RG \
    -n $OPENAI_NAME \
-   --deployment-name my-model \
-   --model-name text-curie-001 \
+   --deployment-name text-davinci-002 \
+   --model-name text-davinci-002 \
    --model-version "1"  \
    --model-format OpenAI \
    --scale-settings-scale-type "Standard"
+
+az cognitiveservices account deployment create \
+   -g $RG \
+   -n $OPENAI_NAME \
+   --deployment-name generate_description \
+   --model-name text-ada-001 \
+   --model-version "1"  \
+   --model-format OpenAI \
+   --scale-settings-scale-type "Standard"
+
+
 
 
 ```
