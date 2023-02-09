@@ -3,6 +3,7 @@ source functions.sh
 export RG=$1
 export LOCATION=$2
 export SUFFIX=$3
+export USERNAME=$4
 export ADMIN_PASSWORD=$5
 export DEPLOY_TARGET=$6
 export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
@@ -13,8 +14,8 @@ echo '****************************************************'
 echo 'Starting Red Dog Spring deployment'
 echo ''
 echo 'Parameters:'
-echo 'LOCATION: ' $LOCATION
 echo 'RG: ' $RG
+echo 'LOCATION: ' $LOCATION
 echo 'UNIQUE NAME: ' $UNIQUE_SERVICE_NAME
 echo 'DEPLOY_TARGET: ' $DEPLOY_TARGET
 echo '****************************************************'
@@ -26,7 +27,7 @@ check_for_azure_login
 # create RG
 echo ''
 echo "Creating Azure Resource Group"
-az group create --name $RG --location $LOCATION
+az group create --name $RG --location $LOCATION -o table
 
 # Bicep deployment
 echo ''
@@ -41,10 +42,9 @@ az deployment group create \
     --resource-group $RG \
     --template-file .././deploy/bicep/main.bicep \
     --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME \
-    --parameters adminPassword=$ADMIN_PASSWORD
+    --parameters adminPassword=$ADMIN_PASSWORD -o table
 
 # need error handling here
-
 
 echo ''
 echo 'Azure bicep deployment complete'
@@ -191,7 +191,8 @@ then
         --namespace flux-system \
         --url https://github.com/appdevgbb/reddog-code-spring.git \
         --branch main \
-        --kustomization name=kustomize path=./manifests/ prune=true 
+        --kustomization name=kustomize path=./manifests/ prune=true \
+         -o table
 
     echo ''
     echo '****************************************************'

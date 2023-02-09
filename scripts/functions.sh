@@ -8,7 +8,7 @@ deploy_azure_spring_apps () {
     --only-show-errors \
     --resource-group $RG \
     --template-file .././deploy/bicep/asa.bicep \
-    --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME 
+    --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME -o table
     
 }
 
@@ -21,7 +21,7 @@ deploy_azure_kubernetes_service () {
     --resource-group $RG \
     --template-file .././deploy/bicep/aks.bicep \
     --parameters aksName=$AKS_NAME \
-    --parameters nodeCount=5
+    --parameters nodeCount=5 -o table
 }
 
 check_for_azure_login () {
