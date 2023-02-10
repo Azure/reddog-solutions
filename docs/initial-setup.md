@@ -6,6 +6,13 @@ Additionally, you can deploy everything to Azure and the microservices will be f
 
 Instructions for both are below.
 
+### Prerequisites
+
+* [Azure Account](https://azure.microsoft.com/en-us/free/)
+* [az cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+* [jq](https://stedolan.github.io/jq/download/)
+> Note: You may have to run `dos2unix` on the scripts if you are on a Mac/Linux machine, or `unix2dos` if you are on a Windows machine.
+
 ### Initial Setup Steps
 
 In this step, you will provision the Azure resources needed to support Red Dog Java. This includes: Event-Hubs, Azure MySQL, Azure Redis, CosmosDB, Azure OpenAI Service, Azure Service Bus, Azure Key Vault, Storage Account, etc.
