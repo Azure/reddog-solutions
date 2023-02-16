@@ -2,7 +2,7 @@
   "connectionString": "${APPLICATIONINSIGHTS_CONNECTION_STRING}",
   "role": {
     "instance": "reddog",
-    "name": "order-service"
+    "name": "accounting-service"
   },
   "preview": {
     "profiler": {

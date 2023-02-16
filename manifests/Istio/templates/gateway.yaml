@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ template "gateway.fullname" . }}
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: {{ .Values.ingress.port }}
+        name: http-{{ .Values.ingress.port }}
+        protocol: HTTP
+      hosts:
+        - {{ .Values.ingress.host }}
