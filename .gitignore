@@ -36,6 +36,7 @@ build/
 ### Local Dev ###
 .DS_Store
 **/.DS_Store
+deply/.DS_Store
 
 .env
 .whitesource
