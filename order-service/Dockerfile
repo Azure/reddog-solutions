@@ -25,6 +25,8 @@ RUN rpm -Uhv https://packages.microsoft.com/config/centos/7/packages-microsoft-p
 ARG PORT=8702
 RUN mkdir /app
 COPY target/*.jar /app/app.jar
+COPY target/agent/applicationinsights-agent.jar /app/applicationinsights-agent.jar
+COPY target/classes/applicationinsights.json /app/applicationinsights.json
 WORKDIR /app
 EXPOSE ${PORT}
-CMD "java" "-jar" "app.jar"
+CMD ["java", "-javaagent:applicationinsights-agent.jar" ,"-Xmx256m", "-jar", "app.jar"]
