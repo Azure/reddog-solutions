@@ -31,6 +31,20 @@ spec:
             limits:
               memory: "250Mi"
               cpu: 4
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+            initialDelaySeconds: 40
+            timeoutSeconds: 2
+            periodSeconds: 3
+            failureThreshold: 2
+            livenessProbe:
+              httpGet:
+                path: /actuator/health/liveness
+              initialDelaySeconds: 100
+              timeoutSeconds: 2
+              periodSeconds: 8
+              failureThreshold: 1
 ---              
 apiVersion: v1
 kind: Service
