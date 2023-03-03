@@ -15,6 +15,10 @@ import java.util.Collection;
 @Builder
 @Table(name = "order_item_summary")
 public class OrderItemSummary {
+    @Id
+    @Column(name = "order_summary_id", nullable = false)
+    private Long orderSummaryId;
+
     @Column(name = "product_name")
     private String productName;
 
@@ -40,10 +44,6 @@ public class OrderItemSummary {
     @ManyToOne
     @JoinColumn(name = "order_summary_order_id")
     private OrderSummary orderSummary;
-
-    @Id
-    @Column(name = "order_summary_id", nullable = false)
-    private Long orderSummaryId;
 
     @ManyToOne
     @JoinColumn(name = "customer_order_id")
