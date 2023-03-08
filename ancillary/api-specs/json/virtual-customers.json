@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8701",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/simulate-orders": {
+      "post": {
+        "tags": [
+          "virtual-customers-controller"
+        ],
+        "operationId": "createOrderJob",
+        "parameters": [
+          {
+            "name": "numOrders",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "x-origin",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerOrder"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CustomerOrder": {
+        "type": "object",
+        "properties": {
+          "loyaltyId": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "orderItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/orderItem"
+            }
+          },
+          "storeId": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "storeLatitude": {
+            "type": "string"
+          },
+          "storeLongitude": {
+            "type": "string"
+          }
+        }
+      },
+      "orderItem": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}
