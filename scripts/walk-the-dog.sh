@@ -6,6 +6,7 @@ export SUFFIX=$3
 export USERNAME=$4
 export ADMIN_PASSWORD=$5
 export DEPLOY_TARGET=$6
+export INCLUDE_OPENAI=$7
 export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
 export AKS_NAME=aks$UNIQUE_SERVICE_NAME
 
@@ -18,6 +19,7 @@ echo 'RG: ' $RG
 echo 'LOCATION: ' $LOCATION
 echo 'UNIQUE NAME: ' $UNIQUE_SERVICE_NAME
 echo 'DEPLOY_TARGET: ' $DEPLOY_TARGET
+echo 'INCLUDE_OPENAI: ' $INCLUDE_OPENAI
 echo '****************************************************'
 echo ''
 
@@ -42,6 +44,7 @@ az deployment group create \
     --resource-group $RG \
     --template-file .././deploy/bicep/main.bicep \
     --parameters uniqueServiceName=$UNIQUE_SERVICE_NAME \
+    --parameters includeOpenAI=$INCLUDE_OPENAI \
     --parameters adminPassword=$ADMIN_PASSWORD -o table
 
 # need error handling here
@@ -70,9 +73,17 @@ export REDIS_PWD=$(jq -r .redisPassword.value .././outputs/$RG-bicep-outputs.jso
 export STORAGE_ACCOUNT=$(jq -r .storageAccountName.value .././outputs/$RG-bicep-outputs.json)
 export STORAGE_ACCOUNT_KEY=$(jq -r .storageAccountKey.value .././outputs/$RG-bicep-outputs.json)
 export SB_CONNECT_STRING=$(jq -r .sbConnectionString.value .././outputs/$RG-bicep-outputs.json)
-export OPENAI_NAME=$(jq -r .openAIName.value .././outputs/$RG-bicep-outputs.json)
-export OPENAI_API_BASE=$(az cognitiveservices account show -n $OPENAI_NAME -g $RG -o json | jq -r .properties.endpoint)
-export OPENAI_API_KEY=$(az cognitiveservices account keys list -n $OPENAI_NAME -g $RG -o json | jq -r .key1)
+
+if [ "$INCLUDE_OPENAI" = "true" ]
+then
+    export OPENAI_NAME=$(jq -r .openAIName.value .././outputs/$RG-bicep-outputs.json)
+    export OPENAI_API_BASE=$(az cognitiveservices account show -n $OPENAI_NAME -g $RG -o json | jq -r .properties.endpoint)
+    export OPENAI_API_KEY=$(az cognitiveservices account keys list -n $OPENAI_NAME -g $RG -o json | jq -r .key1)
+else
+    export OPENAI_NAME=''
+    export OPENAI_API_BASE=''
+    export OPENAI_API_KEY=''
+fi
 
 # Write variables to files
 VARIABLES_FILE=".././outputs/var-$RG.sh"
