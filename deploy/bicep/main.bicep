@@ -9,6 +9,7 @@ param blobContainerName string = 'receipts'
 param eventHubNamespaceName string = 'eh${uniqueServiceName}'
 param serviceBusName string = 'sbus${uniqueServiceName}'
 param mysqlservername string = 'sql${uniqueServiceName}'
+param includeOpenAI string = 'false'
 param openAIAccountName string = 'openai${uniqueServiceName}'
 param dbName string = 'reddog'
 param adminLogin string = 'reddog'
@@ -73,7 +74,7 @@ module serviceBus 'modules/servicebus.bicep' = {
   }
 }
 
-module openAI 'modules/openai.bicep' = {
+module openAI 'modules/openai.bicep' = if (includeOpenAI == 'true') {
   name: '${deployment().name}--openai'
   params: {
     openAIServiceName: openAIAccountName
@@ -87,10 +88,9 @@ output cosmosAccountName string = cosmos.outputs.cosmosAccountName
 output storageAccountName string = storage.outputs.storageAccountName
 output storageAccountKey string = storage.outputs.accessKey
 output redisHost string = redis.outputs.redisHost
-//output redisSslPort int = redis.outputs.redisSslPort
 output redisPassword string = redis.outputs.redisPassword
 output mySqlFQDN string = mySql.outputs.mySqlFQDN
 output eventHubEndPoint string = eventHub.outputs.eventHubEndPoint
 output eventHubNamespaceName string = eventHub.outputs.eventHubNamespaceName
 output sbConnectionString string = serviceBus.outputs.rootConnectionString
-output openAIName string = openAI.outputs.openAIName
+output openAIName string = includeOpenAI == 'true' ? openAI.outputs.openAIName : ''
