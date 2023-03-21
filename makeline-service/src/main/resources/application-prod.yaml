@@ -1,0 +1,87 @@
+spring:
+  application:
+    name: makeline-service
+  main:
+    allow-bean-definition-overriding: true
+  banner:
+    location: static/banner.txt
+  redis:
+    host: ${AZUREREDISHOST}
+    port: ${AZUREREDISPORT}
+    password: ${AZUREREDISACCESSKEY}
+    ssl: true
+    connect-timeout: 5000
+  #  cloud:
+  #    stream:
+  #      default-binder: kafka
+  kafka:
+    topic:
+      name: ${KAFKATOPICNAME}
+      completed-orders-name: ${KAFKA_COMPLETED_ORDERS_TOPIC:orderscompleted}
+      group: ${KAFKATOPICGROUP:makeline-service}
+    bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        sasl:
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
+          jaas:
+            config: ${KAFKASASLJAASCONFIG}
+        spring:
+          json:
+            type:
+              mapping: ordersummary:com.microsoft.gbb.reddog.makelineservice.dto.OrderSummaryDto
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:makelineservice}
+      auto-offset-reset: latest
+      properties:
+        spring:
+          json:
+            trusted.packages: "*"
+            type.mapping: ordersummary:com.microsoft.gbb.reddog.makelineservice.dto.OrderSummaryDto
+        sasl:
+          jaas:
+            config: ${KAFKASASLJAASCONFIG}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+messaging:
+  pubsub:
+    enabled: true
+    TOPIC_NAME: makeline-service-topic
+    SUB_NAME: pubsub
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
+cosmos:
+  uri: ${AZURECOSMOSDBURI}
+  key: ${AZURECOSMOSDBKEY}
+  secondaryKey: ${AZURECOSMOSDBSECONDARYKEY}
+  databaseName: ${AZURECOSMOSDBDATABASENAME}
+  queryMetricsEnabled: true
+  containerName: ${AZURE_COSMOSDB_CONTAINER_NAME:reddog}
+  requestUnits: ${AZURE_COSMOSDB_REQUEST_UNITS:400}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8704
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true
+---
+spring:
+  profiles: dev
+  application:
+    name: makeline-service
