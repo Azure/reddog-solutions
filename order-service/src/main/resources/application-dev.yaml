@@ -41,9 +41,9 @@ spring:
     location: static/banner.txt
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
-    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 springdoc:
   swagger-ui:
     enabled: 'true'
