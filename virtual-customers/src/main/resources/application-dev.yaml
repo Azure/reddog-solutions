@@ -25,9 +25,9 @@ server:
   port: 8701
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
-    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 org:
   jobrunr:
     background-job-server:
