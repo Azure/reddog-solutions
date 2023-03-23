@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: virtual-customers
+  banner:
+    location: static/banner.txt
+data:
+  STORE_ID: ${STORE_ID:Redmond}
+  CREATE_ORDER_CRON_SCHEDULE: ${CREATE_ORDER_CRON_SCHEDULE:*/5 * * * * *}
+  MAX_UNIQUE_ITEMS_PER_ORDER: ${MAX_UNIQUE_ITEMS_PER_ORDER:10}
+  ORDER_SVC_URL: ${ORDER_SVC_URL:http://localhost:8702}
+messaging:
+  pubsub:
+    enabled: true
+    TOPIC_NAME: virtual-customers-topic
+    SUB_NAME: pubsub
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8701
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+org:
+  jobrunr:
+    background-job-server:
+      enabled: true
+    dashboard:
+      enabled: true
+      port: 8001
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true
+---
+spring:
+  profiles: dev
+  application:
+    name: virtual-customers

@@ -9,4 +9,4 @@ eureka:
     serviceUrl:
       defaultZone : http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
-    eviction-interval-timer-in-ms: 1200
+    eviction-interval-timer-in-ms: 12000
