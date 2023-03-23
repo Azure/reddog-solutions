@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: virtual-worker
+  banner:
+    location: static/banner.txt
+# TODO: Refactor with Eureka and Feign
+data:
+  MAKELINE_SVC_URL: ${MAKELINE_SVC_URL:http://localhost:8704/}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+server:
+  port: 8706
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true
+---
+spring:
+  profiles: dev
+  application:
+    name: virtual-worker
