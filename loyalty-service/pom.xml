@@ -16,6 +16,7 @@
     <properties>
         <java.version>17</java.version>
         <opentelemetry.version>1.6.0</opentelemetry.version>
+        <spring-cloud-azure.version>4.7.0</spring-cloud-azure.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
     </properties>
     <dependencies>
@@ -76,6 +77,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
+            <version>${spring-cloud-azure.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
