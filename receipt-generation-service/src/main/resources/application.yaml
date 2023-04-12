@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev,key-vault
+    active: dev
 ---
 spring:
   config:
