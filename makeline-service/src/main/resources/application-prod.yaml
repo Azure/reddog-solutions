@@ -80,8 +80,3 @@ springdoc:
   swagger-ui:
     path: /swagger
     enabled: true
----
-spring:
-  profiles: dev
-  application:
-    name: makeline-service

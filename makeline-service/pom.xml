@@ -20,6 +20,7 @@
         <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
         <azure-support.version>0.1.8</azure-support.version>
         <azure.spring.data.cosmos.version>3.33.0</azure.spring.data.cosmos.version>
+        <spring-cloud-azure.version>4.7.0</spring-cloud-azure.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
     </properties>
     <dependencies>
@@ -95,6 +96,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
+            <version>${spring-cloud-azure.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

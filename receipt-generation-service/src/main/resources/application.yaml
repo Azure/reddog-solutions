@@ -1,3 +1,15 @@
 spring:
   profiles:
-    active: dev
+    active: dev,key-vault
+---
+spring:
+  config:
+    activate:
+      on-profile: key-vault
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources:
+            - name: key-vault-property-source
+              endpoint: ${AZURE_KEY_VAULT_ENDPOINT}
