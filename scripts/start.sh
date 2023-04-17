@@ -16,7 +16,7 @@ export USERNAME_CUT=${USERNAME:0:5}
 export ADMIN_PASSWORD="$(echo $CONFIG | jq -r '.adminpassword')"
 export DEPLOY_TARGET="$(echo $CONFIG | jq -r '.deploytarget')"
 export INCLUDE_OPENAI="$(echo $CONFIG | jq -r '.include_openai')"
-export SUFFIX=$RANDOM
+export SUFFIX=moary
 export RG=reddog-$USERNAME_CUT-$DEPLOY_TARGET-$SUFFIX
 # make it lowercase
 export RG=$(echo $RG | tr '[:upper:]' '[:lower:]')

@@ -7,7 +7,7 @@ export USERNAME=$4
 export ADMIN_PASSWORD=$5
 export DEPLOY_TARGET=$6
 export INCLUDE_OPENAI=$7
-export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
+export UNIQUE_SERVICE_NAME=reddog168$USERNAME$SUFFIX
 export AKS_NAME=aks$UNIQUE_SERVICE_NAME
 
 # show all params
@@ -29,7 +29,7 @@ check_for_azure_login
 # create RG
 echo ''
 echo "Creating Azure Resource Group"
-az group create --name $RG --location $LOCATION -o table
+# az group create --name $RG --location $LOCATION -o table
 
 # Bicep deployment
 echo ''
@@ -59,6 +59,8 @@ echo "Collecting deployment outputs"
 echo '****************************************************'  
 az deployment group show -g $RG -n reddog-backing-services -o json --query properties.outputs > ".././outputs/$RG-bicep-outputs.json"
 
+export KEY_VAULT_NAME=$(jq -r .keyVaultName.value .././outputs/$RG-bicep-outputs.json)
+export KEY_VAULT_URI=$(jq -r .keyVaultUri.value .././outputs/$RG-bicep-outputs.json)
 export COSMOS_URI=$(jq -r .cosmosUri.value .././outputs/$RG-bicep-outputs.json)
 export COSMOS_ACCOUNT=$(jq -r .cosmosAccountName.value .././outputs/$RG-bicep-outputs.json)
 export COSMOS_PRIMARY_RW_KEY=$(az cosmosdb keys list -n $COSMOS_ACCOUNT  -g $RG -o json | jq -r '.primaryMasterKey')
@@ -121,6 +123,8 @@ printf "export AZURESTORAGEENDPOINT='https://%s.blob.core.windows.net'\n" $STORA
 printf "export SERVICEBUSCONNECTIONSTRING='%s'\n" $SB_CONNECT_STRING >> $VARIABLES_FILE
 printf "export OPENAI_API_BASE='%s'\n" $OPENAI_API_BASE >> $VARIABLES_FILE
 printf "export OPENAI_API_KEY='%s'\n" $OPENAI_API_KEY >> $VARIABLES_FILE
+printf "export AZURE_KEY_VAULT_NAME='%s'\n" $KEY_VAULT_NAME >> $VARIABLES_FILE
+printf "export AZURE_KEY_VAULT_ENDPOINT='%s'\n" $KEY_VAULT_URI >> $VARIABLES_FILE
 
 printf "apiVersion: v1\n" > $CONFIGMAP_FILE
 printf "kind: ConfigMap\n" >> $CONFIGMAP_FILE
@@ -151,6 +155,8 @@ printf "  SERVICEBUSCONNECTIONSTRING: '%s'\n" $SB_CONNECT_STRING >> $CONFIGMAP_F
 printf "  ORDER_SVC_URL: 'http://order-service.reddog.svc.cluster.local:8702'\n" >> $CONFIGMAP_FILE
 printf "  OPENAI_API_BASE: '%s'\n" $OPENAI_API_BASE >> $CONFIGMAP_FILE
 printf "  OPENAI_API_KEY: '%s'\n" $OPENAI_API_KEY >> $CONFIGMAP_FILE
+printf "  AZURE_KEY_VAULT_NAME: '%s'\n" $KEY_VAULT_NAME >> $CONFIGMAP_FILE
+printf "  AZURE_KEY_VAULT_ENDPOINT: '%s'\n" $KEY_VAULT_URI >> $CONFIGMAP_FILE
 
 echo ''
 echo 'Local variables file created: ' $VARIABLES_FILE

@@ -1,5 +1,6 @@
 // Params
 param uniqueServiceName string
+param keyVaultName string = 'keyvault${uniqueServiceName}'
 param redisName string = 'redis${uniqueServiceName}'
 param cosmosAccountName string = uniqueServiceName
 param cosmosDatabaseName string = 'reddog'
@@ -18,6 +19,13 @@ param deployLocation string = resourceGroup().location
 param adminPassword string
 
 // Top Level Resources
+module serviceBus 'modules/keyvault.bicep' = {
+  name: '${deployment().name}--keyvault'
+  params: {
+    keyVaultName: keyVaultName
+    location: deployLocation
+  }
+}
 
 module cosmos 'modules/cosmos.bicep' = {
   name: '${deployment().name}--cosmos'
