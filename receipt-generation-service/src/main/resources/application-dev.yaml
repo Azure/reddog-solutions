@@ -13,7 +13,7 @@ spring:
     security:
       protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
     consumer:
-      group-id: ${KAFKA_CONSUMER_GROUP_ID:receiptservice}
+      group-id: ${KAFKACONSUMERGROUPID:receiptservice}
       auto-offset-reset: latest
       properties:
         spring:
