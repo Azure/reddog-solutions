@@ -1,16 +1,18 @@
 // Params
 param uniqueServiceName string
-param springCloudName string = 'asa${uniqueServiceName}'
+param springAppsName string = 'asa${uniqueServiceName}'
 param logAnalyticsName string = 'la${uniqueServiceName}'
 param appInsightsName string = 'appins${uniqueServiceName}'
+
+param location string = resourceGroup().location
 
 module springApps 'modules/spring-apps.bicep' = {
   name: '${deployment().name}--asa'
   params: {
-    springCloudName: springCloudName
+    springAppsName: springAppsName
     logAnalyticsName: logAnalyticsName
     appInsightsName: appInsightsName
-    location: resourceGroup().location
+    location: location
   }
 }
 

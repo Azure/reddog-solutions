@@ -57,8 +57,8 @@ This deployment will require a bash shell of your choice. It will not work on Az
     * Script creates an output with the variables needed. Source the file in your `./outputs` directory
 
         ```bash
-        export DEPLOY_UNIQUE_SUFFIX=12345
-        source ./outputs/var-reddog-spring-$DEPLOY_UNIQUE_SUFFIX.sh
+        export DEPLOY_UNIQUE_SUFFIX=reddog-xxx
+        source ./outputs/var-$DEPLOY_UNIQUE_SUFFIX.sh
         ```
 
 * Run microservices 
@@ -109,8 +109,8 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     * Script creates an output with the variables needed. Source the file in your `./outputs` directory
 
         ```bash
-        export DEPLOY_UNIQUE_SUFFIX=12345
-        source ./outputs/var-reddog-spring-$DEPLOY_UNIQUE_SUFFIX.sh
+        export DEPLOY_UNIQUE_SUFFIX=reddog-xxx
+        source ./outputs/var-$DEPLOY_UNIQUE_SUFFIX.sh
         ```
 
 * Deploy order-service:
@@ -128,9 +128,9 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
         --runtime-version Java_17 \
         --assign-endpoint true \
         --cpu 2 \
-        --memory 1Gi \
+        --memory 2Gi \
         --instance-count 1 \
-        --env AZURECOSMOSDBURI=$AZURECOSMOSDBURI AZURECOSMOSDBKEY=$AZURECOSMOSDBKEY AZURECOSMOSDBDATABASENAME='reddog' KAFKASASLJAASCONFIG=$KAFKASASLJAASCONFIG KAFKABOOTSTRAPSERVERS=$KAFKABOOTSTRAPSERVERS KAFKASECURITYPROTOCOL='SASL_SSL' KAFKASASLMECHANISM='PLAIN' KAFKATOPICNAME='reddog' MYSQLURL=$MYSQLURL MYSQLUSER='reddog' MYSQLPASSWORD=$MYSQLPASSWORD AZUREREDISHOST=$AZUREREDISHOST AZUREREDISPORT='6380' AZUREREDISACCESSKEY=$AZUREREDISACCESSKEY AZURESTORAGEACCOUNTNAME=$AZURESTORAGEACCOUNTNAME AZURESTORAGEACCOUNTKEY=$AZURESTORAGEACCOUNTKEY AZURESTORAGEENDPOINT=$AZURESTORAGEENDPOINT KAFKATOPICGROUP=$SERVICE_NAME KAFKA_CONSUMER_GROUP_ID=$SERVICE_NAME KAFKA_COMPLETED_ORDERS_TOPIC='make-line-completed'
+        --env AZURECOSMOSDBURI=$AZURECOSMOSDBURI AZURECOSMOSDBKEY=$AZURECOSMOSDBKEY AZURECOSMOSDBDATABASENAME='reddog' KAFKASASLJAASCONFIG="$KAFKASASLJAASCONFIG" KAFKABOOTSTRAPSERVERS=$KAFKABOOTSTRAPSERVERS KAFKASECURITYPROTOCOL='SASL_SSL' KAFKASASLMECHANISM='PLAIN' KAFKATOPICNAME='reddog' MYSQLURL=$MYSQLURL MYSQLUSER='reddog' MYSQLPASSWORD=$MYSQLPASSWORD AZUREREDISHOST=$AZUREREDISHOST AZUREREDISPORT='6380' AZUREREDISACCESSKEY=$AZUREREDISACCESSKEY AZURESTORAGEACCOUNTNAME=$AZURESTORAGEACCOUNTNAME AZURESTORAGEACCOUNTKEY=$AZURESTORAGEACCOUNTKEY AZURESTORAGEENDPOINT=$AZURESTORAGEENDPOINT KAFKATOPICGROUP=$SERVICE_NAME KAFKACONSUMERGROUPID=$SERVICE_NAME KAFKACOMPLETEDORDERSTOPIC='make-line-completed' SERVICEBUSCONNECTIONSTRING=$SERVICEBUSCONNECTIONSTRING
 
     az spring app deploy \
         -s $SPRING_CLUSTER \
@@ -151,9 +151,9 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
 * Deploy remaining microservices using the commands above. For each service, set the variable below and run the create/deploy commands.
 
     ```bash
-    export SERVICE_NAME='loyalty-service'
-    export SERVICE_NAME='makeline-service'
     export SERVICE_NAME='accounting-service'
+    export SERVICE_NAME='makeline-service'
+    export SERVICE_NAME='loyalty-service'
     export SERVICE_NAME='virtual-worker'
     export SERVICE_NAME='virtual-customers'
 
