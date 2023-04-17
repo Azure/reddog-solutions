@@ -17,7 +17,7 @@ spring:
   kafka:
     topic:
       name: ${KAFKATOPICNAME}
-      completed-orders-name: ${KAFKA_COMPLETED_ORDERS_TOPIC:orderscompleted}
+      completed-orders-name: ${KAFKACOMPLETEDORDERSTOPIC:orderscompleted}
       group: ${KAFKATOPICGROUP:makeline-service}
     bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
     security:
@@ -34,7 +34,7 @@ spring:
             type:
               mapping: ordersummary:com.microsoft.gbb.reddog.makelineservice.dto.OrderSummaryDto
     consumer:
-      group-id: ${KAFKA_CONSUMER_GROUP_ID:makelineservice}
+      group-id: ${KAFKACONSUMERGROUPID:makelineservice}
       auto-offset-reset: latest
       properties:
         spring:

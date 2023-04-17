@@ -1,9 +1,9 @@
 param location string
-param springCloudName string
+param springAppsName string
 param logAnalyticsName string
 param appInsightsName string
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
   name: logAnalyticsName
   location: location
   properties: {
@@ -14,7 +14,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
   }
 }
 
-resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   location: location
   kind: 'web'
@@ -26,8 +26,8 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   }
 }
 
-resource springCloudService 'Microsoft.AppPlatform/Spring@2021-06-01-preview' = {
-  name: springCloudName
+resource springAppsService 'Microsoft.AppPlatform/Spring@2022-12-01' = {
+  name: springAppsName
   location: location
   sku: {
     name: 'S0'
@@ -35,17 +35,18 @@ resource springCloudService 'Microsoft.AppPlatform/Spring@2021-06-01-preview' = 
   }
 }
 
-resource springCloudMonitoringSettings 'Microsoft.AppPlatform/Spring/monitoringSettings@2020-07-01' = {
-  name: '${springCloudService.name}/default' // The only supported value is 'default'
+resource springAppsMonitoringSettings 'Microsoft.AppPlatform/Spring/monitoringSettings@2022-12-01' = {
+  name: 'default'
+  parent: springAppsService
   properties: {
     traceEnabled: true
     appInsightsInstrumentationKey: appInsights.properties.InstrumentationKey
   }
 }
 
-resource springCloudDiagnostics 'microsoft.insights/diagnosticSettings@2017-05-01-preview' = {
+resource springAppsDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   name: 'monitoring'
-  scope: springCloudService
+  scope: springAppsService
   properties: {
     workspaceId: logAnalyticsWorkspace.id
     logs: [
