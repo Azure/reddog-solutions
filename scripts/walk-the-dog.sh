@@ -86,13 +86,23 @@ else
 fi
 
 # Write variables to files
-VARIABLES_FILE=".././outputs/var-$RG.sh"
+export VARIABLES_FILE=".././outputs/var-$RG.sh"
 CONFIGMAP_FILE=".././outputs/config-map-$RG.yaml"
 
-printf "export AZURECOSMOSDBURI='%s'\n" $COSMOS_URI >> $VARIABLES_FILE
+escape_jaas_config() {
+    local input=$1
+    input="${input//\"/\\\"}"
+    input="${input//$/\\$}"
+    echo "$input"
+}
+
+kafkasasljaasconfig_escape=$(escape_jaas_config "$EH_CONFIG")
+KAFKASASLJAASCONFIG_KV="KAFKASASLJAASCONFIG=\"$kafkasasljaasconfig_escape\""
+
+printf "export AZURECOSMOSDBURI='%s'\n" $COSMOS_URI > $VARIABLES_FILE
 printf "export AZURECOSMOSDBKEY='%s'\n" $COSMOS_PRIMARY_RW_KEY >> $VARIABLES_FILE
 printf "export AZURECOSMOSDBDATABASENAME='reddog' \n" >> $VARIABLES_FILE
-printf "export KAFKASASLJAASCONFIG='${EH_CONFIG}'\n" >> $VARIABLES_FILE
+echo "export $KAFKASASLJAASCONFIG_KV" >> $VARIABLES_FILE
 printf "export KAFKABOOTSTRAPSERVERS='%s'\n" $EH_ENDPOINT >> $VARIABLES_FILE
 printf "export KAFKASECURITYPROTOCOL='SASL_SSL'\n" >> $VARIABLES_FILE
 printf "export KAFKASASLMECHANISM='PLAIN'\n" >> $VARIABLES_FILE
@@ -112,7 +122,7 @@ printf "export SERVICEBUSCONNECTIONSTRING='%s'\n" $SB_CONNECT_STRING >> $VARIABL
 printf "export OPENAI_API_BASE='%s'\n" $OPENAI_API_BASE >> $VARIABLES_FILE
 printf "export OPENAI_API_KEY='%s'\n" $OPENAI_API_KEY >> $VARIABLES_FILE
 
-printf "apiVersion: v1\n" >> $CONFIGMAP_FILE
+printf "apiVersion: v1\n" > $CONFIGMAP_FILE
 printf "kind: ConfigMap\n" >> $CONFIGMAP_FILE
 printf "metadata:\n" >> $CONFIGMAP_FILE
 printf "  name: reddog-env-vars\n" >> $CONFIGMAP_FILE
