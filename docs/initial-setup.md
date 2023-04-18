@@ -53,6 +53,10 @@ This deployment will require a bash shell of your choice. It will not work on Az
     * Bash
     * Yarn
 
+* Setup local Config Server and Registry Server
+  - Start the application `local-eureka-server`
+  - Start the application `local-eureka-server`
+
 * Setup local env variables 
     * Script creates an output with the variables needed. Source the file in your `./outputs` directory
 
@@ -103,6 +107,12 @@ Review the pods deployed in the cluster and validate the application UI is funct
 Follow the steps below to deploy Red Dog to your Azure Spring Apps instance deployed in the previous step. 
 
 > Note: These manual steps will be replaced with the Bicep script going forward.
+
+* Setup Config Server on Azure Spring Apps instance
+  Set the default repository with below configuration:
+  - URI: `https://github.com/Azure/reddog-solutions`
+  - Label: `main`
+  - Search Path: `config-server`
 
 * Setup local env variables 
     * From the root directory of the repo 
