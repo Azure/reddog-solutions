@@ -7,7 +7,7 @@ export USERNAME=$4
 export ADMIN_PASSWORD=$5
 export DEPLOY_TARGET=$6
 export INCLUDE_OPENAI=$7
-export UNIQUE_SERVICE_NAME=reddog168$USERNAME$SUFFIX
+export UNIQUE_SERVICE_NAME=reddog$RANDOM$USERNAME$SUFFIX
 export AKS_NAME=aks$UNIQUE_SERVICE_NAME
 
 # show all params
@@ -29,7 +29,7 @@ check_for_azure_login
 # create RG
 echo ''
 echo "Creating Azure Resource Group"
-# az group create --name $RG --location $LOCATION -o table
+az group create --name $RG --location $LOCATION -o table
 
 # Bicep deployment
 echo ''
