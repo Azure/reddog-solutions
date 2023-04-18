@@ -108,20 +108,19 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     * From the root directory of the repo 
     * Script creates an output with the variables needed. Source the file in your `./outputs` directory
 
-        ```bash
-        export DEPLOY_UNIQUE_SUFFIX=reddog-xxx
-        source ./outputs/var-$DEPLOY_UNIQUE_SUFFIX.sh
-        ```
-
-* Deploy order-service:
-
     ```bash
+    export DEPLOY_UNIQUE_SUFFIX=reddog-xxx
+    source ./outputs/var-$DEPLOY_UNIQUE_SUFFIX.sh
+    
     # Set variables as needed
     export RG=''
     export SPRING_CLUSTER=''
-    export SERVICE_NAME='order-service'
-  
-    # Store passwords to Key Vault, it's required to execute one time for Spring Apps service instance.
+    ```
+
+* Store passwords to Key Vault
+
+    ```bash
+    # It's required to execute one time for Spring Apps service instance.
     CURRENT_USER_OBJECT_ID=$(az ad signed-in-user show --query id --output tsv)
     az keyvault set-policy --resource-group $RG --name $AZURE_KEY_VAULT_NAME --object-id $CURRENT_USER_OBJECT_ID --secret-permissions set list get
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "KAFKASASLJAASCONFIG" --value "\"$KAFKASASLJAASCONFIG\""
@@ -131,8 +130,13 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "AZUREREDISACCESSKEY" --value $AZUREREDISACCESSKEY
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "AZURESTORAGEACCOUNTKEY" --value $AZURESTORAGEACCOUNTKEY
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "SERVICEBUSCONNECTIONSTRING" --value $SERVICEBUSCONNECTIONSTRING
+    ```
 
+* Deploy order-service:
+
+    ```bash
     # Create and deploy app, it's required to execute multiple times for each app instances.
+    export SERVICE_NAME='order-service'
     az spring app create \
         -n $SERVICE_NAME \
         -s $SPRING_CLUSTER \
