@@ -1,6 +1,12 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: order-service
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+debug: on
+
 ---
 spring:
   config:

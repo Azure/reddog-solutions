@@ -1,6 +1,4 @@
 spring:
-  application:
-      name: order-service
   kafka:
     topic:
       name: ${KAFKATOPICNAME}
@@ -54,4 +52,4 @@ topic:
   name:
     producer: ${KAFKATOPICNAME}
 server:
-  port: '8702'
+  port: 8702

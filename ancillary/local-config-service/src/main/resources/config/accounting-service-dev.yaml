@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: accounting-service
   kafka:
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -32,7 +30,7 @@ eureka:
     fetch-registry: false
     enabled: false
 server:
-  port: '8707'
+  port: 8707
 topic:
   name:
     producer: ${KAFKATOPICNAME:reddog.orders}

@@ -23,10 +23,15 @@ management:
       show-details: ALWAYS
 server:
   port: 8701
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 org:
   jobrunr:
     background-job-server:
-        enabled: true
+      enabled: true
     dashboard:
       enabled: true
       port: 8001
@@ -36,8 +41,3 @@ springdoc:
   swagger-ui:
     path: /swagger
     enabled: true
----
-spring:
-  profiles: dev
-  application:
-    name: virtual-customers
