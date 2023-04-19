@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: makeline-service
   main:
     allow-bean-definition-overriding: true
   banner:
@@ -11,9 +9,9 @@ spring:
     password: ${AZUREREDISACCESSKEY}
     ssl: true
     connect-timeout: 5000
-#  cloud:
-#    stream:
-#      default-binder: kafka
+  #  cloud:
+  #    stream:
+  #      default-binder: kafka
   kafka:
     topic:
       name: ${KAFKATOPICNAME}
@@ -51,6 +49,11 @@ messaging:
     enabled: true
     TOPIC_NAME: makeline-service-topic
     SUB_NAME: pubsub
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
 cosmos:
   uri: ${AZURECOSMOSDBURI}
   key: ${AZURECOSMOSDBKEY}
@@ -75,8 +78,3 @@ springdoc:
   swagger-ui:
     path: /swagger
     enabled: true
----
-spring:
-  profiles: dev
-  application:
-    name: makeline-service

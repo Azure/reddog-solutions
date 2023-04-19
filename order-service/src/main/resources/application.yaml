@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: dev, key-vault
+  application:
+    name: order-service
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+
 ---
 spring:
   config:
