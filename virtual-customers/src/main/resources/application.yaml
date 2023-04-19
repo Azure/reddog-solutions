@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: dev, key-vault
   application:
     name: virtual-customers
   config:
