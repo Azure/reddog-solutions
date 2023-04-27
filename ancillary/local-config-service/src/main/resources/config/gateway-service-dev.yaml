@@ -61,7 +61,3 @@ spring:
           predicates:
             - Path=/simulate-orders
             - Method=POST
-        - id: ui
-          uri: lb://ui
-          predicates:
-            - Path=/**
