@@ -196,6 +196,7 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     export SERVICE_NAME='accounting-service'
     export SERVICE_NAME='makeline-service'
     export SERVICE_NAME='loyalty-service'
+    export SERVICE_NAME='receipt-generation-service'
     export SERVICE_NAME='virtual-worker'
     export SERVICE_NAME='virtual-customers'
 
