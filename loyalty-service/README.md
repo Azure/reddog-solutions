@@ -5,7 +5,7 @@ Based on [Loyalty Service](https://github.com/Azure/reddog-code/tree/master/RedD
 
 ## How to run
 ### Prerequisites
-- Java 8
+- Java 17
 - Maven 3
 - Docker
 - Docker Compose

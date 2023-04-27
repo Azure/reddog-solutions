@@ -10,6 +10,7 @@
     <description>RedDog</description>
     
     <modules>
+        <module>gateway-service</module>
         <module>accounting-service</module>
         <module>loyalty-service</module>
         <module>makeline-service</module>

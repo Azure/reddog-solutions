@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
+@RequestMapping("/receipt-generation")
 public class ReceiptGenerationController {
 
     private final ReceiptGenerationService receiptGenerationService;
@@ -19,7 +20,7 @@ public class ReceiptGenerationController {
         this.receiptGenerationService = receiptGenerationService;
     }
 
-    @PostMapping(value = "/orders")
+    @PostMapping(value = "/generate")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
     public ResponseEntity<String> generateReceipt(@RequestBody OrderSummaryDto orderSummary) {

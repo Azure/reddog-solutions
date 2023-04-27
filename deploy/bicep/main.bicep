@@ -1,6 +1,6 @@
 // Params
 param uniqueServiceName string
-param keyVaultName string = 'keyvault${uniqueServiceName}'
+param keyVaultName string = 'kv${uniqueServiceName}'
 param redisName string = 'redis${uniqueServiceName}'
 param cosmosAccountName string = uniqueServiceName
 param cosmosDatabaseName string = 'reddog'
@@ -19,7 +19,7 @@ param deployLocation string = resourceGroup().location
 param adminPassword string
 
 // Top Level Resources
-module serviceBus 'modules/keyvault.bicep' = {
+module keyVault 'modules/keyvault.bicep' = {
   name: '${deployment().name}--keyvault'
   params: {
     keyVaultName: keyVaultName
@@ -91,6 +91,8 @@ module openAI 'modules/openai.bicep' = if (includeOpenAI == 'true') {
 }
 
 // Outputs
+output keyVaultName string = keyVaultName
+output keyVaultUri string = keyVault.outputs.keyVaultUri
 output cosmosUri string = cosmos.outputs.cosmosUri
 output cosmosAccountName string = cosmos.outputs.cosmosAccountName
 output storageAccountName string = storage.outputs.storageAccountName

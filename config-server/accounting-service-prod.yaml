@@ -28,11 +28,11 @@ cosmos:
   uri: ${AZURECOSMOSDBURI}
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
-    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 server:
-  port: '8707'
+  port: 8707
 topic:
   name:
     producer: ${KAFKATOPICNAME:reddog.orders}

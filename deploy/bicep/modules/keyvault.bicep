@@ -7,7 +7,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
   properties: {
     accessPolicies: [ ]
     createMode: 'default'
-    enablePurgeProtection: false
+    enablePurgeProtection: true
     enableSoftDelete: true
     networkAcls: {
       bypass: 'AzureServices'
@@ -20,9 +20,8 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
       name: 'standard'
     }
     softDeleteRetentionInDays: 90
-    tenantId: tenantId: subscription().tenantId
+    tenantId: subscription().tenantId
   }
 }
 
-output keyVaultName string = keyVault.properties.name
 output keyVaultUri string = keyVault.properties.vaultUri

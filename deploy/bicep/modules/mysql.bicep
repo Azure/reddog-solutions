@@ -24,7 +24,7 @@ resource mySqlServer 'Microsoft.DBforMySQL/flexibleServers@2021-12-01-preview' =
  }
 }
 
-resource mySqlServerFirewallRules 'Microsoft.DBforMySQL/flexibleServers/firewallRules@2021-05-01' = {
+resource mySqlServerFirewallRules 'Microsoft.DBforMySQL/flexibleServers/firewallRules@2021-12-01-preview' = {
   parent: mySqlServer
   name: 'AllowAzureIPs'
   properties: {
@@ -33,7 +33,7 @@ resource mySqlServerFirewallRules 'Microsoft.DBforMySQL/flexibleServers/firewall
   }
 }
 
-resource mySqlServerDatabase 'Microsoft.DBforMySQL/flexibleServers/databases@2021-05-01' = {  
+resource mySqlServerDatabase 'Microsoft.DBforMySQL/flexibleServers/databases@2021-12-01-preview' = {  
   parent: mySqlServer
   name: dbName
   properties: {

@@ -2,7 +2,7 @@
 
 There are 2 ways to use this demo. You can deploy backing Azure services and run the Java microservices locally. This allows for local development and debugging. 
 
-Additionally, you can deploy everything to Azure and the microservices will be fully deployed to Azure Spring Apps or AKS.
+Additionally, you can deploy everything to Azure and the microservices will be fully deployed to Azure Spring Apps (Standard plan) or AKS.
 
 Instructions for both are below.
 
@@ -55,7 +55,8 @@ This deployment will require a bash shell of your choice. It will not work on Az
 
 * Setup local Config Server and Registry Server
   - Start the application `local-eureka-server`
-  - Start the application `local-eureka-server`
+  - Start the application `local-config-service`
+  - Start the application `local-gateway`
 
 * Setup local env variables 
     * Script creates an output with the variables needed. Source the file in your `./outputs` directory
@@ -108,12 +109,6 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
 
 > Note: These manual steps will be replaced with the Bicep script going forward.
 
-* Setup Config Server on Azure Spring Apps instance
-  Set the default repository with below configuration:
-  - URI: `https://github.com/Azure/reddog-solutions`
-  - Label: `main`
-  - Search Path: `config-server`
-
 * Setup local env variables 
     * From the root directory of the repo 
     * Script creates an output with the variables needed. Source the file in your `./outputs` directory
@@ -127,13 +122,23 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     export SPRING_CLUSTER=''
     ```
 
+* Setup Config Server on Azure Spring Apps instance
+  Set the default repository with below configuration:
+    - URI: `https://github.com/Azure/reddog-solutions`
+    - Label: `main`
+    - Search Path: `config-server`
+
+    ```bash
+    az spring config-server git set --resource-group $RG -n $SPRING_CLUSTER --label "main" --search-paths "config-server" --uri https://github.com/Azure/reddog-solutions
+    ```
+
 * Store passwords to Key Vault
 
     ```bash
     # It's required to execute one time for Spring Apps service instance.
     CURRENT_USER_OBJECT_ID=$(az ad signed-in-user show --query id --output tsv)
     az keyvault set-policy --resource-group $RG --name $AZURE_KEY_VAULT_NAME --object-id $CURRENT_USER_OBJECT_ID --secret-permissions set list get
-    az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "KAFKASASLJAASCONFIG" --value "\"$KAFKASASLJAASCONFIG\""
+    az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "KAFKASASLJAASCONFIG" --value "$KAFKASASLJAASCONFIG"
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "AZURECOSMOSDBKEY" --value $AZURECOSMOSDBKEY
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "MYSQLUSER" --value $MYSQLUSER
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "MYSQLPASSWORD" --value $MYSQLPASSWORD
@@ -142,11 +147,11 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
     az keyvault secret set --vault-name $AZURE_KEY_VAULT_NAME --name "SERVICEBUSCONNECTIONSTRING" --value $SERVICEBUSCONNECTIONSTRING
     ```
 
-* Deploy order-service:
+* Deploy gateway-service:
 
     ```bash
     # Create and deploy app, it's required to execute multiple times for each app instances.
-    export SERVICE_NAME='order-service'
+    export SERVICE_NAME='gateway-service'
     az spring app create \
         -n $SERVICE_NAME \
         -s $SPRING_CLUSTER \
@@ -157,15 +162,14 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
         --memory 2Gi \
         --instance-count 1 \
         --system-assigned true \
-        --env AZURECOSMOSDBURI=$AZURECOSMOSDBURI AZURECOSMOSDBDATABASENAME='reddog' KAFKABOOTSTRAPSERVERS=$KAFKABOOTSTRAPSERVERS KAFKASECURITYPROTOCOL='SASL_SSL' KAFKASASLMECHANISM='PLAIN' KAFKATOPICNAME='reddog' MYSQLURL=$MYSQLURL AZUREREDISHOST=$AZUREREDISHOST AZUREREDISPORT='6380' AZURESTORAGEACCOUNTNAME=$AZURESTORAGEACCOUNTNAME AZURESTORAGEENDPOINT=$AZURESTORAGEENDPOINT KAFKATOPICGROUP=$SERVICE_NAME KAFKACONSUMERGROUPID=$SERVICE_NAME KAFKACOMPLETEDORDERSTOPIC='make-line-completed' AZURE_KEY_VAULT_ENDPOINT=$AZURE_KEY_VAULT_ENDPOINT
+        --env AZURECOSMOSDBURI=$AZURECOSMOSDBURI AZURECOSMOSDBDATABASENAME='reddog' KAFKABOOTSTRAPSERVERS=$KAFKABOOTSTRAPSERVERS KAFKASECURITYPROTOCOL='SASL_SSL' KAFKASASLMECHANISM='PLAIN' KAFKATOPICNAME='reddog' MYSQLURL=$MYSQLURL AZUREREDISHOST=$AZUREREDISHOST AZUREREDISPORT=6380 AZURESTORAGEACCOUNTNAME=$AZURESTORAGEACCOUNTNAME AZURESTORAGEENDPOINT=$AZURESTORAGEENDPOINT KAFKATOPICGROUP=$SERVICE_NAME KAFKACONSUMERGROUPID=$SERVICE_NAME KAFKACOMPLETEDORDERSTOPIC='make-line-completed' AZURE_KEY_VAULT_ENDPOINT=$AZURE_KEY_VAULT_ENDPOINT
   
     # Set the access policy for this app
-    APP_MANAGED_IDENTITY_OBJECT_ID=$(az spring app identity assign \
+    APP_MANAGED_IDENTITY_OBJECT_ID=$(az spring app identity show \
         --resource-group $RG \
         --name $SERVICE_NAME \
         --service $SPRING_CLUSTER \
-        --system-assigned \
-        --query identity.principalId \
+        --query principalId \
         --output tsv)
     az keyvault set-policy --resource-group $RG --name $AZURE_KEY_VAULT_NAME --object-id $APP_MANAGED_IDENTITY_OBJECT_ID --secret-permissions list get
   
@@ -188,6 +192,7 @@ Follow the steps below to deploy Red Dog to your Azure Spring Apps instance depl
 * Deploy remaining microservices using the commands above. For each service, set the variable below and run the create/set-policy/deploy commands.
 
     ```bash
+    export SERVICE_NAME='order-service'
     export SERVICE_NAME='accounting-service'
     export SERVICE_NAME='makeline-service'
     export SERVICE_NAME='loyalty-service'
