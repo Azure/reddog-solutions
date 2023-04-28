@@ -1,0 +1,12 @@
+FROM openjdk:17-jdk-alpine
+# Secure way to run the container as non-root user
+RUN apk add dumb-init
+RUN mkdir /app
+RUN addgroup --system reddoguser && adduser -S -s /bin/false -G reddoguser reddoguser
+COPY target/*.jar /app/app.jar
+WORKDIR /app
+RUN chown -R reddoguser:reddoguser /app
+USER reddoguser
+ARG PORT=8700
+EXPOSE ${PORT}
+CMD "dumb-init" "java" "-jar" "app.jar"

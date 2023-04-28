@@ -51,9 +51,9 @@ messaging:
     SUB_NAME: pubsub
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
-    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
 cosmos:
   uri: ${AZURECOSMOSDBURI}
   key: ${AZURECOSMOSDBKEY}

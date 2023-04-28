@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
+@RequestMapping("/loyalty")
 public class LoyaltyController {
 
     private final LoyaltyService loyaltyService;
@@ -22,7 +23,7 @@ public class LoyaltyController {
     }
 
 
-    @PostMapping(value = "/orders")
+    @PostMapping(value = "/update")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin(origins = "*")
     public ResponseEntity<LoyaltySummary> updateLoyalty(@RequestBody OrderSummaryDto orderSummaryDto) {

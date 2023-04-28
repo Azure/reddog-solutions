@@ -7,7 +7,7 @@ spring:
     config:
       server:
         native:
-            search-locations: classpath:/,classpath:/config/,file:./,file:./config/
+            search-locations: classpath:/config
         git:
             uri: https://github.com/Azure/reddog-solutions
             search-paths: config-server
