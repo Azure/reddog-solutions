@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "00f25fef-d5f6-463c-a7bd-42ff62b550c1",
+		"name": "reddog-asa-local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1437235"
+	},
+	"item": [
+		{
+			"name": "create-order-dapr",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loyaltyId\": \"1\",\r\n    \"firstName\": \"Govind\",\r\n    \"lastName\": \"K\",\r\n    \"OrderItems\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"productId\": 2\r\n        }\r\n    ],\r\n    \"storeId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-order-asa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loyaltyId\": \"41\",\r\n    \"firstName\": \"Govind\",\r\n    \"lastName\": \"K\",\r\n    \"orderItems\": [\r\n        {\r\n            \"quantity\": 3,\r\n            \"productId\": 8\r\n        },\r\n        {\r\n            \"quantity\": 2,\r\n            \"productId\": 18\r\n        }\r\n    ],\r\n    \"storeId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8702/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8702",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makeline-create-order-asa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loyaltyId\": \"9\",\r\n    \"firstName\": \"Govind\",\r\n    \"lastName\": \"K\",\r\n    \"orderId\": \"78\",\r\n    \"storeId\": \"1\",\r\n    \"orderDate\": \"Mon Sep 18 11:82:47 PDT 2022\",\r\n    \"orderTotal\": 12.0,\r\n    \"orderItems\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"productId\": 3,\r\n            \"productName\": \"test3\",\r\n            \"unitPrice\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8704/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8704",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makeline-store-orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8704/orders/{{store}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8704",
+					"path": [
+						"orders",
+						"{{store}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makeline-all-orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loyaltyId\": \"1\",\r\n    \"firstName\": \"Govind\",\r\n    \"lastName\": \"K\",\r\n    \"orderId\": \"0fc96211-b280-4962-b9fb-7bbb0b3f8e2d\",\r\n    \"storeId\": \"1\",\r\n    \"orderDate\": \"Sun Sep 18 11:59:47 PDT 2022\",\r\n    \"orderTotal\": 10.0,\r\n    \"orderItems\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"productId\": 2,\r\n            \"productName\": \"test\",\r\n            \"unitPrice\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8704/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8704",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accounting-get-all-in-flight-orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8707/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8707",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "worker-complete-order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8706/orders/{{store}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8706",
+					"path": [
+						"orders",
+						"{{store}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete-order-makeline",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8704/orders/{{store}}/{{orderId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8704",
+					"path": [
+						"orders",
+						"{{store}}",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "receipt-generation-asa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loyaltyId\": \"1\",\r\n    \"firstName\": \"Govind\",\r\n    \"lastName\": \"K\",\r\n    \"OrderItems\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"productId\": 2\r\n        }\r\n    ],\r\n    \"storeId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8705/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8705",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loyalty-asa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loyaltyId\": \"1\",\r\n    \"firstName\": \"Govind\",\r\n    \"lastName\": \"K\",\r\n    \"orderId\": \"0fc96211-b280-4962-b9fb-7bbb0b3f8e2d\",\r\n    \"storeId\": \"1\",\r\n    \"orderDate\": \"Sun Sep 18 11:59:47 PDT 2022\",\r\n    \"orderTotal\": 10.0,\r\n    \"orderItems\": [\r\n        {\r\n            \"quantity\": 1,\r\n            \"productId\": 2,\r\n            \"productName\": \"test\",\r\n            \"unitPrice\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8703/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8703",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all-products-asa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8702/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8702",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all-products-asa-local",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8702/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8702",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "simulate-orders-virtual-customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8701/simulate-orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8701",
+					"path": [
+						"simulate-orders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "storeId",
+			"value": "Gulltown"
+		},
+		{
+			"key": "orderId",
+			"value": "d15aa914-2425-4923-a860-454a9f1312de"
+		}
+	]
+}

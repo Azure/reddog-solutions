@@ -1,0 +1,58 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: receipt-generation-service
+  banner:
+    location: static/banner.txt
+  kafka:
+    topic:
+      name: ${KAFKATOPICNAME}
+      group: ${KAFKATOPICGROUP:receipt-service}
+    bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
+    consumer:
+      group-id: ${KAFKACONSUMERGROUPID:receiptservice}
+      auto-offset-reset: latest
+      properties:
+        spring:
+          json:
+            trusted.packages: "*"
+            type.mapping: ordersummary:com.microsoft.gbb.reddog.receiptgenerationservice.dto.OrderSummaryDto
+        sasl:
+          jaas.config: ${KAFKASASLJAASCONFIG}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${AZURESTORAGEACCOUNTNAME}
+          account-key: ${AZURESTORAGEACCOUNTKEY}
+          endpoint: ${AZURESTORAGEENDPOINT}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+data:
+  BLOB:
+    CONTAINER: ${BLOB_CONTAINER:reddogasa}
+    FILE_NAME: ${BLOB_FILE_NAME:receipts.txt}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8705
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true

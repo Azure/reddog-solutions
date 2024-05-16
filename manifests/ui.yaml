@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  namespace: reddog
+  labels:
+    app: ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui
+  template:
+    metadata:
+      labels:
+        app: ui
+    spec:
+      containers:
+        - name: ui
+          image: ghcr.io/azure/reddog-demo/reddog-ui-nextjs:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+          - name: VIRTUAL_CUSTOMERS_URL
+            value: http://virtual-customers.reddog.svc.cluster.local:8701
+          - name: ORDERS_URL
+            value: http://order-service.reddog.svc.cluster.local:8702
+          - name: ACCOUNTING_URL
+            value: http://accounting-service.reddog.svc.cluster.local:8707
+          - name: OPENAI_URL
+            value: http://openai-service.reddog.svc.cluster.local:8000
+          - name: WORKER_URL
+            value: http://virtual-worker.reddog.svc.cluster.local:8706
+          - name: PORT
+            value: '3000'
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: 2
+            limits:
+              memory: "250Mi"
+              cpu: 4
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui
+  namespace: reddog  
+  labels:
+    name: ui
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 3000
+    targetPort: 3000
+  selector:
+    app: ui 

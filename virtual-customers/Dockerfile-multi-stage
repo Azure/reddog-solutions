@@ -1,0 +1,22 @@
+# multi-stage build
+FROM openjdk:17-jdk-alpine as builder
+RUN apk add --no-cache maven
+WORKDIR /opt/app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN mvn dependency:go-offline
+COPY ./src ./src
+RUN mvn clean install
+
+# Using MS Build of OpenJDK image
+#FROM mcr.microsoft.com/openjdk/jdk:17-ubuntu
+FROM openjdk:17-jdk-alpine
+# Setting the working directory
+WORKDIR /opt/app
+# Exposing the port
+ARG PORT=8701
+EXPOSE ${PORT}
+# Copying the jar file from builder image
+COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
+# Running the jar file
+ENTRYPOINT ["java", "-jar", "/opt/app/*.jar" ]

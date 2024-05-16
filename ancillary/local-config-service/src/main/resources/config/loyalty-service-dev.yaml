@@ -1,0 +1,53 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: loyalty-service
+  banner:
+    location: static/banner.txt
+  redis:
+    host: ${AZUREREDISHOST}
+    port: ${AZUREREDISPORT}
+    password: ${AZUREREDISACCESSKEY}
+    ssl: true
+    connect-timeout: 5000
+  kafka:
+    topic:
+      name: ${KAFKATOPICNAME}
+      group: ${KAFKATOPICGROUP:loyalty-service}
+    bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
+    consumer:
+      group-id: ${KAFKACONSUMERGROUPID:loyaltyservice}
+      auto-offset-reset: latest
+      properties:
+        spring:
+          json:
+            trusted.packages: "*"
+            type.mapping: ordersummary:com.microsoft.gbb.reddog.loyaltyservice.dto.OrderSummaryDto
+        sasl:
+          jaas.config: ${KAFKASASLJAASCONFIG}
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8703
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true

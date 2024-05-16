@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtual-worker
+  namespace: reddog
+  labels:
+    app: virtual-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: virtual-worker
+  template:
+    metadata:
+      labels:
+        app: virtual-worker
+    spec:
+      containers:
+        - name: virtual-worker
+          image: ghcr.io/azure/reddog-demo/reddog-java-virtual-worker:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8706
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: 2
+            limits:
+              memory: "250Mi"
+              cpu: 4
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: virtual-worker
+  namespace: reddog
+  labels:
+    name: virtual-worker
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8706
+    targetPort: 8706
+  selector:
+    app: virtual-worker

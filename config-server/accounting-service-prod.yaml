@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: accounting-service
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: ordersummary:com.microsoft.gbb.reddog.accountingservice.dto.OrderSummaryDto
+        sasl:
+          mechanism: ${KAFKASASLMECHANISM:PLAIN}
+          jaas:
+            config: ${KAFKASASLJAASCONFIG}
+      bootstrap-servers: ${KAFKABOOTSTRAPSERVERS:localhost:9092}
+    security:
+      protocol: ${KAFKASECURITYPROTOCOL:PLAINTEXT}
+  config:
+    import: optional:classpath:.env[.properties]
+  banner:
+    location: static/banner.txt
+cosmos:
+  queryMetricsEnabled: 'true'
+  key: ${AZURECOSMOSDBKEY}
+  secondaryKey: ${AZURECOSMOSDBSECONDARYKEY}
+  databaseName: ${AZURECOSMOSDBDATABASENAME}
+  uri: ${AZURECOSMOSDBURI}
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+server:
+  port: 8707
+topic:
+  name:
+    producer: ${KAFKATOPICNAME:reddog.orders}
+logging:
+  level:
+    org:
+      hibernate:
+        stat: DEBUG
+        SQL: DEBUG
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    enabled: true

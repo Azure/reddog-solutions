@@ -1,0 +1,9 @@
+{
+    "location":"eastus",
+    "username": "myusername",
+    "adminpassword": "replaceSecurePassword",
+    "_comment1": "for deploy target one of: local, asa, aks, aro",
+    "deploytarget": "local",
+    "_comment2": "set to true or false for enabling Azure OpenAI",
+    "include_openai": "false"        
+}

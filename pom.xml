@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.microsoft.gbb</groupId>
+    <artifactId>reddog</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>reddog</name>
+    <packaging>pom</packaging>
+    <description>RedDog</description>
+    
+    <modules>
+        <module>gateway-service</module>
+        <module>accounting-service</module>
+        <module>loyalty-service</module>
+        <module>makeline-service</module>
+        <module>order-service</module>
+        <module>receipt-generation-service</module>
+        <module>virtual-customers</module>
+        <module>virtual-worker</module>
+    </modules>
+</project>

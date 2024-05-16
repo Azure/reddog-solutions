@@ -1,0 +1,40 @@
+name: Deploy to ASA Enterprise
+on:
+  push:
+    branches: [ "main" ]
+env:
+# Use matrix to loop through all the packages
+  ASC_PACKAGE_PATH: ${{ github.workspace }}
+  SERVICE_INSTANCE_NAME: asae-sandbox
+  APP_NAME: order-service
+
+jobs:
+  deploy_to_asa-e:
+    runs-on: ubuntu-latest
+    name: deploy with source code to Azure Spring Apps Enterprise
+    steps:
+      - name: Checkout Github Action
+        uses: actions/checkout@v2
+
+      # old method
+      - name: Login via Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # TODO: debug managed identity
+      # - name: Az Cli Login
+      #   uses: azure/login@v1
+      #   with:
+      #     client-id: ${{ secrets.AZ_CLIENT_ID }}
+      #     tenant-id: ${{ secrets.AZ_TENANT_ID }}
+      #     subscription-id: ${{ secrets.AZ_SUB_ID }}
+      - name: deploy with soruce code
+        uses: azure/spring-cloud-deploy@v1
+        with:
+          azure-subscription: ${{ secrets.AZ_SUB_ID }}
+          action: deploy
+          service-name: ${{ env.SERVICE_INSTANCE_NAME }}
+          app-name: ${{ env.APP_NAME }}
+          use-staging-deployment: false
+          package: ${{ env.ASC_PACKAGE_PATH }}/${{ env.APP_NAME }}

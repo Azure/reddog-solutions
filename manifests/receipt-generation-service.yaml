@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: receipt-generation-service
+  namespace: reddog
+  labels:
+    app: receipt-generation-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: receipt-generation-service
+  template:
+    metadata:
+      labels:
+        app: receipt-generation-service
+    spec:
+      containers:
+        - name: receipt-generation-service
+          image: ghcr.io/azure/reddog-demo/reddog-java-receipt-generation-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8705         
+          envFrom:
+          - configMapRef:
+              name: reddog-env-vars
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: 2
+            limits:
+              memory: "250Mi"
+              cpu: 4
+---              
+apiVersion: v1
+kind: Service
+metadata:
+  name: receipt-generation-service
+  namespace: reddog
+  labels:
+    name: receipt-generation-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8705
+    targetPort: 8705
+  selector:
+    app: receipt-generation-service

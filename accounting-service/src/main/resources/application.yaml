@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev, key-vault
+  application:
+    name: accounting-service
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+---
+spring:
+  config:
+    activate:
+      on-profile: key-vault
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources:
+            - name: key-vault-property-source
+              endpoint: ${AZURE_KEY_VAULT_ENDPOINT}

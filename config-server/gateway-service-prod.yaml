@@ -1,0 +1,63 @@
+server:
+  port: 8700
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    enabled: true
+spring:
+  banner:
+    location: static/banner.txt
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: accounting-service
+          uri: lb://accounting-service
+          predicates:
+            - Path=/orders,/orders/completed,/orders/day,/orders/*/*,/orders/*/*/*
+            - Method=GET
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/order,/products,/product-images
+        - id: receipt-generation-service
+          uri: lb://receipt-generation-service
+          predicates:
+            - Path=/receipt-generation/**
+        - id: loyalty-service
+          uri: lb://loyalty-service
+          predicates:
+            - Path=/loyalty/**
+        - id: makeline-service-1
+          uri: lb://makeline-service
+          predicates:
+            - Path=/orders
+            - Method=POST
+        - id: makeline-service-2
+          uri: lb://makeline-service
+          predicates:
+            - Path=/orders/*
+            - Method=GET
+        - id: makeline-service-3
+          uri: lb://makeline-service
+          predicates:
+            - Path=/orders/*,/orders/*/*
+            - Method=DELETE
+        - id: virtual-worker-1
+          uri: lb://virtual-worker
+          predicates:
+            - Path=/orders/complete
+            - Method=POST
+        - id: virtual-worker-2
+          uri: lb://virtual-worker
+          predicates:
+            - Path=/orders/*
+            - Method=POST
+        - id: virtual-customers
+          uri: lb://virtual-customers
+          predicates:
+            - Path=/simulate-orders
+            - Method=POST
