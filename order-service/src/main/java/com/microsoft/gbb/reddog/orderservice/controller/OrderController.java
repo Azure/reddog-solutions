@@ -3,11 +3,11 @@ package com.microsoft.gbb.reddog.orderservice.controller;
 import com.microsoft.gbb.reddog.orderservice.dto.CustomerOrderDto;
 import com.microsoft.gbb.reddog.orderservice.dto.OrderSummaryDto;
 import com.microsoft.gbb.reddog.orderservice.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RestController
 public class OrderController {

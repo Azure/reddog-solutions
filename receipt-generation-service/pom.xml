@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.9</version>
+        <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.microsoft.gbb.reddog</groupId>
@@ -16,9 +16,9 @@
     <properties>
         <java.version>17</java.version>
         <opentelemetry.version>1.18.0</opentelemetry.version>
-        <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
-        <spring-cloud-azure.version>4.7.0</spring-cloud-azure.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <springdoc-openapi-ui.version>1.8.0</springdoc-openapi-ui.version>
+        <spring-cloud-azure.version>5.13.0</spring-cloud-azure.version>
+        <spring-cloud.version>2023.0.2</spring-cloud.version>
     </properties>
     <dependencies>
         <dependency>
@@ -75,6 +75,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <version>3.1.11</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -126,7 +127,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.7.0</version>
                 <executions>
                     <execution>
                         <id>copy-agent</id>
@@ -141,7 +142,7 @@
                         <artifactItem>
                             <groupId>com.microsoft.azure</groupId>
                             <artifactId>applicationinsights-agent</artifactId>
-                            <version>3.4.6</version>
+                            <version>3.5.3</version>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <destFileName>applicationinsights-agent.jar</destFileName>
                         </artifactItem>

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.9</version>
+        <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.microsoft.gbb.reddog</groupId>
@@ -15,12 +15,12 @@
     <description>order-service</description>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
-        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
-        <springdoc-openapi-ui.version>1.6.11</springdoc-openapi-ui.version>
+        <spring-cloud.version>2023.0.2</spring-cloud.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <springdoc-openapi-ui.version>1.8.0</springdoc-openapi-ui.version>
         <flyway-maven-plugin.version>9.3.0</flyway-maven-plugin.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <spring-cloud-azure.version>4.7.0</spring-cloud-azure.version>
+        <spring-cloud-azure.version>5.13.0</spring-cloud-azure.version>
     </properties>
     <dependencies>
         <dependency>
@@ -71,6 +71,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <version>3.1.11</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -116,6 +117,16 @@
             <groupId>com.azure.spring</groupId>
             <artifactId>spring-cloud-azure-starter-servicebus-jms</artifactId>
             <version>${spring-cloud-azure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.1.Final</version>
         </dependency>
         <dependency>
             <groupId>com.azure.spring</groupId>
@@ -169,7 +180,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.24</version>
+                            <version>1.18.32</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -182,7 +193,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.7.0</version>
                 <executions>
                     <execution>
                         <id>copy-agent</id>
@@ -197,7 +208,7 @@
                         <artifactItem>
                             <groupId>com.microsoft.azure</groupId>
                             <artifactId>applicationinsights-agent</artifactId>
-                            <version>3.4.6</version>
+                            <version>3.5.3</version>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <destFileName>applicationinsights-agent.jar</destFileName>
                         </artifactItem>
