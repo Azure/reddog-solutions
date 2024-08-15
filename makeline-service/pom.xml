@@ -19,7 +19,7 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <springdoc-openapi-ui.version>1.8.0</springdoc-openapi-ui.version>
         <azure-support.version>0.1.8</azure-support.version>
-        <azure.spring.data.cosmos.version>5.13.0</azure.spring.data.cosmos.version>
+        <azure.spring.data.cosmos.version>5.15.0</azure.spring.data.cosmos.version>
         <spring-cloud-azure.version>5.13.0</spring-cloud-azure.version>
         <spring-cloud.version>2023.0.2</spring-cloud.version>
     </properties>

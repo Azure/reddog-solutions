@@ -18,7 +18,7 @@
         <spring-cloud-azure.version>5.13.0</spring-cloud-azure.version>
         <spring-cloud.version>2023.0.2</spring-cloud.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <azure.spring.data.cosmos.version>5.13.0</azure.spring.data.cosmos.version>
+        <azure.spring.data.cosmos.version>5.15.0</azure.spring.data.cosmos.version>
         <flyway-maven-plugin.version>9.3.0</flyway-maven-plugin.version>
     </properties>
     <dependencies>
