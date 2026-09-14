@@ -14,11 +14,11 @@ jobs:
     name: deploy with source code to Azure Spring Apps Enterprise
     steps:
       - name: Checkout Github Action
-        uses: actions/checkout@v2
+        uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
 
       # old method
       - name: Login via Azure CLI
-        uses: azure/login@v1
+        uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1.6.1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -30,7 +30,7 @@ jobs:
       #     tenant-id: ${{ secrets.AZ_TENANT_ID }}
       #     subscription-id: ${{ secrets.AZ_SUB_ID }}
       - name: deploy with soruce code
-        uses: azure/spring-cloud-deploy@v1
+        uses: azure/spring-cloud-deploy@195a3afcb7f66a893311c9511b8efa894a80348a # v1.0.1
         with:
           azure-subscription: ${{ secrets.AZ_SUB_ID }}
           action: deploy
